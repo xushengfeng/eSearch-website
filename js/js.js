@@ -41,28 +41,30 @@ switch (platform) {
         break;
 }
 
-// 'https://download.fastgit.org/xushengfeng/eSearch/releases/download/1.2.6/esearch-1.2.6-1.x86_64.rpm'
-host = "https://download.fastgit.org/xushengfeng/eSearch/releases/download/";
-version = "1.2.6/";
+var result
+var files_object = {};
+
+var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+};
+fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOptions)
+    .then((response) => response.text())
+    .then((r) => {
+        result = JSON.parse(r);
+        console.log(result);
+        version = `${result[0].tag_name}`;
+        for (i in result[0].assets) {
+            var url = result[0].assets[i].browser_download_url;
+            var hz = url.split(".");
+            hz = hz[hz.length - 1];
+            files_object[hz] = url;
+        }
+    })
+    .catch((error) => console.log("error", error));
+
 main_download.onclick = (e) => {
-    switch (e.target.id) {
-        case "exe":
-            window.open(host + version + "esearch.exe");
-            break;
-        case "zip":
-            window.open(host + version + "eSearch-win32-x64.zip");
-            break;
-        case "deb":
-            window.open(host + version + "esearch_1.2.6_amd64.deb");
-            break;
-        case "rpm":
-            window.open(host + version + "esearch-1.2.6-1.x86_64.rpm");
-            break;
-        case "targz":
-            window.open(host + version + "eSearch-linux-x64.tar.gz");
-            break;
-        case "mac":
-            window.open(host + version + "");
-            break;
-    }
+    var url = files_object[e.target.id];
+    url = url.replace("https://github.com", "https://download.fastgit.org");
+    window.open(url);
 };
