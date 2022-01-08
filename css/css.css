@@ -46,6 +46,17 @@ body {
     height: calc(100vh - 48px);
 }
 
+#eSearch {
+    display: flex;
+    justify-content: center;
+}
+#main_right {
+    width: 600px;
+}
+#main_right > svg {
+    width: 600px;
+}
+
 #下载 {
     display: flex;
     flex-direction: column;

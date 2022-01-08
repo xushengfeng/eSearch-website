@@ -54,6 +54,34 @@ platform_select.oninput = () => {
     c_platform(platform_select.value);
 };
 
+var tl = anime.timeline({
+    easing: "easeOutExpo",
+    duration: 1000,
+});
+
+// Add children
+tl.add({
+    targets: "#svg_rect",
+    width: 400,
+    height: 300,
+    x: 50,
+    y: 60,
+}).add({
+    targets: "#svg_window",
+    stroke:"#000",
+    opacity:1
+}).add({
+    targets: "#svg_rect, #svg_bg",
+    opacity:0
+},"-=1000").add({
+    targets: "#svg_selection",
+    width:60
+}).add({
+    targets: "#svg_text",
+    offset:'100%',
+    'stop-color':"#fff"
+},"-=1000");
+
 var result;
 var files_object = { none: { url: "", size: "暂无资源" } };
 
