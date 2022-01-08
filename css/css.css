@@ -52,7 +52,7 @@ body {
 }
 
 .pl_Logo {
-    width: 60px;
+    width: 100px;
     margin: 8px;
 }
 
@@ -67,6 +67,7 @@ body {
     width: 25%;
     background-color: var(--bg);
     transition: var(--transition);
+    height: calc(100vh - 100px);
 }
 #download > div:hover {
     width: 40%;
@@ -82,7 +83,6 @@ body {
     align-items: stretch;
 }
 #download > div > div div {
-    font-size: 12px;
     border: var(--border);
     border-radius: var(--border-radius);
     padding: 4px;
@@ -98,24 +98,14 @@ body {
     background-color: var(--hover-color);
 }
 #download > div > div > a > div > span {
-    font-size: 20px;
+    font-size: 24px;
 }
 #download a {
     text-decoration: none;
 }
 
-#download_old {
-    overflow-y: scroll;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: var(--transition);
-    width: 40%;
-}
-#download_old > div {
-    margin: 8px;
-}
-.download_old_showed {
-    transform: scaleY(1) !important;
+#download_old_b {
+    cursor: pointer;
 }
 
 #log {

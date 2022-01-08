@@ -122,24 +122,10 @@ function show_download() {
     var source_d = `<a target="_blank" href="${result[0].tarball_url}"><div class="download_b"><span>.tar</span></div></a>
     <a target="_blank" href="${result[0].zipball_url}"><div class="download_b"><span>.zip</span></div></a>`;
     document.querySelector("#source_d > div").innerHTML = source_d;
-    var t = "";
-    for (i = 1; i < result.length; i++) {
-        t += `<div><h2>${result[i].tag_name}</h2>`;
-        for (j in result[i].assets)
-            t += `<a target="_blank" href="${result[i].assets[j].browser_download_url}">${result[i].assets[j].name}</a><br>`;
-        t += "</div>";
-    }
-    document.getElementById("download_old").innerHTML = t;
 }
 
-download_old_showed = false;
 document.getElementById("download_old_b").onclick = () => {
-    download_old_showed = !download_old_showed;
-    if (download_old_showed) {
-        document.getElementById("download_old").className = "download_old_showed";
-    } else {
-        document.getElementById("download_old").className = "";
-    }
+    window.open("https://hub.fastgit.org/xushengfeng/eSearch/releases");
 };
 
 function show_log() {
