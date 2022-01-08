@@ -14,15 +14,21 @@
 
 html,
 body {
-    margin: 0;
+    margin: 48px 0 0 0;
     font-family: sans-serif;
 }
 .nav {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 0;
     margin: 0;
+    position: fixed;
+    background-color: var(--bar-bg);
+    backdrop-filter: var(--blur);
+    top: 0;
+    height: 48px;
 }
 .nav > li {
     list-style-type: none;
@@ -35,9 +41,13 @@ body {
     background-color: var(--hover-color);
 }
 
+.main_block {
+    height: calc(100vh - 48px);
+}
+
 #log {
     overflow-y: scroll;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 60px - 48px);
     width: 60%;
 }
 @media (max-width: 900px) {
