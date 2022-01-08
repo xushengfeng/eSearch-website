@@ -62,15 +62,28 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
             files_object[hz].url = url;
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
+        show_log();
     })
     .catch((error) => console.log("error", error));
 
 main_download.onmouseover = (e) => {
-    if (e.target.id!='main_download')
-    e.target.title = `点击下载，共需${files_object[e.target.id].size}MB`;
+    if (e.target.id != "main_download") e.target.title = `点击下载，共需${files_object[e.target.id].size}MB`;
 };
 main_download.onclick = (e) => {
     var url = files_object[e.target.id].url;
     url = url.replace("https://github.com", "https://download.fastgit.org");
     window.open(url);
 };
+
+function show_log() {
+    for (i in result) {
+        var li = document.createElement("li");
+        var h = document.createElement("h2");
+        h.innerText = result[i].tag_name;
+        li.appendChild(h);
+        var div = document.createElement("div");
+        div.innerText = result[i].body;
+        li.append(h, div);
+        document.getElementById("log").appendChild(li);
+    }
+}

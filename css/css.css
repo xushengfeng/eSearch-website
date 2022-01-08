@@ -15,23 +15,30 @@
 html,
 body {
     margin: 0;
+    font-family: sans-serif;
 }
-ul {
+.nav {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 0;
     margin: 0;
 }
-li {
+.nav > li {
     list-style-type: none;
     margin: 8px;
     padding: 8px;
     border-radius: 4px;
     transition: var(--transition);
 }
-li:hover {
+.nav > li:hover {
     background-color: var(--hover-color);
+}
+
+#log {
+    overflow-y: scroll;
+    height: calc(100vh - 56px);
+    width: 60%;
 }
 @media (max-width: 900px) {
 }
