@@ -16,8 +16,9 @@ html,
 body {
     margin: 48px 0 0 0;
     font-family: sans-serif;
+    scroll-behavior: smooth;
 }
-.nav {
+#nav {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -30,14 +31,14 @@ body {
     top: 0;
     height: 48px;
 }
-.nav > li {
+#nav > li {
     list-style-type: none;
     margin: 8px;
     padding: 8px;
     border-radius: 4px;
     transition: var(--transition);
 }
-.nav > li:hover {
+#nav > li:hover {
     background-color: var(--hover-color);
 }
 

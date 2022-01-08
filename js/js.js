@@ -1,3 +1,7 @@
+document.getElementById("nav").onclick = (e) => {
+    window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop);
+};
+
 var userAgent = navigator.userAgent.toLowerCase();
 var platform = "Unknown";
 if (userAgent.indexOf("win") > -1) {
