@@ -3,9 +3,9 @@ var platform = "Unknown";
 if (userAgent.indexOf("win") > -1) {
     platform = "Windows";
 } else if (userAgent.indexOf("iphone") > -1) {
-    platform = "Iphone";
+    platform = "iOS";
 } else if (userAgent.indexOf("mac") > -1) {
-    platform = "Mac";
+    platform = "macOS";
 } else if (userAgent.indexOf("linux") > -1) {
     if (userAgent.indexOf("android") > -1) {
         platform = "Android";
@@ -18,31 +18,40 @@ if (userAgent.indexOf("win") > -1) {
 
 var main_download = document.getElementById("main_download");
 var platform_select = document.getElementById("platform");
-switch (platform) {
-    case "Windows":
-        main_download.innerHTML = `<button id="exe"></button>`;
-        platform_select.value = "win";
-        break;
-    case "Linux":
-        main_download.innerHTML = `<button id="deb">下载deb</button><button id="rpm">下载rpm</button>`;
-        platform_select.value = "linux";
-        break;
-    case "Mac":
-        main_download.innerHTML = `<button id="mac"></button>`;
-        platform_select.value = "mac";
-        break;
-    case "Android":
-        main_download.innerHTML = `<button id="exe"></button>`;
-        platform_select.value = "win";
-        break;
-    case "Iphone":
-        main_download.innerHTML = `<button id="mac"></button>`;
-        platform_select.value = "mac";
-        break;
+
+function c_platform(platform) {
+    switch (platform) {
+        case "Windows":
+            main_download.innerHTML = `<button id="exe">下载</button>`;
+            platform_select.value = "Windows";
+            break;
+        case "Linux":
+            main_download.innerHTML = `<button id="deb">下载deb</button><button id="rpm">下载rpm</button>`;
+            platform_select.value = "Linux";
+            break;
+        case "macOS":
+            main_download.innerHTML = `<button id="mac">下载</button>`;
+            platform_select.value = "macOS";
+            break;
+        case "Android":
+            main_download.innerHTML = `<button id="exe">下载</button>`;
+            platform_select.value = "Windows";
+            break;
+        case "iOS":
+            main_download.innerHTML = `<button id="mac">下载</button>`;
+            platform_select.value = "macOS";
+            break;
+    }
 }
 
+c_platform(platform);
+
+platform_select.oninput = () => {
+    c_platform(platform_select.value);
+};
+
 var result;
-var files_object = {};
+var files_object = { none: { url: "", size: "暂无资源" } };
 
 var requestOptions = {
     method: "GET",
@@ -66,11 +75,32 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
     })
     .catch((error) => console.log("error", error));
 
+function get_pl(hz) {
+    var hz_list = { exe: "zip", deb: "gz", rpm: "deb", gz: "none" };
+    i = 0;
+    while (!files_object[hz]) {
+        if (hz_list[hz]) {
+            hz = hz_list[hz];
+            i += 1;
+            break;
+        } else {
+            hz = "none";
+            break;
+        }
+    }
+    return hz;
+}
 main_download.onmouseover = (e) => {
-    if (e.target.id != "main_download") e.target.title = `点击下载，共需${files_object[e.target.id].size}MB`;
+    var hz = get_pl(e.target.id);
+    if (e.target.id != "main_download")
+        if (hz != "none") {
+            e.target.title = `点击下载，共需${files_object[hz].size}MB`;
+        } else {
+            e.target.title = `${files_object[hz].size}`;
+        }
 };
 main_download.onclick = (e) => {
-    var url = files_object[e.target.id].url;
+    var url = files_object[get_pl(e.target.id)].url;
     url = url.replace("https://github.com", "https://download.fastgit.org");
     window.open(url);
 };
