@@ -75,7 +75,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
             files_object[hz].url = url;
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
-        show_download_old();
+        show_download();
         show_log();
     })
     .catch((error) => console.log("error", error));
@@ -110,8 +110,19 @@ main_download.onclick = (e) => {
     window.open(url);
 };
 
-function show_download_old() {
-    t = "";
+function show_download() {
+    var Windows_d = `<a target="_blank" href="${files_object.zip.url}"><div class="download_b">绿色版 适用于Windows</div></a>`;
+    document.querySelector("#Windows_d > div").innerHTML = Windows_d;
+    var Linux_d = `<a target="_blank" href="${files_object.deb.url}"><div class="download_b">适用于Debian, Ubuntu</div></a>
+    <a target="_blank" href="${files_object.rpm.url}"><div class="download_b">适用于Red Hat, Fedora, SUSE</div></a>
+    <a target="_blank" href="${files_object.gz.url}"><div class="download_b">适用于所有Linux</div></a>`;
+    document.querySelector("#Linux_d > div").innerHTML = Linux_d;
+    var macOS_d = ``;
+    document.querySelector("#macOS_d > div").innerHTML = macOS_d;
+    var source_d = `<a target="_blank" href="${result[0].tarball_url}"><div class="download_b">tar</div></a>
+    <a target="_blank" href="${result[0].zipball_url}"><div class="download_b">zip</div></a>`;
+    document.querySelector("#source_d > div").innerHTML = source_d;
+    var t = "";
     for (i = 1; i < result.length; i++) {
         t += `<div><h2>${result[i].tag_name}</h2>`;
         for (j in result[i].assets)
