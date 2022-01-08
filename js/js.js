@@ -75,6 +75,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
             files_object[hz].url = url;
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
+        show_download_old();
         show_log();
     })
     .catch((error) => console.log("error", error));
@@ -107,6 +108,27 @@ main_download.onclick = (e) => {
     var url = files_object[get_pl(e.target.id)].url;
     url = url.replace("https://github.com", "https://download.fastgit.org");
     window.open(url);
+};
+
+function show_download_old() {
+    t = "";
+    for (i = 1; i < result.length; i++) {
+        t += `<div><h2>${result[i].tag_name}</h2>`;
+        for (j in result[i].assets)
+            t += `<a target="_blank" href="${result[i].assets[j].browser_download_url}">${result[i].assets[j].name}</a><br>`;
+        t += "</div>";
+    }
+    document.getElementById("download_old").innerHTML = t;
+}
+
+download_old_showed = false;
+document.getElementById("download_old_b").onclick = () => {
+    download_old_showed = !download_old_showed;
+    if (download_old_showed) {
+        document.getElementById("download_old").className = "download_old_showed";
+    } else {
+        document.getElementById("download_old").className = "";
+    }
 };
 
 function show_log() {

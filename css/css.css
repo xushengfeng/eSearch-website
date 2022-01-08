@@ -46,6 +46,25 @@ body {
     height: calc(100vh - 48px);
 }
 
+#下载 {
+    display: flex;
+    flex-direction: column;
+}
+
+#download_old {
+    overflow-y: scroll;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: var(--transition);
+    width: 40%;
+}
+#download_old > div {
+    margin: 8px;
+}
+.download_old_showed {
+    transform: scaleY(1) !important;
+}
+
 #log {
     overflow-y: scroll;
     height: calc(100vh - 60px - 48px);
