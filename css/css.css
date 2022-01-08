@@ -51,6 +51,22 @@ body {
     flex-direction: column;
 }
 
+#download {
+    display: flex;
+    justify-content: center;
+}
+#download > div {
+    width: 200px;
+    height: 200px;
+    background-color: var(--bg);
+    border: var(--border);
+    margin: 8px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+#download > div:hover {
+}
+
 #download_old {
     overflow-y: scroll;
     transform: scaleY(0);
