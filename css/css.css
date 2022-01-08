@@ -1,12 +1,40 @@
 :root {
+    --hover-color: #0002;
+    --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    --border-radius: 8px;
+    --bar-bg: #fff9;
+    --blur: blur(10px);
+    --shadow: #0002 0 0 8px;
+    --height: 40px;
+    --bg: #fff;
+    --color: #000;
+    --color2: #555;
+    --border: 1px #000 solid;
 }
 
-html {
+html,
+body {
+    margin: 0;
 }
-
-@media (max-width:900px) {
+ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style-type: none;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+li:hover {
+    background-color: var(--hover-color);
+}
+@media (max-width: 900px) {
 }
 
 @media (prefers-color-scheme: dark) {
-
 }
