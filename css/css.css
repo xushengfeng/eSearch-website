@@ -2,8 +2,8 @@
     --hover-color: #0002;
     --transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     --border-radius: 8px;
-    --bar-bg: #fff9;
-    --blur: blur(10px);
+    --bar-bg: #fffc;
+    --blur: blur(16px);
     --shadow: #0002 0 0 8px;
     --height: 40px;
     --bg: #fff;
