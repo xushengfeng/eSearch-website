@@ -206,7 +206,8 @@ function show_log() {
     });
     for (i in result) {
         var li = document.createElement("li");
-        var h = document.createElement("h2");
+        var h = document.createElement("span");
+        h.className = "log_v";
         h.innerText = result[i].tag_name;
         li.appendChild(h);
         var div = document.createElement("div");

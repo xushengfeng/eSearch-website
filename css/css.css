@@ -194,14 +194,27 @@ button {
 }
 
 /* 日志 */
+#日志 {
+    display: flex;
+    justify-content: center;
+}
+#日志 > h1 {
+    margin: 0;
+}
 #log {
     overflow-y: scroll;
-    height: calc(100vh - 60px - 48px);
-    width: 60%;
+    height: calc(100vh - 48px);
+    margin: 0;
+}
+#log::before{
+    position: relative;
+}
+.log_v {
+    font-size: 30px;
 }
 
 /* 关于 */
-#关于{
+#关于 {
     height: 50vh;
     display: flex;
     align-items: center;
@@ -209,7 +222,7 @@ button {
     background: #eee;
     flex-direction: column;
 }
-.about_p2{
+.about_p2 {
     display: flex;
 }
 @media (max-width: 900px) {
