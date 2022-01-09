@@ -59,12 +59,11 @@ body {
 }
 
 /* 功能 */
-.gn_b{
+.gn_b {
     height: 1080px;
     padding: 16px;
     box-sizing: border-box;
 }
-
 #下载 {
     display: flex;
     flex-direction: column;
