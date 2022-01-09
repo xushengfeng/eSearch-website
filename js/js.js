@@ -66,21 +66,31 @@ tl.add({
     height: 300,
     x: 50,
     y: 60,
-}).add({
-    targets: "#svg_window",
-    stroke:"#000",
-    opacity:1
-}).add({
-    targets: "#svg_rect, #svg_bg",
-    opacity:0
-},"-=1000").add({
-    targets: "#svg_selection",
-    width:60
-}).add({
-    targets: "#svg_text",
-    offset:'100%',
-    'stop-color':"#fff"
-},"-=1000");
+})
+    .add({
+        targets: "#svg_window",
+        stroke: "#000",
+        opacity: 1,
+    })
+    .add(
+        {
+            targets: "#svg_rect, #svg_bg",
+            opacity: 0,
+        },
+        "-=1000"
+    )
+    .add({
+        targets: "#svg_selection",
+        width: 60,
+    })
+    .add(
+        {
+            targets: "#svg_text",
+            offset: "100%",
+            "stop-color": "#fff",
+        },
+        "-=1000"
+    );
 
 var result;
 var files_object = { none: { url: "", size: "暂无资源" } };
@@ -157,13 +167,18 @@ document.getElementById("download_old_b").onclick = () => {
 };
 
 function show_log() {
+    var md = window.markdownit({
+        html: true,
+        linkify: true,
+        typographer: true
+      });
     for (i in result) {
         var li = document.createElement("li");
         var h = document.createElement("h2");
         h.innerText = result[i].tag_name;
         li.appendChild(h);
         var div = document.createElement("div");
-        div.innerText = result[i].body;
+        div.innerHTML = md.render(result[i].body);
         li.append(h, div);
         document.getElementById("log").appendChild(li);
     }
