@@ -97,7 +97,7 @@ tl.add({
     .add(
         {
             targets: "#svg_icon",
-            x: 0,
+            x: 30,
             y: 0,
             width: 200,
             height: 200,
