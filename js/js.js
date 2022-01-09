@@ -62,10 +62,8 @@ var tl = anime.timeline({
 // Add children
 tl.add({
     targets: "#svg_rect",
-    width: 400,
-    height: 300,
-    x: 100,
-    y: 50,
+    width: "60%",
+    height: "60%",
 })
     .add({
         targets: "#svg_window",
@@ -110,11 +108,22 @@ tl.add({
     .add(
         {
             targets: "#svg",
-            width: 200,
+            width: "50%",
             height: 200,
+            left: "50%",
+            top: "50%",
+            translateY: "-50%",
+        },
+        "-=1000"
+    )
+    .add(
+        {
+            targets: "#main_left",
+            opacity: 1,
         },
         "-=1000"
     );
+document.getElementById("svg_a").onclick = tl.restart;
 
 var result;
 var files_object = { none: { url: "", size: "暂无资源" } };
