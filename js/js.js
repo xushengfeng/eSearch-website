@@ -56,7 +56,7 @@ platform_select.oninput = () => {
 
 var tl = anime.timeline({
     easing: "easeOutExpo",
-    duration: 1000,
+    duration: 800,
 });
 
 // Add children
@@ -76,7 +76,7 @@ tl.add({
             opacity: 0,
             duration: 100,
         },
-        "-=1000"
+        "-=800"
     )
     .add({
         targets: "#svg_selection",
@@ -88,7 +88,7 @@ tl.add({
             offset: "100%",
             "stop-color": "#fff",
         },
-        "-=1000"
+        "-=800"
     )
     .add({
         targets: "#svg_window",
@@ -103,7 +103,7 @@ tl.add({
             height: 200,
             opacity: 1,
         },
-        "-=1000"
+        "-=800"
     )
     .add(
         {
@@ -114,14 +114,14 @@ tl.add({
             top: "50%",
             translateY: "-50%",
         },
-        "-=1000"
+        "-=800"
     )
     .add(
         {
             targets: "#main_left",
             opacity: 1,
         },
-        "-=1000"
+        "-=800"
     );
 document.getElementById("svg_a").onclick = tl.restart;
 
