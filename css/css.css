@@ -10,8 +10,8 @@
     --color: #000;
     --color2: #555;
     --border: 1px #000 solid;
-    --l-color: #4094FF;
-    --h-color: #3A69FF;
+    --l-color: #4094ff;
+    --h-color: #3a69ff;
 }
 
 html {
@@ -48,6 +48,21 @@ body {
 
 .main_block {
     /* height: calc(100vh - 48px); */
+}
+
+kbd {
+    display: inline-block;
+    padding: 4px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px #0002;
+    transform: rotateX(330deg);
+    background: linear-gradient(315deg, #e6e6e6, #ffffff);
+    font-family: var(--monospace);
+    cursor: default;
+}
+kbd:hover {
+    transform: rotateX(30deg) translateY(5px);
+    box-shadow: 0 0px #0002;
 }
 
 /* 主要 */
