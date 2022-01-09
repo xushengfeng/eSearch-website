@@ -64,8 +64,8 @@ tl.add({
     targets: "#svg_rect",
     width: 400,
     height: 300,
-    x: 50,
-    y: 60,
+    x: 100,
+    y: 50,
 })
     .add({
         targets: "#svg_window",
@@ -76,6 +76,7 @@ tl.add({
         {
             targets: "#svg_rect, #svg_bg",
             opacity: 0,
+            duration: 100,
         },
         "-=1000"
     )
@@ -88,6 +89,29 @@ tl.add({
             targets: "#svg_text",
             offset: "100%",
             "stop-color": "#fff",
+        },
+        "-=1000"
+    )
+    .add({
+        targets: "#svg_window",
+        opacity: 0,
+    })
+    .add(
+        {
+            targets: "#svg_icon",
+            x: 0,
+            y: 0,
+            width: 200,
+            height: 200,
+            opacity: 1,
+        },
+        "-=1000"
+    )
+    .add(
+        {
+            targets: "#svg",
+            width: 200,
+            height: 200,
         },
         "-=1000"
     );
@@ -170,8 +194,8 @@ function show_log() {
     var md = window.markdownit({
         html: true,
         linkify: true,
-        typographer: true
-      });
+        typographer: true,
+    });
     for (i in result) {
         var li = document.createElement("li");
         var h = document.createElement("h2");
