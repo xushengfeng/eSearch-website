@@ -216,3 +216,12 @@ function show_log() {
         document.getElementById("log").appendChild(li);
     }
 }
+
+window.onscroll = () => {
+    var cr = document.getElementById("svg_icon").getBoundingClientRect();
+    if (cr.y + cr.height < 0) {
+        document.getElementById("icon").className = "";
+    } else {
+        document.getElementById("icon").className = "icon_h";
+    }
+};

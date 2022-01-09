@@ -45,6 +45,20 @@ body {
 #nav > li:hover {
     background-color: var(--hover-color);
 }
+#nav > :first-child {
+    display: flex;
+    align-items: center;
+}
+#icon {
+    transition: var(--transition);
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}
+.icon_h{
+    width: 0 !important;
+    margin-right: 0 !important;
+}
 
 .main_block {
     /* height: calc(100vh - 48px); */
@@ -211,7 +225,7 @@ button {
     height: calc(100vh - 48px);
     margin: 0;
 }
-#log::before{
+#log::before {
     position: relative;
 }
 .log_v {
