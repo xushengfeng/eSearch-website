@@ -64,6 +64,9 @@ kbd:hover {
     transform: rotateX(30deg) translateY(5px);
     box-shadow: 0 0px #0002;
 }
+button {
+    cursor: pointer;
+}
 
 /* 主要 */
 #eSearch {

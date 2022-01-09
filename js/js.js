@@ -122,12 +122,6 @@ tl.add({
             opacity: 1,
         },
         "-=800"
-    )
-    .add(
-        {
-            targets: "#svg_a",
-            opacity: 1,
-        }
     );
 
 var result;
