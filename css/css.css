@@ -193,10 +193,24 @@ button {
     cursor: pointer;
 }
 
+/* 日志 */
 #log {
     overflow-y: scroll;
     height: calc(100vh - 60px - 48px);
     width: 60%;
+}
+
+/* 关于 */
+#关于{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #eee;
+    flex-direction: column;
+}
+.about_p2{
+    display: flex;
 }
 @media (max-width: 900px) {
 }
