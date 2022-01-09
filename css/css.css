@@ -57,10 +57,6 @@ body {
     overflow: hidden;
     transform: translateY(-10%);
 }
-#svg_a {
-    position: absolute;
-    z-index: 10;
-}
 #main_left {
     display: flex;
     flex-direction: column;
