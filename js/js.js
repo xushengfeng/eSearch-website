@@ -1,5 +1,5 @@
 document.getElementById("nav").onclick = (e) => {
-    window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop);
+    window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop - 48);
 };
 
 var userAgent = navigator.userAgent.toLowerCase();
