@@ -1,7 +1,9 @@
+// 导航栏跳转
 document.getElementById("nav").onclick = (e) => {
     window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop - 48);
 };
 
+// 根据平台在首页显示下载按钮
 var userAgent = navigator.userAgent.toLowerCase();
 var platform = "Unknown";
 if (userAgent.indexOf("win") > -1) {
@@ -54,6 +56,7 @@ platform_select.oninput = () => {
     c_platform(platform_select.value);
 };
 
+// 首页动画
 var tl = anime.timeline({
     easing: "easeOutExpo",
     duration: 800,
@@ -124,6 +127,7 @@ tl.add({
         "-=800"
     );
 
+// 获取软件资源
 var result;
 var files_object = { none: { url: "", size: "暂无资源" } };
 
@@ -149,7 +153,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
         show_log();
     })
     .catch((error) => console.log("error", error));
-
+// 单资源没有时，转换为代替资源索引
 function get_pl(hz) {
     var hz_list = { exe: "zip", deb: "gz", rpm: "deb", gz: "none" };
     i = 0;
@@ -165,6 +169,7 @@ function get_pl(hz) {
     }
     return hz;
 }
+// 首页下载提示大小
 main_download.onmouseover = (e) => {
     var hz = get_pl(e.target.id);
     if (e.target.id != "main_download")
@@ -180,6 +185,7 @@ main_download.onclick = (e) => {
     window.open(url);
 };
 
+// 下载界面添加按钮
 function show_download() {
     var Windows_d = `<a target="_blank" href="${files_object.zip.url}"><div class="download_b"><span>.zip</span>绿色版 适用于Windows7+</div></a>`;
     document.querySelector("#Windows_d > div").innerHTML = Windows_d;
@@ -193,18 +199,21 @@ function show_download() {
     <a target="_blank" href="${result[0].zipball_url}"><div class="download_b"><span>.zip</span>zip压缩源代码</div></a>`;
     document.querySelector("#source_d > div").innerHTML = source_d;
 }
-
+// 旧版本下载
 document.getElementById("download_old_b").onclick = () => {
     window.open("https://hub.fastgit.org/xushengfeng/eSearch/releases");
 };
 
+// 获取更新日志
 function show_log() {
+    // markdown渲染
     var md = window.markdownit({
         html: true,
         linkify: true,
         typographer: true,
     });
     // Remember old renderer, if overridden, or proxy to default renderer
+    // 官方示例，链接新窗口打开
     var defaultRender =
         md.renderer.rules.link_open ||
         function (tokens, idx, options, env, self) {
@@ -237,6 +246,7 @@ function show_log() {
     }
 }
 
+// 导航栏logo自动
 window.onscroll = () => {
     var cr = document.getElementById("svg_icon").getBoundingClientRect();
     if (cr.y + cr.height < 0) {
