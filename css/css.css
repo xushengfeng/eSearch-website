@@ -215,6 +215,10 @@ button {
     height: 20px;
 }
 
+#fastdownload{
+    cursor: pointer;
+    margin-left: 16px;
+}
 /* 日志 */
 #日志 {
     display: flex;

@@ -139,14 +139,13 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
     .then((response) => response.text())
     .then((r) => {
         result = JSON.parse(r);
-        console.log(result);
         version = `${result[0].tag_name}`;
         for (i in result[0].assets) {
             var url = result[0].assets[i].browser_download_url;
             var hz = url.split(".");
             hz = hz[hz.length - 1];
             files_object[hz] = {};
-            files_object[hz].url = url;
+            files_object[hz].url = fasthub(url);
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
         show_download();
@@ -180,10 +179,31 @@ main_download.onmouseover = (e) => {
         }
 };
 main_download.onclick = (e) => {
-    var url = files_object[get_pl(e.target.id)].url;
-    url = url.replace("https://github.com", "https://download.fastgit.org");
+    var url = fasthub(files_object[get_pl(e.target.id)].url);
     window.open(url);
 };
+
+fasturl = true;
+document.getElementById("fastdownload").onclick = () => {
+    fasturl = !fasturl;
+    for (let i in files_object) {
+        files_object[i].url = fasthub(files_object[i].url);
+    }
+    if (fasturl) {
+        document.getElementById("fastdownload").innerText = "已使用快速下载链接";
+        show_download();
+    } else {
+        document.getElementById("fastdownload").innerText = "已使用初始下载链接";
+        show_download();
+    }
+};
+function fasthub(url) {
+    if (fasturl) {
+        return url.replace("https://github.com", "https://download.fastgit.org");
+    } else {
+        return url.replace("https://download.fastgit.org", "https://github.com");
+    }
+}
 
 // 下载界面添加按钮
 function show_download() {
