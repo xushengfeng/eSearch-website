@@ -21,6 +21,9 @@ html {
 body {
     margin: 48px 0 0 0;
 }
+a{
+    color: var(--color);
+}
 #nav {
     width: 100%;
     display: flex;
