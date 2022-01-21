@@ -266,12 +266,42 @@ function show_log() {
     }
 }
 
-// 导航栏logo自动
-window.onscroll = () => {
+document.onscroll = () => {
+    auto_hide_logo();
+    search_an();
+};
+
+// 导航栏logo自动隐藏
+function auto_hide_logo() {
     var cr = document.getElementById("svg_icon").getBoundingClientRect();
     if (cr.y + cr.height < 0) {
         document.getElementById("icon").className = "";
     } else {
         document.getElementById("icon").className = "icon_h";
     }
-};
+}
+
+var animation = anime({
+    targets: "#search span, #translate span",
+    keyframes: [
+        {
+            translateY: function () {
+                var i = anime.random(0, 1);
+                i = (i - 0.5) * 2;
+                return i * 40 + "vh";
+            },
+            opacity: 0,
+        },
+    ],
+    delay: function () {
+        return anime.random(0, 100);
+    },
+    elasticity: 200,
+    easing: "easeInQuint",
+    autoplay: false,
+});
+function search_an() {
+    var bcr = document.getElementById("search_t").getBoundingClientRect();
+    var scroll_percent = (bcr.height + bcr.top) / document.documentElement.clientHeight;
+    animation.seek(animation.duration * scroll_percent);
+}

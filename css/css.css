@@ -218,6 +218,14 @@ button {
     color: var(--color-w);
 }
 
+.search_p{
+    display: flex;
+    justify-content: center;
+}
+#search span, #translate span{
+    display: inline-block;
+}
+
 /* 下载 */
 #下载 {
     display: flex;
