@@ -7,6 +7,7 @@
     --shadow: #0002 0 0 8px;
     --height: 40px;
     --bg: #fff;
+    --bg2: #fafafa;
     --color: #000;
     --color2: #555;
     --color-w: #fff;
@@ -21,6 +22,7 @@ html {
 }
 body {
     margin: 48px 0 0 0;
+    background-color: var(--bg2)
 }
 a {
     color: var(--color);
@@ -92,6 +94,7 @@ button {
     position: relative;
     overflow: hidden;
     transform: translateY(-10%);
+    background-color: var(--bg);
 }
 #main_left {
     display: flex;
@@ -149,6 +152,7 @@ button {
     box-sizing: border-box;
 }
 .card {
+    background-color: var(--bg);
     box-shadow: var(--shadow);
     margin: 8px;
     padding: 8px;
@@ -212,6 +216,7 @@ button {
     width: 400px;
     height: 200px;
     background: linear-gradient(to right, rgba(181, 195, 255, 0) 0%, rgba(66, 101, 255, 0.747) 40%, rgb(66, 101, 255) 100%);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -222,8 +227,16 @@ button {
     display: flex;
     justify-content: center;
 }
+.search_p > div{
+    background-color: var(--bg);
+    box-shadow: var(--shadow);
+    margin: 8px;
+    padding: 8px;
+    border-radius: var(--border-radius);
+}
 #search span, #translate span{
     display: inline-block;
+    margin: 8px;
 }
 
 /* 下载 */
@@ -232,6 +245,7 @@ button {
     flex-direction: column;
     align-items: center;
     height: calc(100vh - 48px);
+    background-color: var(--bg);
 }
 
 .pl_Logo {
