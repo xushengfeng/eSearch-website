@@ -23,6 +23,7 @@ html {
 body {
     margin: 48px 0 0 0;
     background-color: var(--bg2);
+    overflow-x: hidden;
 }
 a {
     color: var(--color);
@@ -94,6 +95,10 @@ button {
     position: relative;
     overflow: hidden;
     background-color: var(--bg);
+    width: 100%;
+    position: sticky;
+    top: 48px;
+    z-index: 9;
 }
 #main_left {
     display: flex;

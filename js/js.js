@@ -1,6 +1,12 @@
 // 导航栏跳转
 document.getElementById("nav").onclick = (e) => {
-    window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop - 48);
+    if (e.target.dataset.id) {
+        if (e.target.dataset.id == "eSearch") {
+            window.scrollTo(0, 0);
+        } else {
+            window.scrollTo(0, document.getElementById(e.target.dataset.id).offsetTop - 48);
+        }
+    }
 };
 
 // 根据平台在首页显示下载按钮
@@ -267,19 +273,37 @@ function show_log() {
 }
 
 document.onscroll = () => {
-    auto_hide_logo();
+    main_an();
     ocr_an();
     search_an();
 };
 
-// 导航栏logo自动隐藏
-function auto_hide_logo() {
-    var cr = document.getElementById("svg_icon").getBoundingClientRect();
-    if (cr.y + cr.height < 0) {
-        document.getElementById("icon").className = "";
-    } else {
-        document.getElementById("icon").className = "icon_h";
-    }
+var animation_main = anime({
+    targets: "#eSearch",
+    scale: 2,
+    opacity: 0,
+    easing: "easeInOutCubic",
+    autoplay: false,
+    update: (anim) => {
+        if (Math.round(anim.progress) >= 30) {
+            document.getElementById("eSearch").style.pointerEvents = "none";
+        } else {
+            document.getElementById("eSearch").style.pointerEvents = "";
+        }
+        // 导航栏logo自动隐藏
+        if (Math.round(anim.progress) >= 100) {
+            document.getElementById("icon").className = "icon_h";
+        } else {
+            document.getElementById("icon").className = "";
+        }
+    },
+});
+function main_an() {
+    var bcr = document.querySelector("body").getBoundingClientRect();
+    var scroll_percent = (bcr.top + document.documentElement.clientHeight) / document.documentElement.clientHeight;
+    scroll_percent = 1 - scroll_percent;
+    scroll_percent = scroll_percent * 1.2;
+    animation_main.seek(animation_main.duration * scroll_percent);
 }
 
 var animation = anime({
@@ -293,7 +317,6 @@ var animation = anime({
     delay: function () {
         return anime.random(0, 100);
     },
-    elasticity: 200,
     easing: "easeInQuint",
     autoplay: false,
 });
