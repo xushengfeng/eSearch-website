@@ -176,7 +176,7 @@ button {
     padding: 8px;
     border-radius: var(--border-radius);
 }
-.card h2{
+.card h2 {
     margin: 8px 0 8px 0;
 }
 .cross {
@@ -346,15 +346,12 @@ button {
     text-decoration: none;
 }
 
-#download_old_b {
-    cursor: pointer;
-    padding: 16px;
-    height: 20px;
+.other_download {
+    display: flex;
 }
-
-#fastdownload {
+.other_download > span {
     cursor: pointer;
-    margin-left: 16px;
+    margin: 8px;
 }
 /* 日志 */
 #日志 {
