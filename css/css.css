@@ -48,6 +48,7 @@ a {
     padding: 8px;
     border-radius: 4px;
     transition: var(--transition);
+    cursor: pointer;
 }
 #nav > li:hover {
     background-color: var(--hover-color);
