@@ -266,9 +266,13 @@ button {
 #search_p > div {
     margin: 8px;
 }
+#search_p img {
+    height: 1.6rem;
+    margin: 0 4px 0 0;
+}
 #search span,
 #translate span {
-    display: inline-block;
+    display: inline-flex;
     margin: 8px;
 }
 
