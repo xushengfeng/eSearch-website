@@ -259,6 +259,10 @@ button {
     margin: 8px;
 }
 
+#ding_p {
+    display: flex;
+}
+
 /* 下载 */
 #下载 {
     display: flex;
