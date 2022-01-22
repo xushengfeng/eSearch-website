@@ -93,7 +93,6 @@ button {
     height: calc(100vh - 48px);
     position: relative;
     overflow: hidden;
-    transform: translateY(-10%);
     background-color: var(--bg);
 }
 #main_left {
