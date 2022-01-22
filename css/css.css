@@ -74,13 +74,14 @@ a {
 
 kbd {
     display: inline-block;
-    padding: 4px;
+    padding: 8px;
     border-radius: var(--border-radius);
     box-shadow: 0 5px #0002;
     transform: rotateX(330deg);
     background: linear-gradient(315deg, #e6e6e6, #ffffff);
     font-family: var(--monospace);
     cursor: default;
+    margin: 4px;
 }
 kbd:hover {
     transform: rotateX(30deg) translateY(5px);
@@ -172,16 +173,18 @@ button {
     background-color: #fff1;
     backdrop-filter: var(--blur);
     box-shadow: var(--shadow);
-    margin: 8px;
     padding: 8px;
     border-radius: var(--border-radius);
+}
+.card h2{
+    margin: 8px 0 8px 0;
 }
 .cross {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
+    grid-column-gap: 32px;
+    grid-row-gap: 32px;
 }
 .gn_clip_size {
     grid-area: 1 / 1 / 2 / 2;
@@ -200,10 +203,13 @@ button {
 }
 .gn_clip_keyboard_c {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.5fr 0.5fr;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 4px;
     grid-row-gap: 4px;
+}
+.gn_clip_keyboard_c div {
+    font-size: 2rem;
 }
 .gn_clip_keyboard_c > :nth-child(1) {
     grid-area: 1 / 1 / 2 / 3;
@@ -258,11 +264,7 @@ button {
     justify-content: center;
 }
 #search_p > div {
-    background-color: var(--bg);
-    box-shadow: var(--shadow);
     margin: 8px;
-    padding: 8px;
-    border-radius: var(--border-radius);
 }
 #search span,
 #translate span {
