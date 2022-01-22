@@ -69,6 +69,7 @@ var tl = anime.timeline({
 });
 
 // Add children
+var is_phone = window.matchMedia("(max-width: 900px)").matches;
 tl.add({
     targets: "#svg_rect",
     width: "60%",
@@ -102,8 +103,31 @@ tl.add({
     .add({
         targets: "#svg_window",
         opacity: 0,
-    })
-    .add(
+    });
+if (is_phone) {
+    tl.add(
+        {
+            targets: "#svg_icon",
+            x: 0,
+            y: 0,
+            width: 200,
+            height: 200,
+            opacity: 1,
+        },
+        "-=800"
+    ).add(
+        {
+            targets: "#svg",
+            width: "50%",
+            height: 200,
+            left: "50%",
+            top: "10%",
+            translateX: "-50%",
+        },
+        "-=800"
+    );
+} else {
+    tl.add(
         {
             targets: "#svg_icon",
             x: 30,
@@ -113,8 +137,7 @@ tl.add({
             opacity: 1,
         },
         "-=800"
-    )
-    .add(
+    ).add(
         {
             targets: "#svg",
             width: "50%",
@@ -124,14 +147,15 @@ tl.add({
             translateY: "-50%",
         },
         "-=800"
-    )
-    .add(
-        {
-            targets: "#main_left",
-            opacity: 1,
-        },
-        "-=800"
     );
+}
+tl.add(
+    {
+        targets: "#main_left",
+        opacity: 1,
+    },
+    "-=800"
+);
 
 // 获取软件资源
 var result;

@@ -127,7 +127,7 @@ button {
 #eSearch h1 {
     margin: 8px;
     font-size: 6rem;
-    font-weight: lighter;
+    font-weight: normal;
 }
 #eSearch h2 {
     margin: 0 0 16px 0;
@@ -305,6 +305,7 @@ button {
 .pl_Logo {
     width: 100px;
     margin: 8px;
+    flex-shrink: 0;
 }
 
 #download {
@@ -411,9 +412,18 @@ button {
     display: flex;
 }
 @media (max-width: 900px) {
-    body{
+    body {
         overflow-x: hidden;
         margin: 0;
+    }
+    #main_left {
+        width: 100%;
+        padding: 0;
+        align-items: center;
+        top: 60%;
+    }
+    #功能 h1 {
+        font-size: 6rem;
     }
     .cross {
         display: block;
@@ -441,12 +451,13 @@ button {
     }
     #download > div {
         width: 100%;
+        height: auto;
     }
     #download > div:hover {
         width: 100%;
     }
     #download > div:hover > div {
-        width: 50%;
+        width: 100%;
     }
 }
 
