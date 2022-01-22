@@ -263,6 +263,9 @@ button {
 .ocr_path > span {
     white-space: nowrap;
 }
+#ocr_p > :nth-child(3) {
+    outline: none;
+}
 
 #search_p {
     display: flex;
@@ -441,6 +444,22 @@ button {
     }
     .gn_clip_keyboard_c div {
         font-size: 1rem;
+    }
+    #ocr_p {
+        flex-direction: column;
+    }
+    #ocr_p > :nth-child(2) > div {
+        transform: rotate(90deg) translateX(100px);
+    }
+    #ocr_p > :nth-child(2) {
+        height: 400px;
+        margin-top: -36px;
+    }
+    .ocr_path > span {
+        word-wrap: break-word;
+        white-space: normal;
+        transform: rotate(-90deg);
+        width: 1rem;
     }
     #search_p {
         flex-direction: column;

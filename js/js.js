@@ -368,16 +368,17 @@ var tl2 = anime.timeline({
 });
 
 // Add children
-tl2.add({
-    targets: "#ocr_p > :nth-child(2)",
-    width: "0",
-}).add(
-    {
-        targets: "#ocr_p > :nth-child(3)",
-        opacity: 0,
-    },
-    "-=800"
-);
+if (!is_phone)
+    tl2.add({
+        targets: "#ocr_p > :nth-child(2)",
+        width: "0",
+    }).add(
+        {
+            targets: "#ocr_p > :nth-child(3)",
+            opacity: 0,
+        },
+        "-=800"
+    );
 
 function ocr_an() {
     var bcr = document.getElementById("ocr_p").getBoundingClientRect();
