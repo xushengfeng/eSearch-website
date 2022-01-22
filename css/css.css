@@ -364,6 +364,12 @@ button {
     border-radius: var(--border-radius);
     pointer-events: none;
 }
+.more_p {
+    display: flex;
+}
+.more_p > div{
+    margin: 8px;
+}
 /* 下载 */
 #下载 {
     display: flex;
@@ -528,6 +534,9 @@ button {
         flex-direction: column;
     }
     #ding_p {
+        flex-direction: column;
+    }
+    .more_p {
         flex-direction: column;
     }
     #download {
