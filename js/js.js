@@ -349,3 +349,60 @@ function ocr_an() {
     scroll_percent = scroll_percent * 1.2 - 0.2;
     tl2.seek(tl2.duration * scroll_percent);
 }
+
+document.onkeydown = (e) => {
+    e.preventDefault();
+    var o = {
+        ArrowUp: "up",
+        w: "up",
+        ArrowRight: "right",
+        d: "right",
+        ArrowDown: "down",
+        s: "down",
+        ArrowLeft: "left",
+        a: "left",
+    };
+    var arrow, d;
+    arrow = o[e.key];
+    if (document.getElementById(`key_${e.key}`)) document.getElementById(`key_${e.key}`).className = "kbd_b";
+    if (e.ctrlKey) {
+        document.getElementById("key_ctrl").className = "kbd_b";
+        d = 5;
+    } else if (e.shiftKey) {
+        document.getElementById("key_shift").className = "kbd_b";
+        d = 10;
+    } else {
+        d = 1;
+    }
+    var x = document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.left || "0";
+    var y = document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.top || "0";
+    x = x.replace("px", "") - 0;
+    y = y.replace("px", "") - 0;
+    switch (arrow) {
+        case "up":
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.left = x + "px";
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.top = y - d + "px";
+            break;
+        case "right":
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.left = x + d + "px";
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.top = y + "px";
+            break;
+        case "down":
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.left = x + "px";
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.top = y + d + "px";
+            break;
+        case "left":
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.left = x - d + "px";
+            document.querySelector(".gn_clip_keyboard_c > :nth-child(4)").style.top = y + "px";
+            break;
+    }
+};
+
+document.onkeyup = (e) => {
+    if (document.getElementById(`key_${e.key}`)) document.getElementById(`key_${e.key}`).className = "";
+    if (e.ctrlKey) {
+        document.getElementById("key_ctrl").className = "";
+    } else if (e.shiftKey) {
+        document.getElementById("key_shift").className = "";
+    }
+};

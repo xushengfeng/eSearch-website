@@ -85,6 +85,10 @@ kbd:hover {
     transform: rotateX(30deg) translateY(5px);
     box-shadow: 0 0px #0002;
 }
+.kbd_b {
+    transform: rotateX(30deg) translateY(5px);
+    box-shadow: 0 0px #0002;
+}
 button {
     cursor: pointer;
 }
@@ -208,6 +212,7 @@ button {
 }
 .gn_clip_keyboard_c > :nth-child(4) {
     grid-area: 2 / 2 / 4 / 3;
+    position: relative;
 }
 
 #ocr_p {
