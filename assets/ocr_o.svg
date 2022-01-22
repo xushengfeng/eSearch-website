@@ -26,8 +26,8 @@
      units="px"
      width="200px"
      inkscape:zoom="2.8284271"
-     inkscape:cx="40.481864"
-     inkscape:cy="131.16831"
+     inkscape:cx="111.72287"
+     inkscape:cy="219.2031"
      inkscape:window-width="1920"
      inkscape:window-height="1031"
      inkscape:window-x="0"
@@ -69,7 +69,8 @@
        width="180"
        height="100"
        x="10"
-       y="10" />
+       y="10"
+       ry="10" />
     <circle
        style="fill:#fffd93;fill-opacity:1;stroke-width:10.5833;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:4"
        id="path1499"
@@ -92,103 +93,167 @@
        width="60"
        height="20"
        x="10"
-       y="140" />
+       y="130" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787"
        width="180"
        height="10"
        x="10"
-       y="170" />
+       y="160" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787-7"
        width="180"
        height="10"
        x="10"
-       y="190" />
+       y="180" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787-3"
        width="180"
        height="10"
        x="10"
-       y="210" />
+       y="200" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787-6"
        width="180"
        height="10"
        x="10"
-       y="230" />
+       y="220" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787-6-3"
        width="180"
        height="10"
        x="10"
-       y="250" />
+       y="240" />
     <rect
        style="fill:#d7d7d7;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4;stroke-opacity:1"
        id="rect4787-5"
        width="180"
        height="10"
        x="10"
-       y="270" />
+       y="260" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="17.600504"
-       y="333.3194"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="30.367968"
+       y="301.11096"
        id="text10785"><tspan
          sodipodi:role="line"
          id="tspan10783"
-         x="17.600504"
-         y="333.3194"
-         style="font-size:22px">666</tspan></text>
+         x="30.367968"
+         y="301.11096"
+         style="font-size:16px">666</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="65.627899"
-       y="312.16928"
-       id="text12163"><tspan
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="156.82098"
+       y="369.72064"
+       id="text10785-6"><tspan
          sodipodi:role="line"
-         id="tspan12161"
-         x="65.627899"
-         y="312.16928"
-         style="font-size:22px">233333</tspan></text>
+         id="tspan10783-5"
+         x="156.82098"
+         y="369.72064"
+         style="font-size:16px">666</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="95.13018"
-       y="382.71045"
-       id="text14851"><tspan
-         sodipodi:role="line"
-         id="tspan14849"
-         x="95.13018"
-         y="382.71045"
-         style="font-size:22px">下次一定</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="79.073036"
-       y="347.10596"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="87.701515"
+       y="301.34296"
        id="text16153"><tspan
          sodipodi:role="line"
          id="tspan16151"
-         x="79.073036"
-         y="347.10596"
-         style="font-size:22px">点个Star吧</tspan></text>
+         x="87.701515"
+         y="301.34296"
+         style="font-size:16px">点个Star吧</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="9.9747324"
-       y="381.47305"
-       id="text19867"><tspan
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="132.91684"
+       y="346.85077"
+       id="text16153-6"><tspan
          sodipodi:role="line"
-         id="tspan19865"
-         x="9.9747324"
-         y="381.47305"
-         style="font-size:22px">泪目</tspan></text>
+         id="tspan16151-3"
+         x="132.91684"
+         y="346.85077"
+         style="font-size:16px">Star!</tspan></text>
+    <g
+       id="g897"
+       transform="translate(17.732808,-1.6436157)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+         x="111.00527"
+         y="325.62445"
+         id="text12163"><tspan
+           sodipodi:role="line"
+           id="tspan12161"
+           x="111.00527"
+           y="325.62445"
+           style="font-size:16px">233333</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+         x="16.122717"
+         y="325.76846"
+         id="text19867"><tspan
+           sodipodi:role="line"
+           id="tspan19865"
+           x="16.122717"
+           y="325.76846"
+           style="font-size:16px">泪目</tspan></text>
+    </g>
+    <g
+       id="g903"
+       transform="translate(-36.267192,1.2608337)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+         x="63.824474"
+         y="368.6998"
+         id="text14851"><tspan
+           sodipodi:role="line"
+           id="tspan14849"
+           x="63.824474"
+           y="368.6998"
+           style="font-size:16px">下次一定</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+         x="150.89035"
+         y="372.33981"
+         id="text5776"><tspan
+           sodipodi:role="line"
+           id="tspan5774"
+           x="150.89035"
+           y="372.33981"
+           dy="0"
+           style="font-size:16px">艹</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="15.840841"
+       y="347.02676"
+       id="text28113"><tspan
+         sodipodi:role="line"
+         id="tspan28111"
+         x="15.840841"
+         y="347.02676"
+         style="font-size:16px">锟斤拷 烫烫烫</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;fill:#d7d7d7;fill-opacity:1;stroke:none"
+       x="60.398586"
+       y="392.80652"
+       id="text43023"><tspan
+         sodipodi:role="line"
+         id="tspan43021"
+         x="60.398586"
+         y="392.80652"
+         style="font-size:16px">屯屯屯 锘锘锘</tspan></text>
   </g>
 </svg>

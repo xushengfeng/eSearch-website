@@ -369,7 +369,7 @@ var tl2 = anime.timeline({
 
 // Add children
 tl2.add({
-    targets: ".ocr_path",
+    targets: "#ocr_p > :nth-child(2)",
     width: "0",
 }).add(
     {
