@@ -278,6 +278,19 @@ button {
 
 #ding_p {
     display: flex;
+    justify-content: center;
+}
+#ding_p > div {
+    margin: 8px;
+    position: relative;
+    overflow: hidden;
+}
+#ding_p > div >img{
+    position: absolute;
+    right: -10px;
+    width: 100px;
+    top: -10px;
+    opacity: 0.1;
 }
 
 /* 下载 */

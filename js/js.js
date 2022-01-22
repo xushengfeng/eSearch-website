@@ -419,3 +419,8 @@ document.onkeyup = (e) => {
         document.getElementById("key_shift").className = "";
     }
 };
+
+document.getElementById("透明度").oninput = () => {
+    document.getElementById("透明度_card").style.opacity = document.getElementById("透明度").value / 100;
+    document.getElementById("透明度_p").innerText = document.getElementById("透明度").value + "%";
+};
