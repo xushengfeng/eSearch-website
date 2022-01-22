@@ -222,11 +222,11 @@ button {
     color: var(--color-w);
 }
 
-.search_p{
+#search_p{
     display: flex;
     justify-content: center;
 }
-.search_p > div{
+#search_p > div{
     background-color: var(--bg);
     box-shadow: var(--shadow);
     margin: 8px;

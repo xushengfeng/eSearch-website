@@ -283,16 +283,12 @@ function auto_hide_logo() {
 
 var animation = anime({
     targets: "#search span, #translate span",
-    keyframes: [
-        {
-            translateY: function () {
-                var i = anime.random(0, 1);
-                i = (i - 0.5) * 2;
-                return i * 40 + "vh";
-            },
-            opacity: 0,
-        },
-    ],
+    translateY: function () {
+        var i = anime.random(0, 1);
+        i = (i - 0.5) * 2;
+        return i * 40 + "vh";
+    },
+    opacity: 0,
     delay: function () {
         return anime.random(0, 100);
     },
@@ -301,7 +297,8 @@ var animation = anime({
     autoplay: false,
 });
 function search_an() {
-    var bcr = document.getElementById("search_t").getBoundingClientRect();
-    var scroll_percent = (bcr.height + bcr.top) / document.documentElement.clientHeight;
+    var bcr = document.getElementById("search_p").getBoundingClientRect();
+    var scroll_percent = bcr.top / document.documentElement.clientHeight;
+    scroll_percent = scroll_percent * 1.2 - 0.2;
     animation.seek(animation.duration * scroll_percent);
 }
