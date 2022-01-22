@@ -327,7 +327,7 @@ function search_an() {
     animation.seek(animation.duration * scroll_percent);
 }
 var tl2 = anime.timeline({
-    easing: "easeOutExpo",
+    easing: "easeInOutCubic",
     duration: 800,
 });
 
@@ -337,7 +337,7 @@ tl2.add({
     width: "0",
 }).add(
     {
-        targets: "#ocr_p>:nth-child(3)",
+        targets: "#ocr_p > :nth-child(3)",
         opacity: 0,
     },
     "-=800"
