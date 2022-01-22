@@ -360,7 +360,6 @@ button {
     width: calc(100% - 16px);
     height: 200px;
     position: absolute;
-    top: calc(35.2px + 16px + 23.2px + 32px);
     background-color: rgba(238, 238, 238, 0.75);
     border-radius: var(--border-radius);
     pointer-events: none;

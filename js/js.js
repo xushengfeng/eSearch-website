@@ -463,3 +463,8 @@ document.querySelector(".desk").onclick = () => {
         document.querySelector(".back_win").style.top = "";
     }
 };
+
+document.querySelector("#ding_p > :nth-child(3)").style.height =
+    document.querySelector("#ding_p > :nth-child(2)").offsetHeight - 16 + "px";
+document.querySelector(".ct_win").style.top =
+    document.querySelector("#ding_p > :nth-child(3) > :nth-child(3)").offsetTop + "px";
