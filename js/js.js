@@ -351,7 +351,8 @@ function ocr_an() {
 }
 
 document.onkeydown = (e) => {
-    e.preventDefault();
+    var bcr = document.getElementById("gn_keyboard").getBoundingClientRect();
+    if (bcr.top + bcr.height >= 0) e.preventDefault();
     var o = {
         ArrowUp: "up",
         w: "up",
