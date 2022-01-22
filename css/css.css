@@ -223,6 +223,8 @@ button {
 .gn_clip_keyboard_c > :nth-child(4) {
     grid-area: 2 / 2 / 4 / 3;
     position: relative;
+    width: 100px;
+    margin: 40px;
 }
 
 #ocr_p {
