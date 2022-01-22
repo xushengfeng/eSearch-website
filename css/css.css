@@ -22,7 +22,7 @@ html {
 }
 body {
     margin: 48px 0 0 0;
-    background-color: var(--bg2)
+    background-color: var(--bg2);
 }
 a {
     color: var(--color);
@@ -205,7 +205,7 @@ button {
     grid-area: 2 / 2 / 4 / 3;
 }
 
-#ocr_p{
+#ocr_p {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -214,26 +214,36 @@ button {
     clip-path: path("M 0,0 C 0,0 85,110 340,60 V 30 l 60,70 -60,70 V 140 C 85,90 0,200 0,200 Z");
     width: 400px;
     height: 200px;
-    background: linear-gradient(to right, rgba(181, 195, 255, 0) 0%, rgba(66, 101, 255, 0.747) 40%, rgb(66, 101, 255) 100%);
+    background: linear-gradient(
+        to right,
+        rgba(181, 195, 255, 0) 0%,
+        rgba(66, 101, 255, 0.747) 40%,
+        rgb(66, 101, 255) 100%
+    );
 
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-w);
+    overflow: hidden;
+}
+.ocr_path > span {
+    white-space: nowrap;
 }
 
-#search_p{
+#search_p {
     display: flex;
     justify-content: center;
 }
-#search_p > div{
+#search_p > div {
     background-color: var(--bg);
     box-shadow: var(--shadow);
     margin: 8px;
     padding: 8px;
     border-radius: var(--border-radius);
 }
-#search span, #translate span{
+#search span,
+#translate span {
     display: inline-block;
     margin: 8px;
 }

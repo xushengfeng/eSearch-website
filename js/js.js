@@ -268,6 +268,7 @@ function show_log() {
 
 document.onscroll = () => {
     auto_hide_logo();
+    ocr_an();
     search_an();
 };
 
@@ -301,4 +302,27 @@ function search_an() {
     var scroll_percent = bcr.top / document.documentElement.clientHeight;
     scroll_percent = scroll_percent * 1.2 - 0.2;
     animation.seek(animation.duration * scroll_percent);
+}
+var tl2 = anime.timeline({
+    easing: "easeOutExpo",
+    duration: 800,
+});
+
+// Add children
+tl2.add({
+    targets: ".ocr_path",
+    width: "0",
+}).add(
+    {
+        targets: "#ocr_p>:nth-child(3)",
+        opacity: 0,
+    },
+    "-=800"
+);
+
+function ocr_an() {
+    var bcr = document.getElementById("ocr_p").getBoundingClientRect();
+    var scroll_percent = bcr.top / document.documentElement.clientHeight;
+    scroll_percent = scroll_percent * 1.2 - 0.2;
+    tl2.seek(tl2.duration * scroll_percent);
 }
