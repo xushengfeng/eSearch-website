@@ -19,11 +19,11 @@
 html {
     scroll-behavior: smooth;
     font-family: sans-serif;
+    overflow-x: hidden;
 }
 body {
     margin: 48px 0 0 0;
     background-color: var(--bg2);
-    overflow-x: hidden;
 }
 a {
     color: var(--color);
@@ -285,7 +285,7 @@ button {
     position: relative;
     overflow: hidden;
 }
-#ding_p > div >img{
+#ding_p > div > img {
     position: absolute;
     right: -10px;
     width: 100px;
@@ -405,11 +405,49 @@ button {
     justify-content: flex-end;
     background: #eee;
     flex-direction: column;
+    padding: 16px;
 }
 .about_p2 {
     display: flex;
 }
 @media (max-width: 900px) {
+    body{
+        overflow-x: hidden;
+        margin: 0;
+    }
+    .cross {
+        display: block;
+    }
+    .cross > div {
+        margin: 16px;
+    }
+    #gn_keyboard kbd {
+        font-size: 1rem;
+    }
+    .gn_clip_keyboard_c div {
+        font-size: 1rem;
+    }
+    #search_p {
+        flex-direction: column;
+    }
+    #ding_p {
+        flex-direction: column;
+    }
+    #download {
+        flex-direction: column;
+    }
+    #下载 {
+        height: auto;
+    }
+    #download > div {
+        width: 100%;
+    }
+    #download > div:hover {
+        width: 100%;
+    }
+    #download > div:hover > div {
+        width: 50%;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
