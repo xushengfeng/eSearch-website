@@ -445,7 +445,21 @@ document.onkeyup = (e) => {
     }
 };
 
-document.getElementById("透明度").oninput = () => {
-    document.getElementById("透明度_card").style.opacity = document.getElementById("透明度").value / 100;
-    document.getElementById("透明度_p").innerText = document.getElementById("透明度").value + "%";
+setInterval(() => {
+    var i = Math.random(1);
+    document.getElementById("opacity_b").style.left = i * 184 + "px";
+    document.getElementById("opacity_p").innerHTML = Math.round(i * 100) + "%";
+    document.querySelector(".opacity_win").style.opacity = i;
+}, 1000);
+
+var back = false;
+document.querySelector(".desk").onclick = () => {
+    back = !back;
+    if (back) {
+        document.querySelector(".back_win").style.left = "20px";
+        document.querySelector(".back_win").style.top = "20px";
+    } else {
+        document.querySelector(".back_win").style.left = "";
+        document.querySelector(".back_win").style.top = "";
+    }
 };

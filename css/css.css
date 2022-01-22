@@ -301,6 +301,70 @@ button {
     opacity: 0.1;
 }
 
+.opacity_win {
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    background-color: #eee;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+.opacity_bar {
+    display: flex;
+    align-items: center;
+}
+#opacity {
+    width: 200px;
+    height: 16px;
+    background-color: var(--color-w);
+    border: var(--border);
+    border-radius: var(--border-radius);
+}
+#opacity_b {
+    width: 16px;
+    height: 16px;
+    background-color: var(--color);
+    border-radius: var(--border-radius);
+    position: relative;
+    transition: var(--transition);
+}
+#opacity_p {
+    width: 4rem;
+}
+
+.desk {
+    background-image: url("../assets/photo.svg");
+    width: 100%;
+    height: 200px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+.back_win {
+    background-image: url("../assets/photo.svg");
+    background-position: -20px -20px;
+    width: 50px;
+    height: 90px;
+    position: relative;
+    top: 50px;
+    left: 100px;
+    transition: var(--transition);
+}
+#ding_p > :nth-child(3) {
+    position: relative;
+}
+#ding_p > :nth-child(3) p {
+    outline: none;
+}
+.ct_win {
+    width: calc(100% - 16px);
+    height: 200px;
+    position: absolute;
+    top: calc(35.2px + 16px + 23.2px + 32px);
+    background-color: rgba(238, 238, 238, 0.75);
+    border-radius: var(--border-radius);
+    pointer-events: none;
+}
 /* 下载 */
 #下载 {
     display: flex;
