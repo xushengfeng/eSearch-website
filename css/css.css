@@ -176,9 +176,26 @@ button {
     box-shadow: var(--shadow);
     padding: 8px;
     border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
 }
 .card h2 {
     margin: 8px 0 8px 0;
+}
+.card > .card_bg {
+    position: absolute;
+    right: -10px;
+    width: 100px;
+    top: -10px;
+    opacity: 0.1;
+    transition: var(--transition);
+}
+.card:hover > .card_bg {
+    right: 10px;
+    width: 90px;
+    top: 10px;
+    opacity: 0.05;
+    filter: blur(2px);
 }
 .cross {
     display: grid;
@@ -291,15 +308,6 @@ button {
 }
 #ding_p > div {
     margin: 8px;
-    position: relative;
-    overflow: hidden;
-}
-#ding_p > div > img {
-    position: absolute;
-    right: -10px;
-    width: 100px;
-    top: -10px;
-    opacity: 0.1;
 }
 
 .opacity_win {
@@ -371,15 +379,6 @@ button {
 }
 .more_p > div {
     margin: 8px;
-    position: relative;
-    overflow: hidden;
-}
-.more_p > div > .card_bg {
-    position: absolute;
-    right: -10px;
-    width: 100px;
-    top: -10px;
-    opacity: 0.1;
 }
 /* 下载 */
 #下载 {
