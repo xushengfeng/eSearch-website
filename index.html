@@ -80,12 +80,16 @@
                     <div class="card gn_clip_size">
                         <h2>像窗口一样调节</h2>
                         <p>移动、拉伸、对角拉伸，就像调整窗口一样</p>
-                        <img src="./assets/rect.svg" alt="大小位置">
+                        <div>
+                            <img src="./assets/rect.svg" alt="大小位置">
+                        </div>
                     </div>
                     <div class="card gn_clip_num">
                         <h2>参数控制</h2>
                         <p>输入数字，直接改变选区大小和位置</p>
-                        <img src="./assets/cs.bmp" alt="cs">
+                        <div>
+                            <img src="./assets/cs.bmp" alt="cs">
+                        </div>
                     </div>
                     <div class="card gn_clip_keyboard" id="gn_keyboard">
                         <h2>精准地控制</h2>
@@ -108,7 +112,9 @@
                     <div class="card gn_clip_magnifier">
                         <h2>放大镜</h2>
                         <p>看不清？放大镜来了</p>
-                        <img src="./assets/fdj.bmp" alt="fdj">
+                        <div>
+                            <img src="./assets/fdj.bmp" alt="fdj">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -171,7 +177,7 @@
                                 <span id="opacity_p">100%</span>
                             </div>
                         </div>
-                        <img src="./assets/tm.svg" alt=""class="card_bg">
+                        <img src="./assets/tm.svg" alt="" class="card_bg">
                     </div>
                     <div class="card">
                         <h2>一键归位</h2>
@@ -179,7 +185,7 @@
                         <div class="desk">
                             <div class="back_win"></div>
                         </div>
-                        <img src="./assets/gw.svg" alt=""class="card_bg">
+                        <img src="./assets/gw.svg" alt="" class="card_bg">
                     </div>
                     <div class="card">
                         <h2>按键穿透</h2>
@@ -188,7 +194,7 @@
                         <p contenteditable="true">例如在这里你可以透过窗口选中并编辑本文字，而不受窗口影响</p>
                         <p contenteditable="true">例如在这里你可以透过窗口选中并编辑本文字，而不受窗口影响</p>
                         <div class="ct_win"></div>
-                        <img src="./assets/ct.svg" alt=""class="card_bg">
+                        <img src="./assets/ct.svg" alt="" class="card_bg">
                     </div>
                 </div>
             </div>
@@ -197,49 +203,77 @@
             <div id="more_t">
                 <h1>更多</h1>
                 <div class='more_p'>
-                    <div class="card">
+                    <div class="card more_qsq">
                         <h2>取色器</h2>
                         <p>
                             支持
-                        <ul>
-                            <li>HEX</li>
-                            <li>RGB</li>
-                            <li>HSL</li>
-                            <li>HSV</li>
-                            <li>CMYK</li>
-                        </ul>
-                        等颜色格式复制
+                            HEX、RGB、HSL、HSV、CMYK
+                            等颜色格式复制
                         </p>
+                        <div>
+                            <img src="./assets/qsq.bmp" alt="取色器">
+                        </div>
+                        <p class="jy_p">基于<a href="https://github.com/Qix-/color">color</a></p>
                     </div>
-                    <div class="card">
+                    <div class="card more_draw">
                         <h2>编辑图片</h2>
                         <p>简单的图像编辑：画笔、橡皮、基本几何图形、大小位置调整、滤镜（待开发）</p>
+                        <p>可使用<a href="http://fabricjs.com/">fabric.js</a>的API进行操控</p>
+                        <div>
+                            <img src="./assets/3.png" alt="">
+                        </div>
                         <img src="./assets/tool_draw.svg" alt="画笔" class="card_bg">
                     </div>
                     <div class="card">
-                        <h2>其他应用打开编辑</h2>
-                        <p>可以在图像编辑器临时打开进行高级图像编辑，也可以通过软件分享</p>
+                        <h2>其他应用打开</h2>
+                        <p>不满足软件自带的编辑器？可以在其他图像编辑器临时打开进行高级图像编辑</p>
+                        <p>还可以用社交软件打开进行分享</p>
+                        <p class="jy_p">基于<a href="https://github.com/sindresorhus/open">open</a></p>
                         <img src="./assets/tool_open.svg" alt="其他应用打开" class="card_bg">
+                    </div>
+                    <div class="card more_auto">
+                        <h2>自动搜索</h2>
+                        <p>自动判断模式，选中文字时，直接搜索或翻译文字，否则启动文字识别后再搜索。单行文字可进行自动搜索。</p>
+                        <div><img src="./assets/auto.svg" alt="自动搜索"></div>
                     </div>
                     <div class="card">
                         <h2>二维码扫描</h2>
+                        <p class="jy_p">基于<a href="https://github.com/cozmo/jsQR">jsqr</a></p>
                         <img src="./assets/tool_QR.svg" alt="二维码" class="card_bg">
-                    </div>
-                    <div class="card">
-                        <h2>自动搜索</h2>
-                        <p>自动判断模式，选中文字时，直接搜索或翻译文字，否则启动文字识别后再搜索。单行文字可进行自动搜索。</p>
-                        <img src="./assets/auto.svg" alt="自动搜索">
                     </div>
                     <div class="card">
                         <h2>历史记录</h2>
                         <p>记录文字识别记录，可自动删除</p>
                         <img src="./assets/main_history.svg" alt="历史记录" class="card_bg">
                     </div>
-                    <div class="card">
+                    <div class="card more_blur">
+                        <h2>优雅的模糊</h2>
+                        <p>无处不在的高斯模糊效果，带来极致审美体验</p>
+                        <p>可自定义模糊强度和透明效果，还可以为了节约资源而关闭</p>
+                        <div>
+                            <img src="./assets/clip.bmp" alt="">
+                            <img src="./assets/main.png" alt="">
+                        </div>
+                    </div>
+                    <div class="card more_diy">
                         <h2>自定义及拓展</h2>
-                        <p>在“设置”中，eSearch提供了诸多可自定义的设置。由于eSearch是遵循GPLv3协议的开源软件，基于electron和web技术开发，因此，无论是样式还是功能，都可以自由修改和拓展
+                        <p>在“设置”中，eSearch提供了诸多可自定义的设置。由于eSearch是遵循GPLv3协议的开源软件，基于<a
+                                href="https://www.electronjs.org/">Electron</a>和<a
+                                href="https://developer.mozilla.org/zh-CN/docs/Web">Web技术(HTML,css,js)</a>开发，因此，无论是样式还是功能，都可以自由修改和拓展
                         </p>
+                        <div>
+                            <img src="./assets/icons/Electron_Software_Framework_Logo.svg" alt="">
+                            <img src="./assets/icons/HTML5_logo_and_wordmark.svg" alt="">
+                            <img src="./assets/icons/CSS3_logo_and_wordmark.svg" alt="">
+                            <img src="./assets/icons/Unofficial_JavaScript_logo_2.svg" alt="">
+                        </div>
                         <img src="./assets/setting.svg" alt="画笔" class="card_bg">
+                    </div>
+                    <div class="card">
+                        <h2>跨平台</h2>
+                        <p>基于<a href="https://www.electronjs.org/">Electron</a>和<a
+                                href="https://developer.mozilla.org/zh-CN/docs/Web">Web技术(HTML,css,js)</a>
+                            eSearch支持Windows、Linux、macOS等主流操作系统和平台</p>
                     </div>
                 </div>
             </div>
