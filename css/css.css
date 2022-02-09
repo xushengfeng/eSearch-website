@@ -527,7 +527,7 @@ button {
 #日志 {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 48px);
+    height: calc(100vh - 80px);
     margin: 0 16px;
 }
 #日志 > h1 {
@@ -535,7 +535,6 @@ button {
 }
 #log {
     overflow-y: scroll;
-    height: calc(100vh - 48px);
     margin: 0;
     position: relative;
 }
