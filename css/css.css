@@ -566,6 +566,8 @@ button {
 }
 .about_p2 {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 @media (max-width: 900px) {
     body {
