@@ -384,6 +384,24 @@ button {
     border-radius: var(--border-radius);
     pointer-events: none;
 }
+.ct_win > div {
+    width: 100%;
+    background-color: #fff9;
+    height: 24px;
+}
+.ct_win > div > div {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--hover-color);
+    float: right;
+    margin: 4px;
+}
+.ct_win > div > div:nth-child(1) {
+    background-color: #f00;
+    background-image: url(../assets/i_close_w.svg);
+    background-size: cover;
+}
 .more_p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
