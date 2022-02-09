@@ -572,6 +572,9 @@ button {
     #gn_keyboard kbd {
         font-size: 1rem;
     }
+    .gn_clip_keyboard {
+        min-width: 0;
+    }
     .gn_clip_keyboard_c div {
         font-size: 1rem;
     }
