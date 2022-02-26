@@ -42,7 +42,7 @@ function c_platform(platform) {
             platform_select.value = "Linux";
             break;
         case "macOS":
-            main_download.innerHTML = `<button id="mac">下载</button>`;
+            main_download.innerHTML = `<button id="dmg">下载</button>`;
             platform_select.value = "macOS";
             break;
         case "Android":
@@ -50,7 +50,7 @@ function c_platform(platform) {
             platform_select.value = "Windows";
             break;
         case "iOS":
-            main_download.innerHTML = `<button id="mac">下载</button>`;
+            main_download.innerHTML = `<button id="dmg">下载</button>`;
             platform_select.value = "macOS";
             break;
     }
@@ -243,7 +243,7 @@ function show_download() {
     <a target="_blank" href="${files_object.rpm.url}"><div class="download_b"><span>.rpm</span>适用于Red Hat, Fedora, SUSE</div></a>
     <a target="_blank" href="${files_object.gz.url}"><div class="download_b"><span>.tar.gz</span>适用于所有Linux</div></a>`;
     document.querySelector("#Linux_d > div").innerHTML = Linux_d;
-    var macOS_d = `<a target="_blank" href="${result[0].zipball_url}"><div class="download_b"><span>.zip</span>从源代码编译</div></a>`;
+    var macOS_d = `<a target="_blank" href="${files_object.dmg.url}"><div class="download_b"><span>.dmg</span>dmg安装镜像</div></a>`;
     document.querySelector("#macOS_d > div").innerHTML = macOS_d;
     var source_d = `<a target="_blank" href="${result[0].tarball_url}"><div class="download_b"><span>.tar</span>tar压缩源代码</div></a>
     <a target="_blank" href="${result[0].zipball_url}"><div class="download_b"><span>.zip</span>zip压缩源代码</div></a>`;
