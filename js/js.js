@@ -252,7 +252,7 @@ function show_download() {
 // 旧版本下载
 document.getElementById("download_old_b").onclick = () => {
     if (fasturl) {
-        window.open("https://hub.fastgit.org/xushengfeng/eSearch/releases");
+        window.open("https://hub.fastgit.xyz/xushengfeng/eSearch/releases");
     } else {
         window.open("https://github.com/xushengfeng/eSearch/releases");
     }
@@ -260,7 +260,7 @@ document.getElementById("download_old_b").onclick = () => {
 // OCR下载
 document.getElementById("ocr_download").onclick = () => {
     if (fasturl) {
-        window.open("https://hub.fastgit.org/xushengfeng/eSearch-service");
+        window.open("https://hub.fastgit.xyz/xushengfeng/eSearch-service");
     } else {
         window.open("https://github.com/xushengfeng/eSearch-service");
     }
