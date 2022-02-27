@@ -448,6 +448,10 @@ button {
     display: flex;
     justify-content: center;
 }
+.more_other > div > img {
+    width: 100%;
+}
+
 
 /* 下载 */
 #下载 {
