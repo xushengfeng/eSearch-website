@@ -174,9 +174,11 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
             var url = result[0].assets[i].browser_download_url;
             var hz = url.split(".");
             hz = hz[hz.length - 1];
-            files_object[hz] = {};
-            files_object[hz].url = fasthub(url);
-            files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+            if (files_object[hz] === undefined) {
+                files_object[hz] = {};
+                files_object[hz].url = fasthub(url);
+                files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+            }
         }
         show_download();
         show_log();
