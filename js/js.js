@@ -257,14 +257,6 @@ document.getElementById("download_old_b").onclick = () => {
         window.open("https://github.com/xushengfeng/eSearch/releases");
     }
 };
-// OCR下载
-document.getElementById("ocr_download").onclick = () => {
-    if (fasturl) {
-        window.open("https://hub.fastgit.xyz/xushengfeng/eSearch-service");
-    } else {
-        window.open("https://github.com/xushengfeng/eSearch-service");
-    }
-};
 
 // 获取更新日志
 function show_log() {
