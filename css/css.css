@@ -57,6 +57,14 @@ a {
     display: flex;
     align-items: center;
 }
+#nav a {
+    height: 16px;
+    display: block;
+    outline: none;
+}
+#nav a img {
+    width: 16px;
+}
 #icon {
     transition: var(--transition);
     height: 24px;
@@ -452,7 +460,6 @@ button {
     width: 100%;
 }
 
-
 /* 下载 */
 #下载 {
     display: flex;
@@ -582,6 +589,9 @@ button {
         padding: 0;
         align-items: center;
         top: 60%;
+    }
+    #nav > li {
+        margin: 0;
     }
     #功能 h1 {
         font-size: 6rem;
