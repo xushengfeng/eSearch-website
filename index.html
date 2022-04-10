@@ -227,12 +227,12 @@
                         <div>
                             <img src="./assets/qsq.png" alt="取色器截图">
                         </div>
-                        <p class="jy_p">基于<a href="https://github.com/Qix-/color">color</a></p>
+                        <p class="jy_p">基于<a href="https://github.com/Qix-/color" target="_bank">color</a></p>
                     </div>
                     <div class="card more_draw">
                         <h2>编辑图片</h2>
                         <p>简单的图像编辑：画笔、橡皮、基本几何图形、大小位置调整、滤镜（含马赛克和模糊）</p>
-                        <p>可使用<a href="http://fabricjs.com/">fabric.js</a>的API进行操控</p>
+                        <p>可使用<a href="http://fabricjs.com/" target="_bank">fabric.js</a>的API进行操控</p>
                         <div>
                             <img src="./assets/3.png" alt="图片编辑截图">
                         </div>
@@ -252,7 +252,7 @@
                     </div>
                     <div class="card">
                         <h2>二维码扫描</h2>
-                        <p class="jy_p">基于<a href="https://github.com/cozmo/jsQR">jsqr</a></p>
+                        <p class="jy_p">基于<a href="https://github.com/cozmo/jsQR" target="_bank">jsqr</a></p>
                         <img src="./assets/tool_QR.svg" alt="二维码" class="card_bg">
                     </div>
                     <div class="card">
@@ -272,8 +272,8 @@
                     <div class="card more_diy">
                         <h2>自定义及拓展</h2>
                         <p>在“设置”中，eSearch提供了诸多可自定义的设置。由于eSearch是遵循GPLv3协议的开源软件，基于<a
-                                href="https://www.electronjs.org/">Electron</a>和<a
-                                href="https://developer.mozilla.org/zh-CN/docs/Web">Web技术(HTML,css,js)</a>开发，因此，无论是样式还是功能，都可以自由修改和拓展
+                                href="https://www.electronjs.org/" target="_bank">Electron</a>和<a
+                                href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">Web技术(HTML,css,js)</a>开发，因此，无论是样式还是功能，都可以自由修改和拓展
                         </p>
                         <div>
                             <img src="./assets/icons/Electron_Software_Framework_Logo.svg" alt="electron logo">
@@ -285,8 +285,8 @@
                     </div>
                     <div class="card">
                         <h2>跨平台</h2>
-                        <p>基于<a href="https://www.electronjs.org/">Electron</a>和<a
-                                href="https://developer.mozilla.org/zh-CN/docs/Web">Web技术(HTML,css,js)</a>
+                        <p>基于<a href="https://www.electronjs.org/" target="_bank">Electron</a>和<a
+                                href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">Web技术(HTML,css,js)</a>
                             eSearch支持Windows、Linux、macOS等主流操作系统和平台</p>
                     </div>
                     <div class="card more_other">
@@ -312,36 +312,38 @@
             </div>
         </div>
     </div>
-    <div class="main_block" id="下载">
+
+    <article class="main_block" id="下载">
         <div id="download">
-            <div id="Windows_d">
+            <div id="Windows_d" title="Windows">
                 <img src="./assets/Windows.svg" alt="Windows_Logo" class="pl_Logo">
                 <div></div>
             </div>
-            <div id="Linux_d">
+            <div id="Linux_d" title="Linux">
                 <img src="./assets/Linux.svg" alt="Linux_Logo" class="pl_Logo">
                 <div></div>
             </div>
-            <div id="macOS_d">
+            <div id="macOS_d" title="macOS">
                 <img src="./assets/macOS.svg" alt="macOS_Logo" class="pl_Logo">
                 <div></div>
             </div>
-            <div id="source_d">
+            <div id="source_d" title="源代码">
                 <img src="./assets/source.svg" alt="source_Logo" class="pl_Logo">
                 <div></div>
             </div>
         </div>
-        <span class="other_download"><span id="download_old_b"><a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases">所有版本下载</a></span><span id="fastdownload"
+        <span class="other_download"><span id="download_old_b"><a
+                    href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">所有版本下载</a></span><span id="fastdownload"
                 title="github(初始)链接不稳定，快速下载链接(hub.fastgit.org)提供快速github镜像">已使用快速下载链接</span>
         </span>
+    </article>
 
-
-    </div>
-    <div class="main_block" id="日志">
+    <article class="main_block" id="日志">
         <h1>更新日志</h1>
         <ul id="log"></ul>
         <script src="./lib/markdown-it/markdown-it.min.js"></script>
-    </div>
+    </article>
+
     <footer class="main_block" id="关于">
         <p>我想在Linux上用<a href="https://zh.snipaste.com/" target="_bank">Snipaste - 截图 +
                 贴图</a>，他非常好用，可惜截止到2022.4，他还是不支持Linux。<br>
@@ -350,14 +352,15 @@
             干脆，我自己写一个吧。<br>
             自娱自乐的软件，但还是分享出来
         </p>
-        <p class="about_p2"><a href="https://github.com/xushengfeng/eSearch/blob/master/LICENSE" target="_bank">GPL3
+        <div class="about_p2">
+            <a href="https://github.com/xushengfeng/eSearch/blob/master/LICENSE" target="_bank">GPL3
                 license</a>
-            | 2021 - 2022 |
-            ©<a href="https://github.com/xushengfeng" target="_bank">xushengfeng</a>
+            <p>2021 - 2022</p>
+            <address><a href="https://github.com/xushengfeng" target="_bank">©xushengfeng</a><a
+                    href="mailto:xushengfeng_zg@163.com">xushengfeng_zg@163.com</a></address>
             <iframe src="https://ghbtns.com/github-btn.html?user=xushengfeng&repo=eSearch&type=star&count=true&v=2"
                 frameborder="0" scrolling="0" width="100" height="20" title="GitHub"></iframe>
-        </p>
-
+        </div>
     </footer>
 </body>
 

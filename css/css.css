@@ -567,17 +567,33 @@ button {
 
 /* 关于 */
 #关于 {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
     background: #eee;
-    flex-direction: column;
     padding: 16px;
+}
+#关于 > p:nth-child(1) {
+    text-align: center;
 }
 .about_p2 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+.about_p2 > *:not(:nth-child(1)) {
+    border-left: #000 solid 1px;
+}
+.about_p2 > * {
+    margin: 0;
+    padding: 0 4px;
+}
+address {
+    display: inline;
+}
+address > a:nth-child(1) {
+    padding-right: 4px;
+}
+address > a:nth-child(2) {
+    border-left: #000 solid 1px;
+    padding-left: 4px;
 }
 @media (max-width: 900px) {
     body {
