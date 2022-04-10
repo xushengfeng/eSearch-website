@@ -223,11 +223,11 @@ document.getElementById("fastdownload").onclick = () => {
     }
     if (fasturl) {
         document.getElementById("fastdownload").innerText = "已使用快速下载链接";
-        show_download();
     } else {
         document.getElementById("fastdownload").innerText = "已使用初始下载链接";
-        show_download();
     }
+    show_download();
+    c_other_version_link();
 };
 function fasthub(url) {
     if (fasturl) {
@@ -252,13 +252,12 @@ function show_download() {
     document.querySelector("#source_d > div").innerHTML = source_d;
 }
 // 旧版本下载
-document.getElementById("download_old_b").onclick = () => {
-    if (fasturl) {
-        window.open("https://hub.fastgit.xyz/xushengfeng/eSearch/releases");
-    } else {
-        window.open("https://github.com/xushengfeng/eSearch/releases");
-    }
-};
+document.getElementById("download_old_b").onclick = () => {};
+function c_other_version_link() {
+    document.querySelector("#download_old_b > a").href = `https://${
+        fasturl ? "hub.fastgit.xyz" : "github.com"
+    }/xushengfeng/eSearch/releases`;
+}
 
 // 获取更新日志
 function show_log() {

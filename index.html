@@ -14,18 +14,19 @@
 </head>
 
 <body>
-    <ul id="nav">
-        <li data-id="eSearch"><img src="./assets/icon.svg" id="icon">eSearch</li>
-        <li data-id="功能">功能</li>
-        <li data-id="下载">下载</li>
-        <li data-id="日志">日志</li>
-        <li data-id="关于">关于</li>
-        <li><a href="https://github.com/xushengfeng/eSearch" target="_bank"><img src="./assets/icons/Github.svg"
-                    alt="Github"></a></li>
-        <li><a href="https://gitee.com/xsf-root/eSearch" target="_bank"><img src="./assets/icons/Gitee.svg"
-                    alt="Gitee"></a></li>
-
-    </ul>
+    <header>
+        <ul id="nav">
+            <li data-id="eSearch"><img src="./assets/icon.svg" id="icon">eSearch</li>
+            <li data-id="功能">功能</li>
+            <li data-id="下载">下载</li>
+            <li data-id="日志">日志</li>
+            <li data-id="关于">关于</li>
+            <li><a href="https://github.com/xushengfeng/eSearch" target="_bank"><img src="./assets/icons/Github.svg"
+                        alt="Github"></a></li>
+            <li><a href="https://gitee.com/xsf-root/eSearch" target="_bank"><img src="./assets/icons/Gitee.svg"
+                        alt="Gitee"></a></li>
+        </ul>
+    </header>
     <div class="main_block" id="eSearch">
         <div id="main_right">
             <svg width="100%" height="800" id="svg">
@@ -330,7 +331,7 @@
                 <div></div>
             </div>
         </div>
-        <span class="other_download"><span id="download_old_b">所有版本下载</span><span id="fastdownload"
+        <span class="other_download"><span id="download_old_b"><a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases">所有版本下载</a></span><span id="fastdownload"
                 title="github(初始)链接不稳定，快速下载链接(hub.fastgit.org)提供快速github镜像">已使用快速下载链接</span>
         </span>
 
@@ -341,7 +342,7 @@
         <ul id="log"></ul>
         <script src="./lib/markdown-it/markdown-it.min.js"></script>
     </div>
-    <div class="main_block" id="关于">
+    <footer class="main_block" id="关于">
         <p>我想在Linux上用<a href="https://zh.snipaste.com/" target="_bank">Snipaste - 截图 +
                 贴图</a>，他非常好用，可惜截止到2022.4，他还是不支持Linux。<br>
             我找了Snipaste的Linux下代替品：<a href="https://flameshot.org/" target="_bank">Flameshot</a>，但他取色器不直观。<br>
@@ -357,7 +358,7 @@
                 frameborder="0" scrolling="0" width="100" height="20" title="GitHub"></iframe>
         </p>
 
-    </div>
+    </footer>
 </body>
 
 </html>
