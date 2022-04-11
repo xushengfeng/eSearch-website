@@ -321,9 +321,9 @@ var animation_main = anime({
         }
         // 导航栏logo自动隐藏
         if (Math.round(anim.progress) >= 100) {
-            document.getElementById("icon").className = "icon_h";
-        } else {
             document.getElementById("icon").className = "";
+        } else {
+            document.getElementById("icon").className = "icon_h";
         }
     },
 });
