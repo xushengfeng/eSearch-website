@@ -63,6 +63,7 @@ platform_select.oninput = () => {
 };
 
 // 首页动画
+document.getElementById("svg").setAttribute("width", document.body.offsetWidth);
 var tl = anime.timeline({
     easing: "easeOutExpo",
     duration: 800,
@@ -118,7 +119,7 @@ if (is_phone) {
     ).add(
         {
             targets: "#svg",
-            width: "50%",
+            width: "200px",
             height: 200,
             left: "50%",
             top: "10%",
@@ -130,7 +131,7 @@ if (is_phone) {
     tl.add(
         {
             targets: "#svg_icon",
-            x: 30,
+            x: 0,
             y: 0,
             width: 200,
             height: 200,
@@ -140,9 +141,9 @@ if (is_phone) {
     ).add(
         {
             targets: "#svg",
-            width: "50%",
+            width: 200,
             height: 200,
-            left: "50%",
+            left: "55%",
             top: "50%",
             translateY: "-50%",
         },
@@ -249,10 +250,14 @@ function show_download() {
     document.querySelector("#macOS_d > div").innerHTML = macOS_d;
     var source_d = `<a target="_blank" href="https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${result[0].name}.tar.gz"><div class="download_b"><span>.tar</span>tar 压缩源代码</div></a>
+    }/xushengfeng/eSearch/archive/refs/tags/${
+        result[0].name
+    }.tar.gz"><div class="download_b"><span>.tar</span>tar 压缩源代码</div></a>
     <a target="_blank" href="https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${result[0].name}.zip"><div class="download_b"><span>.zip</span>zip 压缩源代码</div></a>`;
+    }/xushengfeng/eSearch/archive/refs/tags/${
+        result[0].name
+    }.zip"><div class="download_b"><span>.zip</span>zip 压缩源代码</div></a>`;
     document.querySelector("#source_d > div").innerHTML = source_d;
 }
 // 旧版本下载
