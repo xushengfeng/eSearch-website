@@ -441,11 +441,8 @@ document.onkeydown = (e) => {
 
 document.onkeyup = (e) => {
     if (document.getElementById(`key_${e.key}`)) document.getElementById(`key_${e.key}`).className = "";
-    if (e.ctrlKey) {
-        document.getElementById("key_ctrl").className = "";
-    } else if (e.shiftKey) {
-        document.getElementById("key_shift").className = "";
-    }
+    if (e.key == "Control") document.getElementById("key_ctrl").className = "";
+    if (e.key == "Shift") document.getElementById("key_shift").className = "";
 };
 
 setInterval(() => {
