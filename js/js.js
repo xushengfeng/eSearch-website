@@ -392,7 +392,6 @@ function ocr_an() {
 
 document.onkeydown = (e) => {
     var bcr = document.getElementById("gn_keyboard").getBoundingClientRect();
-    if (bcr.top + bcr.height >= 0) e.preventDefault();
     var o = {
         ArrowUp: "up",
         w: "up",
@@ -405,7 +404,10 @@ document.onkeydown = (e) => {
     };
     var arrow, d;
     arrow = o[e.key];
-    if (document.getElementById(`key_${e.key}`)) document.getElementById(`key_${e.key}`).className = "kbd_b";
+    if (document.getElementById(`key_${e.key}`)) {
+        document.getElementById(`key_${e.key}`).className = "kbd_b";
+        if (bcr.top + bcr.height >= 0) e.preventDefault();
+    }
     if (e.ctrlKey) {
         document.getElementById("key_ctrl").className = "kbd_b";
         d = 5;
