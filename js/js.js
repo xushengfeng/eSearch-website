@@ -240,7 +240,8 @@ function fasthub(url) {
 
 // 下载界面添加按钮
 function show_download() {
-    var Windows_d = `<a target="_blank" href="${files_object.zip.url}"><div class="download_b"><span>.zip</span>绿色版 适用于 Windows7+</div></a>`;
+    var Windows_d = `<a target="_blank" href="${files_object.exe.url}"><div class="download_b"><span>.exe</span>适用于 Windows7+</div></a>
+    <a target="_blank" href="${files_object.zip.url}"><div class="download_b"><span>.zip</span>绿色版 适用于 Windows7+</div></a>`;
     document.querySelector("#Windows_d > div").innerHTML = Windows_d;
     var Linux_d = `<a target="_blank" href="${files_object.deb.url}"><div class="download_b"><span>.deb</span>适用于 Debian, Ubuntu</div></a>
     <a target="_blank" href="${files_object.rpm.url}"><div class="download_b"><span>.rpm</span>适用于 Red Hat, Fedora, SUSE</div></a>
