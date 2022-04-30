@@ -42,7 +42,7 @@ a {
     height: 48px;
     z-index: 10;
 }
-#nav > li {
+#nav > * {
     list-style-type: none;
     margin: 8px;
     padding: 8px;
@@ -50,20 +50,20 @@ a {
     transition: var(--transition);
     cursor: pointer;
 }
-#nav > li:hover {
+#nav > *:hover {
     background-color: var(--hover-color);
 }
 #nav > :first-child {
     display: flex;
     align-items: center;
 }
-#nav a {
-    height: 16px;
+#nav a{
     display: block;
     outline: none;
 }
 #nav a img {
     width: 16px;
+    display: block;
 }
 #icon {
     transition: var(--transition);
