@@ -540,7 +540,8 @@ button {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 80px);
-    margin: 0 16px;
+    margin: auto;
+    width: 60%;
 }
 #日志 > h1 {
     margin: 0;
@@ -677,6 +678,9 @@ address > a:nth-child(2) {
     }
     #download > div:hover > div {
         width: 100%;
+    }
+    #日志 {
+        width: 96%;
     }
 }
 
