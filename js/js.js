@@ -144,7 +144,7 @@ if (is_phone) {
             width: 200,
             height: 200,
             left: "55%",
-            top: "50%",
+            top: "40%",
             translateY: "-50%",
         },
         "-=800"
