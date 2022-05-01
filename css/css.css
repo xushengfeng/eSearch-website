@@ -57,7 +57,7 @@ a {
     display: flex;
     align-items: center;
 }
-#nav a{
+#nav a {
     display: block;
     outline: none;
 }
@@ -558,6 +558,9 @@ button {
 #log > li {
     list-style: none;
     margin-top: 36px;
+}
+#log > li > img {
+    margin-left: 16px;
 }
 .log_v {
     font-size: 30px;
