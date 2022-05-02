@@ -129,8 +129,9 @@ button {
 }
 #svg {
     position: absolute;
-    top: 0;
-    left: 0;
+    left: 55%;
+    top: 40%;
+    transform: translateY(-50%);
 }
 #eSearch h1 {
     margin: 8px;
@@ -613,6 +614,11 @@ address > a:nth-child(2) {
     }
     #nav > * {
         margin: 0;
+    }
+    #svg{
+        left: 50%;
+        top: 10%;
+        transform: translateX(-50%);
     }
     #功能 h1 {
         font-size: 6rem;
