@@ -304,10 +304,6 @@ function show_log() {
         h.className = "log_v";
         h.innerText = result[i].tag_name;
         li.appendChild(h);
-        var img = document.createElement("img");
-        img.src = `https://img.shields.io/github/downloads/xushengfeng/eSearch/${result[i].tag_name}/total?label=下载量`;
-        var h = document.createElement("span");
-        li.appendChild(img);
         var div = document.createElement("div");
         div.innerHTML = md.render(result[i].body);
         li.append(h, div);
