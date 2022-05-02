@@ -611,7 +611,7 @@ address > a:nth-child(2) {
         align-items: center;
         top: 60%;
     }
-    #nav > li {
+    #nav > * {
         margin: 0;
     }
     #功能 h1 {
