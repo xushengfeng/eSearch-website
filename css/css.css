@@ -57,9 +57,14 @@ a {
     display: flex;
     align-items: center;
 }
-#nav a {
+#nav > :last-child,
+#nav > :nth-last-child(2) {
+    padding: 0;
+}
+#nav > :last-child > a,
+#nav > :nth-last-child(2) > a {
     display: block;
-    outline: none;
+    padding: 8px;
 }
 #nav a img {
     width: 16px;
@@ -615,7 +620,7 @@ address > a:nth-child(2) {
     #nav > * {
         margin: 0;
     }
-    #svg{
+    #svg {
         left: 50%;
         top: 10%;
         transform: translateX(-50%);
