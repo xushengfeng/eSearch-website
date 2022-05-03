@@ -1,1 +1,117 @@
-<svg width="1500" height="400" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient xlink:href="#a" id="c" x1="184" y1="184" x2="152" y2="152" gradientUnits="userSpaceOnUse" gradientTransform="translate(183.113 435.933)"/><linearGradient id="a"><stop style="stop-color:#00bdf9;stop-opacity:1" offset="0"/><stop style="stop-color:#4242ff;stop-opacity:1" offset="1"/></linearGradient><linearGradient xlink:href="#a" id="d" x1="0" y1="192" x2="192" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="translate(183.113 435.933)"/><linearGradient xlink:href="#a" id="e" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="192" y2="192" gradientTransform="translate(183.113 435.933)"/><path id="b" d="M507.455 38.29h657.268v344.576H507.455z"/></defs><text xml:space="preserve" style="font-style:normal;font-weight:400;font-size:144px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#b);fill:#000;fill-opacity:1;stroke:none" transform="translate(-239.804 1.537) scale(1.5201)"><tspan x="507.455" y="183.009"><tspan style="-inkscape-font-specification:sans-serif;fill:#115aff">e</tspan><tspan style="-inkscape-font-specification:sans-serif">Search</tspan></tspan></text><path style="fill:none;stroke:url(#c);stroke-width:24;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m355.113 607.933-20-20" transform="translate(-74.498 -573.72) scale(1.45455)"/><path style="fill:url(#d);fill-opacity:1;stroke:none;stroke-width:24;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M279.113 443.933a88 88 0 0 0-88 88 88 88 0 0 0 88 88 88 88 0 0 0 88-88 88 88 0 0 0-88-88zm0 56a32 32 0 0 1 32 32 32 32 0 0 1-32 32 32 32 0 0 1-32-32 32 32 0 0 1 32-32z" transform="translate(-74.498 -573.72) scale(1.45455)"/><path style="fill:url(#e);fill-opacity:1;stroke:none;stroke-width:24;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M279.113 467.933a64 64 0 0 0-64 64 64 64 0 0 0 64 64 64 64 0 0 0 64-64 64 64 0 0 0-64-64zm0 32a32 32 0 0 1 32 32 32 32 0 0 1-32 32 32 32 0 0 1-32-32 32 32 0 0 1 32-32z" transform="translate(-74.498 -573.72) scale(1.45455)"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1500"
+   height="400"
+   version="1.1"
+   id="svg27"
+   sodipodi:docname="title_photo.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview29"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     showgrid="false"
+     inkscape:zoom="0.44266667"
+     inkscape:cx="573.79518"
+     inkscape:cy="56.475904"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg27" />
+  <defs
+     id="defs11">
+    <rect
+       x="661.34441"
+       y="283.51993"
+       width="612.07994"
+       height="101.18452"
+       id="rect4608" />
+    <linearGradient
+       xlink:href="#a"
+       id="c"
+       x1="184"
+       y1="184"
+       x2="152"
+       y2="152"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(183.113 435.933)" />
+    <linearGradient
+       id="a">
+      <stop
+         style="stop-color:#00bdf9;stop-opacity:1"
+         offset="0"
+         id="stop3" />
+      <stop
+         style="stop-color:#4242ff;stop-opacity:1"
+         offset="1"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#a"
+       id="d"
+       x1="0"
+       y1="192"
+       x2="192"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(183.113 435.933)" />
+    <linearGradient
+       xlink:href="#a"
+       id="e"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="0"
+       x2="192"
+       y2="192"
+       gradientTransform="translate(183.113 435.933)" />
+    <path
+       id="b"
+       d="M507.455 38.29h657.268v344.576H507.455z" />
+  </defs>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:400;font-size:130.255px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#b);fill:#000000;fill-opacity:1;stroke:none"
+     transform="matrix(1.5201,0,0,1.5201,-221.804,-18.463)"
+     id="text19"><tspan
+       x="507.45508"
+       y="169.19534"
+       id="tspan28873"><tspan
+         style="-inkscape-font-specification:sans-serif;fill:#115aff"
+         id="tspan28869">e</tspan><tspan
+         style="-inkscape-font-specification:sans-serif"
+         id="tspan28871">Search</tspan></tspan></text>
+  <path
+     style="fill:none;stroke:url(#c);stroke-width:24;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m355.113 607.933-20-20"
+     transform="translate(-74.498 -573.72) scale(1.45455)"
+     id="path21" />
+  <path
+     style="fill:url(#d);fill-opacity:1;stroke:none;stroke-width:24;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M279.113 443.933a88 88 0 0 0-88 88 88 88 0 0 0 88 88 88 88 0 0 0 88-88 88 88 0 0 0-88-88zm0 56a32 32 0 0 1 32 32 32 32 0 0 1-32 32 32 32 0 0 1-32-32 32 32 0 0 1 32-32z"
+     transform="translate(-74.498 -573.72) scale(1.45455)"
+     id="path23" />
+  <path
+     style="fill:url(#e);fill-opacity:1;stroke:none;stroke-width:24;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M279.113 467.933a64 64 0 0 0-64 64 64 64 0 0 0 64 64 64 64 0 0 0 64-64 64 64 0 0 0-64-64zm0 32a32 32 0 0 1 32 32 32 32 0 0 1-32 32 32 32 0 0 1-32-32 32 32 0 0 1 32-32z"
+     transform="translate(-74.498 -573.72) scale(1.45455)"
+     id="path25" />
+  <text
+     xml:space="preserve"
+     id="text4606"
+     style="font-style:normal;font-weight:normal;font-size:48px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4608);fill:#000000;fill-opacity:1;stroke:none"
+     transform="translate(125.6561,-6.643408)"><tspan
+       x="661.34375"
+       y="331.75953"
+       id="tspan28875">识屏 · 搜索</tspan></text>
+</svg>
