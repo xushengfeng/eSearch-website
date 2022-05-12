@@ -619,7 +619,7 @@ address > a:nth-child(2) {
         width: 100%;
         padding: 0;
         align-items: center;
-        top: 60%;
+        transform: translateY(0%);
     }
     #nav > * {
         margin: 0;
@@ -628,6 +628,9 @@ address > a:nth-child(2) {
         left: 50%;
         top: 10%;
         transform: translateX(-50%);
+    }
+    #预览{
+        display: none;
     }
     #功能 h1 {
         font-size: 6rem;
