@@ -111,26 +111,22 @@ button {
 /* 主要 */
 #eSearch {
     height: calc(100vh - 48px);
-    position: relative;
     overflow: hidden;
     background-color: var(--bg);
     width: 100%;
-    position: sticky;
-    top: 48px;
     z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 #main_left {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    padding-right: 16px;
-    width: 55%;
     box-sizing: border-box;
-    position: absolute;
-    top: 40%;
-    left: 0;
-    transform: translateY(-50%);
+    transform: translateY(-10%);
+    padding: 0 5%;
 }
 #svg {
     position: absolute;
@@ -168,6 +164,14 @@ button {
 }
 .main_download_p button:hover {
     background-color: var(--h-color);
+}
+
+#main_right {
+}
+
+#预览 {
+    box-shadow: #0002 0 0 10px;
+    border-radius: 8px;
 }
 
 /* 功能 */

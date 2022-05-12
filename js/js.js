@@ -225,8 +225,6 @@ document.onscroll = () => {
 
 var animation_main = anime({
     targets: "#eSearch",
-    scale: 2,
-    opacity: 0,
     easing: "easeInOutCubic",
     autoplay: false,
     update: (anim) => {
