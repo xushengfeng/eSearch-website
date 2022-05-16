@@ -79,6 +79,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", requestOption
         version = `${result[0].tag_name}`;
         for (i in result[0].assets) {
             var url = result[0].assets[i].browser_download_url;
+            if (url.match(/mac\.zip/)) continue;
             var hz = url.split(".");
             hz = hz[hz.length - 1];
             if (files_object[hz] === undefined) {
