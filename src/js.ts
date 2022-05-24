@@ -66,16 +66,38 @@ platform_select.oninput = () => {
 var is_phone = window.matchMedia("(max-width: 900px)").matches;
 
 // 获取软件资源
-var result: object;
+var result;
+var v = "1.5.1";
 var files_object = {
-    "-win.zip": { url: "", size: "" },
-    ".exe": { url: "", size: "" },
-    ".tar.gz": { url: "", size: "" },
-    "_amd64.deb": { url: "", size: "" },
-    ".x86_64.rpm": { url: "", size: "" },
-    ".aur": { url: "", size: "" },
-    ".dmg": { url: "", size: "" },
-    "-mac.zip": { url: "", size: "" },
+    "-win.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
+        size: `未知`,
+    },
+    ".exe": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
+        size: `未知`,
+    },
+    ".tar.gz": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
+        size: `未知`,
+    },
+    "_amd64.deb": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
+        size: `未知`,
+    },
+    ".x86_64.rpm": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
+        size: `未知`,
+    },
+    ".aur": { url: ``, size: `未知` },
+    ".dmg": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
+        size: `未知`,
+    },
+    "-mac.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
+        size: `未知`,
+    },
 };
 
 var requestOptions = {
@@ -96,7 +118,11 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
         show_download();
         show_log();
     })
-    .catch((error) => console.error("error", error));
+    .catch((error) => {
+        console.error("error", error);
+        show_download();
+        show_log_2();
+    });
 // 首页下载提示大小
 main_download.onmouseover = (e) => {
     let el = <HTMLElement>e.target;
@@ -150,14 +176,10 @@ function show_download() {
     document.querySelector("#macOS_d > div").innerHTML = macOS_d;
     var source_d = `<a target="_blank" href="https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${
-        result[0].name
-    }.tar.gz"><div class="download_b"><span>.tar</span>tar 压缩源代码</div></a>
+    }/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz"><div class="download_b"><span>.tar</span>tar 压缩源代码</div></a>
     <a target="_blank" href="https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${
-        result[0].name
-    }.zip"><div class="download_b"><span>.zip</span>zip 压缩源代码</div></a>`;
+    }/xushengfeng/eSearch/archive/refs/tags/${v}.zip"><div class="download_b"><span>.zip</span>zip 压缩源代码</div></a>`;
     document.querySelector("#source_d > div").innerHTML = source_d;
 }
 // 旧版本下载
@@ -208,6 +230,11 @@ function show_log() {
         li.append(h, div);
         document.getElementById("log").appendChild(li);
     }
+}
+function show_log_2() {
+    document.getElementById(
+        "log"
+    ).outerHTML = `<a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">无法获取所有日志，请前往此镜像链接查看</a>`;
 }
 
 document.onscroll = () => {
