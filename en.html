@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="eSearch 截图 OCR 以图搜图 搜索翻译 贴图">
+    <meta name="keywords" content="截图,截屏,ocr,OCR,文字识别,开源,免费,搜索,翻译,以图搜图,识图,贴图,软件,esearch,e-search,eSearch">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="supported-color-schemes" content="light dark">
+    <!-- 谷歌 验证所有权 -->
+    <meta name="google-site-verification" content="HnitDp2ktfgc7WbaPzSeJr1w-FnNO7XscMqUuj8PV7U" />
+    <!-- 必应 验证所有权 -->
+    <meta name="msvalidate.01" content="4CFE835B163F91DDA28FC9BF7C27B420" />
+    <!-- 百度 验证所有权 -->
+    <meta name="baidu-site-verification" content="code-cs6h9rzPpG" />
+    <link rel="icon" type="image/svg" href="./assets/icon.svg">
+    <title>eSearch - screen recognition · searc</title>
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <script type="text/javascript" src="js/js.js" defer="true"></script>
+</head>
+
+<body>
+    <header>
+        <ul id="nav">
+            <li data-id="eSearch"><img src="./assets/icon.svg" id="icon" alt="logo" class="icon_h">eSearch</li>
+            <li data-id="功能">Functions</li>
+            <li data-id="下载">Downloads</li>
+            <li data-id="日志">Logs</li>
+            <li data-id="关于">About</li>
+            <li><a href="https://github.com/xushengfeng/eSearch" target="_bank"><img src="./assets/icons/Github.svg"
+                        alt="Github"></a></li>
+            <li><a href="https://gitee.com/xsf-root/eSearch" target="_bank"><img src="./assets/icons/Gitee.svg"
+                        alt="Gitee"></a></li>
+        </ul>
+    </header>
+    <div class="main_block" id="eSearch">
+        <div id="main_left">
+            <img id="svg_icon" width="180" height="180" src="./assets/icon.svg">
+            <h1>eSearch</h1>
+            <h2>Screen recognition · search</h2>
+            <div class="main_download_p">
+                <select name="platform" id="platform">
+                    <option value="Windows">Windows</option>
+                    <option value="Linux">Linux</option>
+                    <option value="macOS">macOS</option>
+                </select>
+                <div id="main_download"><button id="_amd64.deb" title="点击下载，共需58.86MB">download deb</button><button
+                        id=".x86_64.rpm" title="点击下载，共需58.95MB">download rpm</button></div>
+            </div>
+        </div>
+        <div id="main_right">
+            <iframe src="https://e-search.vercel.app/" frameborder="0" width="800" height="600" id="预览"></iframe>
+        </div>
+        <script src="./lib/animejs/lib/anime.min.js"></script>
+
+    </div>
+    <div class="main_block" id="功能">
+        <div class="gn_b">
+            <div id="clip_t">
+                <h2>Screenshots</h2>
+                <div class="cross">
+                    <div class="card gn_clip_size">
+                        <h3>Adjust like a window</h3>
+                        <p>Move, stretch, diagonally, just like adjusting a window</p>
+                        <div>
+                            <img src="./assets/rect.svg" alt="illustration of size positions">
+                        </div>
+                    </div>
+                    <div class="card gn_clip_num">
+                        <h3>parameter control</h3>
+                        <p>Enter numbers or quadratic formulas to directly change the size and position of the selection
+                        </p>
+                        <div>
+                            <img src="./assets/cs.webp" alt="parameter control bar">
+                        </div>
+                    </div>
+                    <div class="card gn_clip_keyboard" id="gn_keyboard">
+                        <h3>Precise control</h3>
+                        <p>Combine with the keyboard for more precise control</p>
+                        <div class="gn_clip_keyboard_c">
+                            <div>
+                                <div>
+                                    <kbd id="key_ArrowUp">↑</kbd><kbd id="key_ArrowRight">→</kbd><kbd
+                                        id="key_ArrowDown">↓</kbd><kbd id="key_ArrowLeft">←</kbd><br><kbd
+                                        id="key_w">W</kbd><kbd id="key_a">A</kbd><kbd id="key_s" class="">S</kbd><kbd
+                                        id="key_d">D</kbd>
+                                </div>
+                                Omnidirectional control
+                            </div>
+                            <div><kbd id="key_ctrl" class="">Ctrl</kbd>
+                                Speed × 5
+                            </div>
+                            <div><kbd id="key_shift">Shift</kbd>
+                                Speed × 10
+                            </div>
+                            <img src="./assets/keyboard.svg" alt="keyboard control cursor illustration"
+                                style="text-align: left; left: 0px; top: 15px;">
+                        </div>
+                    </div>
+                    <div class="card gn_clip_magnifier">
+                        <h3>Magnifying glass</h3>
+                        <p>can't see clearly? Here comes the magnifying glass</p>
+                        <div>
+                            <img src="./assets/fdj.png" alt="magnifying glass">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gn_b">
+            <div id="ocr_t">
+                <h2>OCR</h2>
+                <p>OCR, or text recognition</p>
+                <p>All the text you see, should be characters</p>
+                <p>Images, e-books, bullet chat, scans, some websites, formulas, all the text you can't select, all
+                    converted into characters</p>
+                <p>OCR engines currently support (offline, Baidu, Youdao)</p>
+                <p>Offline OCR engines support custom models and dictionaries, online OCR engines support custom secret
+                    keys for their own applications</p>
+                <div id="ocr_p">
+                    <div class="card"><img src="./assets/ocr_o.svg" alt="picture before ocr"></div>
+                    <div>
+                        <div class="ocr_path"><span>OCR engine</span></div>
+                    </div>
+                    <div contenteditable="true">Conversion to selectable and editable characters</div>
+                </div>
+            </div>
+        </div>
+        <div class="gn_b">
+            <div id="search_t">
+                <h2>Search</h2>
+                <p>With OCR (text recognition), everything you see is searchable</p>
+                <p>Don't like to use Google search engines? Customise one</p>
+                <p>Even foreign text can be translated using various engines</p>
+                <div id="search_p">
+                    <div id="search" class="card">
+                        <h3>Search</h3>
+                        <span><img src="./assets/icons/google.ico" alt="google icon">Google</span><span><img
+                                src="./assets/icons/baidu.ico" alt="baidu icon">Baidu</span><span><img
+                                src="./assets/icons/bing.ico" alt="bing icon">Bing</span><span><img
+                                src="./assets/search.svg" alt="custom icons">Customization</span>
+                    </div>
+                    <div id="translate" class="card">
+                        <h3>Translation</h3>
+                        <span><img src="./assets/icons/google.ico" alt="google icon">Google
+                        </span><span><img src="./assets/icons/deepl.png" alt="Deepl icon">Deepl</span><span><img
+                                src="./assets/icons/baidu.ico" alt="baidu icon">Baidu</span><span><img
+                                src="./assets/icons/iciba.ico" alt="golden mountain icon">Kingsoft</span><span><img
+                                src="./assets/icons/bing.ico" alt="bing icon">Bing</span><span><img
+                                src="./assets/search.svg" alt="custom icons">Customization
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gn_b">
+            <div id="ding_t">
+                <h2>ding</h2>
+                <p>Fix the trimmed image on the screen, seamlessly</p>
+                <div id="ding_p">
+                    <div class="card" id="透明度_card">
+                        <h3>Transparency</h3>
+                        <p>Infinity changes transparency</p>
+                        <div class="opacity_win">
+                            <div class="opacity_bar">
+                                <div id="opacity">
+                                    <div id="opacity_b"></div>
+                                </div>
+                                <span id="opacity_p">100%</span>
+                            </div>
+                        </div>
+                        <img src="./assets/tm.svg" alt="transparency icon" class="card_bg">
+                    </div>
+                    <div class="card">
+                        <h3>One-click repositioning</h3>
+                        <p>Return to fitted position and size</p>
+                        <div class="desk">
+                            <div class="back_win"></div>
+                        </div>
+                        <img src="./assets/gw.svg" alt="homing icon" class="card_bg">
+                    </div>
+                    <div class="card">
+                        <h3>Button penetration</h3>
+                        <p>Mask the window and let the mouse operate behind it</p>
+                        <p contenteditable="true">For example, here you can select and edit this text through the window without being affected
+                            by it</p>
+                        <p contenteditable="true">For example, here you can select and edit this text through the window without being affected
+                            by it</p>
+                        <p contenteditable="true">For example, here you can select and edit this text through the window without being affected
+                            by it</p>
+                        <div class="ct_win">
+                            <div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <img src="./assets/ct.svg" alt="keys penetrate icons" class="card_bg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gn_b">
+            <div id="more_t">
+                <h2>More</h2>
+                <div class="more_p">
+                    <div class="card more_qsq">
+                        <h3>Colour picker</h3>
+                        <p>Supports HEX, RGB, HSL, HSV, CMYK and other colour formats for copying</p>
+                        <div>
+                            <img src="./assets/qsq.png" alt="eyedropper screenshot">
+                        </div>
+                        <p class="jy_p">Based on <a href="https://github.com/Qix-/color" target="_bank">color</a></p>
+                    </div>
+                    <div class="card more_draw">
+                        <h3>Editing images</h3>
+                        <p>Simple image editing: brush, eraser, basic geometry, resizing, filters (including mosaic and
+                            blur)</p>
+                        <p>Can be manipulated using the <a href="http://fabricjs.com/" target="_bank">fabric.js</a> API
+                        </p>
+                        <div>
+                            <img src="./assets/3.webp" alt="image edit screenshots">
+                        </div>
+                        <img src="./assets/tool_draw.svg" alt="brush icon" class="card_bg">
+                    </div>
+                    <div class="card more_other">
+                        <h3>Other apps open</h3>
+                        <p>Not satisfied with the editor that comes with your software? You can open it temporarily in
+                            other image editors for advanced image editing</p>
+                        <p>You can also open it on social media for sharing</p>
+                        <img src="./assets/tool_open.svg" alt="other apps open" class="card_bg">
+                        <div><img src="./assets/qtyy.webp" alt="other apps open screenshots">
+                        </div>
+                    </div>
+                    <div class="card more_auto">
+                        <h3>Automatic search</h3>
+                        <p>Automatic judgement mode, when text is selected, the text is searched or translated directly,
+                            otherwise text recognition is activated and then searched. Single line of text can be
+                            searched automatically.</p>
+                        <div><img src="./assets/auto.svg" alt="automatic search"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Qr code scanning</h3>
+                        <p class="jy_p">Based on <a href="https://github.com/cozmo/jsQR" target="_bank">jsqr</a></p>
+                        <img src="./assets/tool_QR.svg" alt="qr code" class="card_bg">
+                    </div>
+                    <div class="card">
+                        <h3>History</h3>
+                        <p>Record text recognition records, can be deleted automatically</p>
+                        <img src="./assets/main_history.svg" alt="history" class="card_bg">
+                    </div>
+                    <div class="card more_blur">
+                        <h3>Elegant blur</h3>
+                        <p>Ubiquitous blurring effect for the ultimate aesthetic experience</p>
+                        <p>Customisable blur intensity and transparency, which can also be switched off to save
+                            resources</p>
+                        <div>
+                            <img src="./assets/clip.png" alt="screenshot screen">
+                            <img src="./assets/main.png" alt="main interface">
+                        </div>
+                    </div>
+                    <div class="card more_diy">
+                        <h3>Customization and expansion</h3>
+                        <p>In Settings, eSearch provides a number of customizable settings.
+                            Since eSearch is open source software that follows the GPLv3 protocol, developed based on <a
+                                href="https://www.electronjs.org/" target="_bank">Electron</a> and <a
+                                href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">Web
+                                technologies (HTML, CSS, js),</a> it can be freely modified and extended, both in style
+                            and function </p>
+                        <div>
+                            <img src="./assets/icons/Electron_Software_Framework_Logo.svg" alt="electron logo">
+                            <img src="./assets/icons/HTML5_logo_and_wordmark.svg" alt="html5 logo">
+                            <img src="./assets/icons/CSS3_logo_and_wordmark.svg" alt="css3 logo">
+                            <img src="./assets/icons/Unofficial_JavaScript_logo_2.svg" alt="JavaScript logo">
+                        </div>
+                        <img src="./assets/setting.svg" alt="paintbrush" class="card_bg">
+                    </div>
+                    <div class="card">
+                        <h3>Cross-platform</h3>
+                        <p>Based on <a href="https://www.electronjs.org/" target="_bank">Electron</a>
+                            and <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">web
+                                technologies (HTML, CSS, js)</a> eSearch supports Windows, Linux, macOS and other major
+                            operating systems and platforms.</p>
+                    </div>
+                    <div class="card more_other">
+                        <h3>Other app edits</h3>
+                        <p>Not satisfied with the text editor that comes with the software? You can open it temporarily
+                            in other text editors for advanced text editing</p>
+                        <img src="./assets/tool_open.svg" alt="other apps open" class="card_bg">
+                        <div><img src="./assets/qtbj.webp" alt="other apps open"></div>
+                    </div>
+                    <div class="card more_other">
+                        <h3>Find and replace</h3>
+                        <p>The skills a text editor should have. Support for regular expression lookups</p>
+                        <img src="./assets/find_replace.svg" alt="other app edits" class="card_bg">
+                        <div><img src="./readme/4.png" alt="other app edits"></div>
+                    </div>
+                    <div class="card more_other">
+                        <h3>Automatically delete line breaks</h3>
+                        <p>Automatic typesetting by removing extra line breaks caused by text recognition (OCR)</p>
+                        <p>Window copy effect provided by <a href="#ding_t">ding</a></p>
+                        <img src="./assets/main_delete_enter.svg" alt="automatically delete line breaks"
+                            class="card_bg">
+                        <div><img src="./assets/zdsc.png" alt="automatically delete line breaks"></div>
+                    </div>
+                    <div class="card more_other">
+                        <h3>Search for images</h3>
+                        <p>Use Internet engines (Baidu, Google, Yandex) to search for images with a similar location to
+                            the box</p>
+                        <img src="./assets/main_search.svg" alt="search icons in images" class="card_bg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <article class="main_block" id="下载">
+        <div id="download">
+            <div id="Windows_d" title="Windows">
+                <img src="./assets/Windows.svg" alt="Windows_Logo" class="pl_Logo">
+                <div></div>
+            </div>
+            <div id="Linux_d" title="Linux">
+                <img src="./assets/Linux.svg" alt="Linux_Logo" class="pl_Logo">
+                <div></div>
+            </div>
+            <div id="macOS_d" title="macOS">
+                <img src="./assets/macOS.svg" alt="macOS_Logo" class="pl_Logo">
+                <div></div>
+            </div>
+            <div id="source_d" title="源代码">
+                <img src="./assets/source.svg" alt="source_Logo" class="pl_Logo">
+                <div></div>
+            </div>
+        </div>
+        <span class="other_download"><span id="download_old_b"><a
+                    href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">all versions are
+                    downloaded</a></span><span id="fastdownload"
+                title="github(初始)链接不稳定，快速下载链接(hub.fastgit.org)提供快速github镜像">the quick download
+                link has been used</span>
+            <img src="https://img.shields.io/github/downloads/xushengfeng/eSearch/total?color=brightgreen&label=Total downloads"
+                alt="">
+        </span>
+    </article>
+
+    <article class="main_block" id="日志">
+        <h2>Update logs</h2>
+        <ul id="log"></ul>
+        <script src="./lib/markdown-it/markdown-it.min.js"></script>
+    </article>
+
+    <footer class="main_block" id="关于">
+        <p>I want to use <a href="https://WWW.snipaste.com/" target="_bank">Snipaste - Snip & Paste</a>on Linux , he works very well, but unfortunately as of 2022.4 he still doesn't support Linux.<br>I looked for a replacement for Snipaste on Linux: <a href="https://flameshot.org/"
+                target="_bank">Flameshot</a>, but his color picker was
+            inconvenient. <br> I wanted to use <a href="http://ocr.tianruo.net/" target="_bank">Tian Ruo OCR</a> on Linux but
+            I didn't want to open Wine to use it. <br> Why not, I'll write one myself. <br> eSearch was born. </p>
+        <div class="about_p2">
+            <a href="https://github.com/xushengfeng/eSearch/blob/master/LICENSE" target="_bank">GPL3
+                license</a>
+            <p>2021 - 2022</p>
+            <address><a href="https://github.com/xushengfeng" target="_bank">©xushengfeng</a><a
+                    href="mailto:xushengfeng_zg@163.com">xushengfeng_zg@163.com</a></address>
+            <a href="https://github.com/xushengfeng/eSearch" target="_bank"><img
+                    src="https://img.shields.io/github/stars/xushengfeng/eSearch?style=social" alt="Github star"></a>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
