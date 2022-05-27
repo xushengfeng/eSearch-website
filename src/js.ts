@@ -70,32 +70,32 @@ var result;
 var v = "1.5.2";
 var files_object = {
     "-win.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
         size: `未知`,
     },
     ".exe": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
         size: `未知`,
     },
     ".tar.gz": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
         size: `未知`,
     },
     "_amd64.deb": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
         size: `未知`,
     },
     ".x86_64.rpm": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
         size: `未知`,
     },
     ".aur": { url: ``, size: `未知` },
     ".dmg": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
         size: `未知`,
     },
     "-mac.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
+        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
         size: `未知`,
     },
 };
