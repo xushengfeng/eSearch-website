@@ -164,23 +164,20 @@ function fasthub(url) {
 
 // 下载界面添加按钮
 function show_download() {
-    var Windows_d = `<a target="_blank" href="${files_object[".exe"].url}"><div class="download_b"><span>.exe</span>适用于 Windows7+</div></a>
-    <a target="_blank" href="${files_object["-win.zip"].url}"><div class="download_b"><span>.zip</span>绿色版 适用于 Windows7+</div></a>`;
-    document.querySelector("#Windows_d > div").innerHTML = Windows_d;
-    var Linux_d = `<a target="_blank" href="${files_object["_amd64.deb"].url}"><div class="download_b"><span>.deb</span>适用于 Debian, Ubuntu</div></a>
-    <a target="_blank" href="${files_object[".x86_64.rpm"].url}"><div class="download_b"><span>.rpm</span>适用于 Red Hat, Fedora, SUSE</div></a>
-    <a target="_blank" href="${files_object[".tar.gz"].url}"><div class="download_b"><span>.tar.gz</span>适用于大部分 Linux 发行版</div></a>`;
-    document.querySelector("#Linux_d > div").innerHTML = Linux_d;
-    var macOS_d = `<a target="_blank" href="${files_object[".dmg"].url}"><div class="download_b"><span>.dmg</span>适用于 macOS 10.8+</div></a>
-    <a target="_blank" href="${files_object["-mac.zip"].url}"><div class="download_b"><span>.zip</span>绿色版 适用于 macOS 10.8+</div></a>`;
-    document.querySelector("#macOS_d > div").innerHTML = macOS_d;
-    var source_d = `<a target="_blank" href="https://${
+    let a_l = document.getElementById("download").querySelectorAll("a");
+    a_l[0].href = files_object[".exe"].url;
+    a_l[1].href = files_object["-win.zip"].url;
+    a_l[2].href = files_object["_amd64.deb"].url;
+    a_l[3].href = files_object[".x86_64.rpm"].url;
+    a_l[4].href = files_object[".tar.gz"].url;
+    a_l[5].href = files_object[".dmg"].url;
+    a_l[6].href = files_object["-mac.zip"].url;
+    a_l[7].href = `https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz"><div class="download_b"><span>.tar</span>tar 压缩源代码</div></a>
-    <a target="_blank" href="https://${
+    }/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`;
+    a_l[8].href = `https://${
         fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${v}.zip"><div class="download_b"><span>.zip</span>zip 压缩源代码</div></a>`;
-    document.querySelector("#source_d > div").innerHTML = source_d;
+    }/xushengfeng/eSearch/archive/refs/tags/${v}.zip`;
 }
 // 旧版本下载
 document.getElementById("download_old_b").onclick = () => {};
