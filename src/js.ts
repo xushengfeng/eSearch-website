@@ -10,6 +10,8 @@ document.getElementById("nav").onclick = (e) => {
     }
 };
 
+var en_lang = document.querySelector("html").lang == "en";
+
 // 根据平台在首页显示下载按钮
 var userAgent = navigator.userAgent.toLowerCase();
 var platform = "Unknown";
@@ -33,25 +35,26 @@ var main_download = document.getElementById("main_download");
 var platform_select = <HTMLSelectElement>document.getElementById("platform");
 
 function c_platform(platform: string) {
+    let d = en_lang ? "Donwload" : "下载";
     switch (platform) {
         case "Windows":
-            main_download.innerHTML = `<button id=".exe">下载</button>`;
+            main_download.innerHTML = `<button id=".exe">${d}</button>`;
             platform_select.value = "Windows";
             break;
         case "Linux":
-            main_download.innerHTML = `<button id="_amd64.deb">下载 deb</button><button id=".x86_64.rpm">下载 rpm</button>`;
+            main_download.innerHTML = `<button id="_amd64.deb">${d} deb</button><button id=".x86_64.rpm">${d} rpm</button>`;
             platform_select.value = "Linux";
             break;
         case "macOS":
-            main_download.innerHTML = `<button id=".dmg">下载</button>`;
+            main_download.innerHTML = `<button id=".dmg">${d}</button>`;
             platform_select.value = "macOS";
             break;
         case "Android":
-            main_download.innerHTML = `<button id=".exe">下载</button>`;
+            main_download.innerHTML = `<button id=".exe">${d}</button>`;
             platform_select.value = "Windows";
             break;
         case "iOS":
-            main_download.innerHTML = `<button id=".dmg">下载</button>`;
+            main_download.innerHTML = `<button id=".dmg">${d}</button>`;
             platform_select.value = "macOS";
             break;
     }
@@ -129,7 +132,7 @@ main_download.onmouseover = (e) => {
     var hz = el.id;
     if (el.id != "main_download")
         if (hz != "none") {
-            el.title = `点击下载，共需${files_object[hz].size}MB`;
+            el.title = `${en_lang ? "Click to download, total " : "点击下载，共需"}${files_object[hz].size}MB`;
         } else {
             el.title = `${files_object[hz].size}`;
         }
@@ -140,20 +143,22 @@ main_download.onclick = (e) => {
     window.open(url);
 };
 
-var fasturl = true;
-document.getElementById("fastdownload").onclick = () => {
-    fasturl = !fasturl;
-    for (let i in files_object) {
-        files_object[i].url = fasthub(files_object[i].url);
-    }
-    if (fasturl) {
-        document.getElementById("fastdownload").innerText = "已使用快速下载链接";
-    } else {
-        document.getElementById("fastdownload").innerText = "已使用初始下载链接";
-    }
-    show_download();
-    c_other_version_link();
-};
+// 中文地区使用fastgit
+var fasturl = !en_lang;
+if (document.getElementById("fastdownload"))
+    document.getElementById("fastdownload").onclick = () => {
+        fasturl = !fasturl;
+        for (let i in files_object) {
+            files_object[i].url = fasthub(files_object[i].url);
+        }
+        if (fasturl) {
+            document.getElementById("fastdownload").innerText = "已使用快速下载链接";
+        } else {
+            document.getElementById("fastdownload").innerText = "已使用初始下载链接";
+        }
+        show_download();
+        c_other_version_link();
+    };
 function fasthub(url) {
     if (fasturl) {
         return url.replace("https://github.com", "https://download.fastgit.org");
