@@ -183,6 +183,9 @@ document.getElementById("download_old_b").onclick = () => { };
 function c_other_version_link() {
     document.querySelector("#download_old_b > a").href = `https://${fasturl ? "hub.fastgit.xyz" : "github.com"}/xushengfeng/eSearch/releases`;
 }
+var other_download_el = document.querySelector(".other_download").querySelectorAll("a");
+other_download_el[1].href += v;
+other_download_el[2].href += v;
 // 获取更新日志
 function show_log() {
     // markdown渲染
