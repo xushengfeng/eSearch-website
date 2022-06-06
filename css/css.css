@@ -58,11 +58,13 @@ a {
     align-items: center;
 }
 #nav > :last-child,
-#nav > :nth-last-child(2) {
+#nav > :nth-last-child(2),
+#nav > :nth-last-child(3) {
     padding: 0;
 }
 #nav > :last-child > a,
-#nav > :nth-last-child(2) > a {
+#nav > :nth-last-child(2) > a,
+#nav > :nth-last-child(3) > a {
     display: block;
     padding: 8px;
 }
@@ -629,7 +631,7 @@ address > a:nth-child(2) {
         top: 10%;
         transform: translateX(-50%);
     }
-    #预览{
+    #预览 {
         display: none;
     }
     #功能 h1 {
