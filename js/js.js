@@ -69,6 +69,7 @@ var is_phone = window.matchMedia("(max-width: 900px)").matches;
 // 获取软件资源
 var result;
 var v = "1.6.0";
+var up_time = 1654330196000;
 var files_object = {
     "-win.zip": {
         url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
@@ -115,8 +116,10 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
         files_object[hz].url = fasthub(url);
         files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
     }
+    up_time = new Date(result[0].published_at).getTime();
     show_download();
     show_log();
+    show_push_time();
 })
     .catch((error) => {
     console.error("error", error);
@@ -227,6 +230,14 @@ function show_log() {
 function show_log_2() {
     document.getElementById("log").outerHTML = `<a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">无法获取所有日志，请前往此镜像链接查看</a>`;
 }
+function show_push_time() {
+    let t = new Date().getTime();
+    let dt = t - up_time;
+    let dd = String((dt / (24 * 60 * 60 * 1000)) >> 0);
+    let txt = document.getElementById("main_left").querySelector("h3").innerText;
+    document.getElementById("main_left").querySelector("h3").innerText = txt.replace("{v}", v).replace("{dd}", dd);
+}
+show_push_time();
 document.onscroll = () => {
     main_an();
     ocr_an();
