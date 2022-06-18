@@ -68,8 +68,8 @@ platform_select.oninput = () => {
 var is_phone = window.matchMedia("(max-width: 900px)").matches;
 // 获取软件资源
 var result;
-var v = "1.7.0";
-var up_time = 1654923570000;
+var v = "1.7.1";
+var up_time = 1655551090000;
 var files_object = {
     "-win.zip": {
         url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
