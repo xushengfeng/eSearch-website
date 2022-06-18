@@ -109,6 +109,12 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
     .then((response) => response.text())
     .then((r) => {
     result = JSON.parse(r);
+    for (let i in result) {
+        if (result[i].prerelease) {
+            delete result[i];
+        }
+    }
+    result = result.flat();
     for (let i in result[0].assets) {
         let url = result[0].assets[i].browser_download_url;
         let name = result[0].assets[i].name;
