@@ -211,7 +211,7 @@ button {
     z-index: -1;
 }
 .gn_b {
-    padding: 16px;
+    padding: 16px 10%;
     box-sizing: border-box;
 }
 .card {
@@ -657,6 +657,9 @@ address > a:nth-child(2) {
     }
     #预览 {
         display: none;
+    }
+    .gn_b {
+        padding: 16px;
     }
     #功能 h1 {
         font-size: 6rem;
