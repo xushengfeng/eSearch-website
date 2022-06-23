@@ -262,6 +262,14 @@ function show_push_time() {
 }
 show_push_time();
 
+document.getElementById("gn_tz").onclick = (e) => {
+    for (let i in document.getElementById("gn_tz").querySelectorAll("div")) {
+        if (document.getElementById("gn_tz").querySelectorAll("div")[i] == e.target) {
+            window.scrollTo(0, (<HTMLElement>document.querySelectorAll(".gn_b")[i]).offsetTop);
+        }
+    }
+};
+
 document.onscroll = () => {
     main_an();
     ocr_an();
