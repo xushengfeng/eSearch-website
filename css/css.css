@@ -567,6 +567,8 @@ button {
 .other_download {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .other_download > span {
     cursor: pointer;
