@@ -70,8 +70,8 @@ var is_phone = window.matchMedia("(max-width: 900px)").matches;
 
 // 获取软件资源
 var result;
-var v = "1.7.3";
-var up_time = 1658205545000;
+var v = "1.7.4";
+var up_time = 1659167259000;
 var files_object = {
     "-win.zip": {
         url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
