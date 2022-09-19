@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"animejs": "^3.2.1",
+		"markdown-it": "^13.0.1",
+		"vite": "^3.1.2"
+	}
+}
