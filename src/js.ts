@@ -205,10 +205,11 @@ var other_download_el = document.querySelector(".other_download").querySelectorA
 other_download_el[1].href += v;
 other_download_el[2].href += v;
 
+import markdownit from "markdown-it";
 // 获取更新日志
 function show_log() {
     // markdown渲染
-    var md = window.markdownit({
+    var md = markdownit({
         html: true,
         linkify: true,
         typographer: true,
@@ -275,6 +276,8 @@ document.onscroll = () => {
     ocr_an();
     search_an();
 };
+
+import anime from "animejs";
 
 var animation_main = anime({
     targets: "#eSearch",

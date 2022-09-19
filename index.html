@@ -16,7 +16,7 @@
     <link rel="icon" type="image/svg" href="./assets/icon.svg">
     <title>eSearch - 识屏 · 搜索</title>
     <link rel="stylesheet" type="text/css" href="css/css.css">
-    <script type="text/javascript" src="js/js.js" defer="true"></script>
+    <script type="module" src="./src/js.ts"></script>
     <script>
         if (!navigator.language.match("zh")) window.location.href = "en.html";
     </script>
@@ -55,7 +55,6 @@
         <div id="main_right">
             <iframe src="https://e-search.vercel.app/" frameborder="0" width="800" height="600" id="预览"></iframe>
         </div>
-        <script src="./lib/animejs/lib/anime.min.js"></script>
 
     </div>
     <div class="main_block" id="功能">
@@ -381,7 +380,6 @@
     <article class="main_block" id="日志">
         <h2>更新日志</h2>
         <ul id="log"></ul>
-        <script src="./lib/markdown-it/markdown-it.min.js"></script>
     </article>
 
     <footer class="main_block" id="关于">
