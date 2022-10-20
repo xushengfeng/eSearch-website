@@ -57,14 +57,10 @@ a {
     display: flex;
     align-items: center;
 }
-#nav > :last-child,
-#nav > :nth-last-child(2),
-#nav > :nth-last-child(3) {
+#nav > :last-child {
     padding: 0;
 }
-#nav > :last-child > a,
-#nav > :nth-last-child(2) > a,
-#nav > :nth-last-child(3) > a {
+#nav > :last-child > a {
     display: block;
     padding: 8px;
 }
