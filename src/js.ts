@@ -122,6 +122,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
             let url = <string>result[0].assets[i].browser_download_url;
             let name = <string>result[0].assets[i].name;
             let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
+            if (!files_object[hz]) continue;
             files_object[hz].url = fasthub(url);
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
