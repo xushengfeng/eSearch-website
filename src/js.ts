@@ -127,6 +127,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
         up_time = new Date(result[0].published_at).getTime();
+        v = result[0].name;
         show_download();
         show_log();
         show_push_time();
@@ -254,13 +255,15 @@ function show_log_2() {
     ).outerHTML = `<a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">无法获取所有日志，请前往此镜像链接查看</a>`;
 }
 
+const push_time_text = document.getElementById("main_left").querySelector("h3").innerText;
 function show_push_time() {
     let t = new Date().getTime();
     let dt = t - up_time;
     let dd = String((dt / (24 * 60 * 60 * 1000)) >> 0);
 
-    let txt = document.getElementById("main_left").querySelector("h3").innerText;
-    document.getElementById("main_left").querySelector("h3").innerText = txt.replace("{v}", v).replace("{dd}", dd);
+    document.getElementById("main_left").querySelector("h3").innerText = push_time_text
+        .replace("{v}", v)
+        .replace("{dd}", dd);
 }
 show_push_time();
 
