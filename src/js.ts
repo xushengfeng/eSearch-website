@@ -131,6 +131,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
         show_download();
         show_log();
         show_push_time();
+        load_other_download();
     })
     .catch((error) => {
         console.error("error", error);
@@ -204,8 +205,11 @@ function c_other_version_link() {
 }
 
 var other_download_el = document.querySelector(".other_download").querySelectorAll("a");
-other_download_el[1].href += v;
-other_download_el[2].href += v;
+function load_other_download() {
+    other_download_el[1].href = "https://sourceforge.net/projects/e-search/files/" + v;
+    other_download_el[2].href = "https://gitee.com/xsf-root/eSearch/releases/" + v;
+}
+load_other_download();
 
 import markdownit from "markdown-it";
 // 获取更新日志
