@@ -74,32 +74,32 @@ var v = "1.9.1";
 var up_time = 1667277594000;
 var files_object = {
     "-win.zip": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
         size: `未知`,
     },
     ".exe": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
         size: `未知`,
     },
     ".tar.gz": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
         size: `未知`,
     },
     "_amd64.deb": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
         size: `未知`,
     },
     ".x86_64.rpm": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
         size: `未知`,
     },
     ".aur": { url: ``, size: `未知` },
     ".dmg": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
         size: `未知`,
     },
     "-mac.zip": {
-        url: `https://hub.fastgit.xyz/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
         size: `未知`,
     },
 };
@@ -172,6 +172,7 @@ if (document.getElementById("fastdownload"))
         c_other_version_link();
     };
 function fasthub(url) {
+    return url;
     if (fasturl) {
         return url.replace("https://github.com", "https://download.fastgit.org");
     } else {
@@ -189,18 +190,14 @@ function show_download() {
     a_l[4].href = files_object[".tar.gz"].url;
     a_l[5].href = files_object[".dmg"].url;
     a_l[6].href = files_object["-mac.zip"].url;
-    a_l[7].href = `https://${
-        fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`;
-    a_l[8].href = `https://${
-        fasturl ? "hub.fastgit.xyz" : "github.com"
-    }/xushengfeng/eSearch/archive/refs/tags/${v}.zip`;
+    a_l[7].href = `https://${fasturl ? "github.com" : "github.com"}/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`;
+    a_l[8].href = `https://${fasturl ? "github.com" : "github.com"}/xushengfeng/eSearch/archive/refs/tags/${v}.zip`;
 }
 // 旧版本下载
 document.getElementById("download_old_b").onclick = () => {};
 function c_other_version_link() {
     (<HTMLLinkElement>document.querySelector("#download_old_b > a")).href = `https://${
-        fasturl ? "hub.fastgit.xyz" : "github.com"
+        fasturl ? "github.com" : "github.com"
     }/xushengfeng/eSearch/releases`;
 }
 
@@ -256,7 +253,7 @@ function show_log() {
 function show_log_2() {
     document.getElementById(
         "log"
-    ).outerHTML = `<a href="https://hub.fastgit.xyz/xushengfeng/eSearch/releases" target="_bank">无法获取所有日志，请前往此镜像链接查看</a>`;
+    ).outerHTML = `<a href="https://github.com/xushengfeng/eSearch/releases" target="_bank">无法获取所有日志，请前往此镜像链接查看</a>`;
 }
 
 const push_time_text = document.getElementById("main_left").querySelector("h3").innerText;
