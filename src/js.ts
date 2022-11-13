@@ -123,7 +123,6 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
             let name = <string>result[0].assets[i].name;
             let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
             if (!files_object[hz]) continue;
-            files_object[hz].url = fasthub(url);
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         }
         up_time = new Date(result[0].published_at).getTime();
@@ -160,9 +159,6 @@ var fasturl = !en_lang;
 if (document.getElementById("fastdownload"))
     document.getElementById("fastdownload").onclick = () => {
         fasturl = !fasturl;
-        for (let i in files_object) {
-            files_object[i].url = fasthub(files_object[i].url);
-        }
         if (fasturl) {
             document.getElementById("fastdownload").innerText = "已使用快速下载链接";
         } else {
@@ -171,34 +167,35 @@ if (document.getElementById("fastdownload"))
         show_download();
         c_other_version_link();
     };
-function fasthub(url) {
-    return url;
+function fasthub(url: string) {
+    const proxy_list = ["https://github.91chi.fun/", "https://ghproxy.com/"];
+    let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
     if (fasturl) {
-        return url.replace("https://github.com", "https://download.fastgit.org");
+        return proxy + url;
     } else {
-        return url.replace("https://download.fastgit.org", "https://github.com");
+        return url;
     }
 }
 
 // 下载界面添加按钮
 function show_download() {
     let a_l = document.getElementById("download").querySelectorAll("a");
-    a_l[0].href = files_object[".exe"].url;
-    a_l[1].href = files_object["-win.zip"].url;
-    a_l[2].href = files_object["_amd64.deb"].url;
-    a_l[3].href = files_object[".x86_64.rpm"].url;
-    a_l[4].href = files_object[".tar.gz"].url;
-    a_l[5].href = files_object[".dmg"].url;
-    a_l[6].href = files_object["-mac.zip"].url;
-    a_l[7].href = `https://${fasturl ? "github.com" : "github.com"}/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`;
-    a_l[8].href = `https://${fasturl ? "github.com" : "github.com"}/xushengfeng/eSearch/archive/refs/tags/${v}.zip`;
+    a_l[0].href = fasthub(files_object[".exe"].url);
+    a_l[1].href = fasthub(files_object["-win.zip"].url);
+    a_l[2].href = fasthub(files_object["_amd64.deb"].url);
+    a_l[3].href = fasthub(files_object[".x86_64.rpm"].url);
+    a_l[4].href = fasthub(files_object[".tar.gz"].url);
+    a_l[5].href = fasthub(files_object[".dmg"].url);
+    a_l[6].href = fasthub(files_object["-mac.zip"].url);
+    a_l[7].href = fasthub(`https://github.com/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`);
+    a_l[8].href = fasthub(`https://github.com/xushengfeng/eSearch/archive/refs/tags/${v}.zip`);
 }
 // 旧版本下载
 document.getElementById("download_old_b").onclick = () => {};
 function c_other_version_link() {
-    (<HTMLLinkElement>document.querySelector("#download_old_b > a")).href = `https://${
-        fasturl ? "github.com" : "github.com"
-    }/xushengfeng/eSearch/releases`;
+    (<HTMLLinkElement>(
+        document.querySelector("#download_old_b > a")
+    )).href = `https://github.com/xushengfeng/eSearch/releases`;
 }
 
 var other_download_el = document.querySelector(".other_download").querySelectorAll("a");
