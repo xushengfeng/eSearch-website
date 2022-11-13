@@ -120,7 +120,7 @@ button {
 #main_left {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     box-sizing: border-box;
     transform: translateY(-10%);
@@ -146,6 +146,8 @@ button {
 .main_download_p {
     display: flex;
     align-items: stretch;
+    border-radius: var(--border-radius);
+    overflow: hidden;
 }
 .main_download_p * {
     background: none;
@@ -153,9 +155,9 @@ button {
     outline: none;
     border: none;
 }
-#main_download {
-    border-radius: var(--border-radius);
-    overflow: hidden;
+.main_download_p select {
+    background-color: var(--l-color);
+    color: white;
 }
 .main_download_p button {
     padding: 8px 16px;
@@ -163,8 +165,13 @@ button {
     color: white;
     font-size: 28px;
 }
-.main_download_p button:hover {
+.main_download_p button:hover,
+.main_download_p select:hover {
     background-color: var(--h-color);
+}
+.main_download_p option {
+    background: white;
+    color: black;
 }
 
 #main_right {
