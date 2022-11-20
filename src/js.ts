@@ -124,6 +124,7 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GE
             let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
             if (!files_object[hz]) continue;
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+            files_object[hz].url = url;
         }
         up_time = new Date(result[0].published_at).getTime();
         v = result[0].name;
