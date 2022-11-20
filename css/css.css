@@ -361,6 +361,14 @@ button {
     margin: 8px;
 }
 
+#fanyishu_imgs {
+    overflow-y: scroll;
+    height: 50vh;
+}
+#fanyishu_imgs > img {
+    width: 100%;
+}
+
 #ding_p {
     display: flex;
     justify-content: center;
