@@ -275,6 +275,7 @@ document.getElementById("gn_tz").onclick = (e) => {
 };
 
 document.onkeydown = (e) => {
+    return;
     var bcr = document.getElementById("gn_keyboard").getBoundingClientRect();
     var o = {
         ArrowUp: "up",
