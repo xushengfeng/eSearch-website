@@ -27,10 +27,6 @@
             <li data-id="下载">Downloads</li>
             <li data-id="日志">Logs</li>
             <li data-id="关于">About</li>
-            <li><a href="https://github.com/xushengfeng/eSearch" target="_bank"><img src="./assets/icons/Github.svg"
-                        alt="Github"></a></li>
-            <li><a href="https://gitee.com/xsf-root/eSearch" target="_bank"><img src="./assets/icons/Gitee.svg"
-                        alt="Gitee"></a></li>
             <li><a href="./index.html">中</a></li>
         </ul>
     </header>
@@ -53,6 +49,18 @@
 
     </div>
     <div class="main_block" id="功能">
+        <div class="gn_li">
+            <div id="gn_tz">
+                <div>Screenshots</div>
+                <div>OCR</div>
+                <div>Search</div>
+                <div>Translate</div>
+                <div>Search img</div>
+                <div>Ding</div>
+                <div>Recorder</div>
+                <div>More</div>
+            </div>
+        </div>
         <div class="gn_b">
             <div id="clip_t">
                 <h2>Screenshots</h2>
@@ -66,33 +74,11 @@
                     </div>
                     <div class="card gn_clip_num">
                         <h3>parameter control</h3>
-                        <p>Enter numbers or quadratic formulas to directly change the size and position of the selection
+                        <p>Enter numbers or quadratic formulas to directly change the size and position of the
+                            selection
                         </p>
                         <div>
                             <img src="./assets/cs.webp" alt="parameter control bar">
-                        </div>
-                    </div>
-                    <div class="card gn_clip_keyboard" id="gn_keyboard">
-                        <h3>Precise control</h3>
-                        <p>Combine with the keyboard for more precise control</p>
-                        <div class="gn_clip_keyboard_c">
-                            <div>
-                                <div>
-                                    <kbd id="key_ArrowUp">↑</kbd><kbd id="key_ArrowRight">→</kbd><kbd
-                                        id="key_ArrowDown">↓</kbd><kbd id="key_ArrowLeft">←</kbd><br><kbd
-                                        id="key_w">W</kbd><kbd id="key_a">A</kbd><kbd id="key_s" class="">S</kbd><kbd
-                                        id="key_d">D</kbd>
-                                </div>
-                                Omnidirectional control
-                            </div>
-                            <div><kbd id="key_ctrl" class="">Ctrl</kbd>
-                                Speed × 5
-                            </div>
-                            <div><kbd id="key_shift">Shift</kbd>
-                                Speed × 10
-                            </div>
-                            <img src="./assets/keyboard.svg" alt="keyboard control cursor illustration"
-                                style="text-align: left; left: 0px; top: 15px;">
                         </div>
                     </div>
                     <div class="card gn_clip_magnifier">
@@ -113,7 +99,8 @@
                 <p>Images, e-books, bullet chat, scans, some websites, formulas, all the text you can't select, all
                     converted into characters</p>
                 <p>OCR engines currently support (offline, Baidu, Youdao)</p>
-                <p>Offline OCR engines support custom models and dictionaries, online OCR engines support custom secret
+                <p>Offline OCR engines support custom models and dictionaries, online OCR engines support custom
+                    secret
                     keys for their own applications</p>
                 <div id="ocr_p">
                     <div class="card"><img src="./assets/ocr_o.svg" alt="picture before ocr"></div>
@@ -129,31 +116,52 @@
                 <h2>Search</h2>
                 <p>With OCR (text recognition), everything you see is searchable</p>
                 <p>Don't like to use Google search engines? Customise one</p>
-                <p>Even foreign text can be translated using various engines</p>
                 <div id="search_p">
                     <div id="search" class="card">
-                        <h3>Search</h3>
-                        <span><img src="./assets/icons/google.ico" alt="google icon">Google</span><span><img
-                                src="./assets/icons/baidu.ico" alt="baidu icon">Baidu</span><span><img
-                                src="./assets/icons/bing.ico" alt="bing icon">Bing</span><span><img
-                                src="./assets/search.svg" alt="custom icons">Customization</span>
-                    </div>
-                    <div id="translate" class="card">
-                        <h3>Translation</h3>
-                        <span><img src="./assets/icons/google.ico" alt="google icon">Google
-                        </span><span><img src="./assets/icons/deepl.png" alt="Deepl icon">Deepl</span><span><img
-                                src="./assets/icons/baidu.ico" alt="baidu icon">Baidu</span><span><img
-                                src="./assets/icons/iciba.ico" alt="golden mountain icon">Kingsoft</span><span><img
-                                src="./assets/icons/bing.ico" alt="bing icon">Bing</span><span><img
-                                src="./assets/search.svg" alt="custom icons">Customization
-                        </span>
+                        <span><img src="./assets/icons/google.ico" alt="谷歌图标"></img>谷歌</span><span><img
+                                src="./assets/icons/baidu.ico" alt="百度图标"></img>百度</span><span><img
+                                src="./assets/icons/bing.ico" alt="必应图标">必应</span><span><img src="./assets/search.svg"
+                                alt="自定义图标">自定义</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="gn_b">
+            <div id="translate_t">
+                <h2>Translate</h2>
+                <p><a href="https://fanyishu.netlify.app" target="_blank" rel="noopener noreferrer">Fanyishu</a>
+                    Aggregate multiple engines, customize api keys, and support multiple engines to translate and output
+                    multiple translation results at the same time</p>
+                <div id="fanyishu_imgs" class="card">
+                    <img src="./public/readme/fanyishu0.webp" alt="翻译树展示图0">
+                    <img src="./public/readme/fanyishu1.webp" alt="翻译树展示图1">
+                    <img src="./public/readme/fanyishu2.webp" alt="翻译树展示图2">
+                </div>
+                <div id="search_p">
+                    <div id="translate" class="card">
+                        <span><img src="./assets/icons/fanyishu.svg" alt="翻译树图标">Fanyishu</span>
+                        <span><img src="./assets/icons/google.ico" alt="谷歌图标">Google</span>
+                        <span><img src="./assets/icons/deepl.png" alt="Deepl图标">Deepl</span>
+                        <span><img src="./assets/icons/baidu.ico" alt="百度图标">Baidu</span>
+                        <span><img src="./assets/icons/iciba.ico" alt="金山图标">iciba</span>
+                        <span><img src="./assets/icons/bing.ico" alt="必应图标">Bing</span>
+                        <span><img src="./assets/search.svg" alt="自定义图标">Custom definition</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gn_b">
+            <div id="search_img_t">
+                <h2>Search img</h2>
+                <p>Want to get more information about a picture? </p>
+                <p>Select, search</p>
+                <p>With the help of Internet engines (Baidu, Google, Yandex), eSearch can easily get more information
+                    about pictures</p>
+            </div>
+        </div>
+        <div class="gn_b">
             <div id="ding_t">
-                <h2>ding</h2>
+                <h2>Ding</h2>
                 <p>Fix the trimmed image on the screen, seamlessly</p>
                 <div id="ding_p">
                     <div class="card" id="透明度_card">
@@ -180,13 +188,16 @@
                     <div class="card">
                         <h3>Button penetration</h3>
                         <p>Mask the window and let the mouse operate behind it</p>
-                        <p contenteditable="true">For example, here you can select and edit this text through the window
+                        <p contenteditable="true">For example, here you can select and edit this text through the
+                            window
                             without being affected
                             by it</p>
-                        <p contenteditable="true">For example, here you can select and edit this text through the window
+                        <p contenteditable="true">For example, here you can select and edit this text through the
+                            window
                             without being affected
                             by it</p>
-                        <p contenteditable="true">For example, here you can select and edit this text through the window
+                        <p contenteditable="true">For example, here you can select and edit this text through the
+                            window
                             without being affected
                             by it</p>
                         <div class="ct_win">
@@ -202,6 +213,15 @@
             </div>
         </div>
         <div class="gn_b">
+            <div id="recorder_t">
+                <h2>Recorder</h2>
+                <p>Easily record the screen and convert it to multiple formats (mp4, gif, mkv, webm) through FFmpeg</p>
+                <p>Support for recording cameras and microphones</p>
+                <p>Optional cursor position prompts and keyboard keystrokes for more efficient transmission of
+                    information</p>
+            </div>
+        </div>
+        <div class="gn_b">
             <div id="more_t">
                 <h2>More</h2>
                 <div class="more_p">
@@ -211,13 +231,16 @@
                         <div>
                             <img src="./assets/qsq.png" alt="eyedropper screenshot">
                         </div>
-                        <p class="jy_p">Based on <a href="https://github.com/Qix-/color" target="_bank">color</a></p>
+                        <p class="jy_p">Based on <a href="https://github.com/Qix-/color" target="_bank">color</a>
+                        </p>
                     </div>
                     <div class="card more_draw">
                         <h3>Editing images</h3>
-                        <p>Simple image editing: brush, eraser, basic geometry, resizing, filters (including mosaic and
+                        <p>Simple image editing: brush, eraser, basic geometry, resizing, filters (including mosaic
+                            and
                             blur)</p>
-                        <p>Can be manipulated using the <a href="http://fabricjs.com/" target="_bank">fabric.js</a> API
+                        <p>Can be manipulated using the <a href="http://fabricjs.com/" target="_bank">fabric.js</a>
+                            API
                         </p>
                         <div>
                             <img src="./assets/3.webp" alt="image edit screenshots">
@@ -226,7 +249,8 @@
                     </div>
                     <div class="card more_other">
                         <h3>Other apps open</h3>
-                        <p>Not satisfied with the editor that comes with your software? You can open it temporarily in
+                        <p>Not satisfied with the editor that comes with your software? You can open it temporarily
+                            in
                             other image editors for advanced image editing</p>
                         <p>You can also open it on social media for sharing</p>
                         <img src="./assets/tool_open.svg" alt="other apps open" class="card_bg">
@@ -235,7 +259,8 @@
                     </div>
                     <div class="card more_auto">
                         <h3>Automatic search</h3>
-                        <p>Automatic judgement mode, when text is selected, the text is searched or translated directly,
+                        <p>Automatic judgement mode, when text is selected, the text is searched or translated
+                            directly,
                             otherwise text recognition is activated and then searched. Single line of text can be
                             searched automatically.</p>
                         <div><img src="./assets/auto.svg" alt="automatic search"></div>
@@ -263,10 +288,11 @@
                     <div class="card more_diy">
                         <h3>Customization and expansion</h3>
                         <p>In Settings, eSearch provides a number of customizable settings.
-                            Since eSearch is open source software that follows the GPLv3 protocol, developed based on <a
-                                href="https://www.electronjs.org/" target="_bank">Electron</a> and <a
+                            Since eSearch is open source software that follows the GPLv3 protocol, developed based
+                            on <a href="https://www.electronjs.org/" target="_bank">Electron</a> and <a
                                 href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">Web
-                                technologies (HTML, CSS, js),</a> it can be freely modified and extended, both in style
+                                technologies (HTML, CSS, js),</a> it can be freely modified and extended, both in
+                            style
                             and function </p>
                         <div>
                             <img src="./assets/icons/Electron_Software_Framework_Logo.svg" alt="electron logo">
@@ -280,12 +306,14 @@
                         <h3>Cross-platform</h3>
                         <p>Based on <a href="https://www.electronjs.org/" target="_bank">Electron</a>
                             and <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_bank">web
-                                technologies (HTML, CSS, js)</a> eSearch supports Windows, Linux, macOS and other major
+                                technologies (HTML, CSS, js)</a> eSearch supports Windows, Linux, macOS and other
+                            major
                             operating systems and platforms.</p>
                     </div>
                     <div class="card more_other">
                         <h3>Other app edits</h3>
-                        <p>Not satisfied with the text editor that comes with the software? You can open it temporarily
+                        <p>Not satisfied with the text editor that comes with the software? You can open it
+                            temporarily
                             in other text editors for advanced text editing</p>
                         <img src="./assets/tool_open.svg" alt="other apps open" class="card_bg">
                         <div><img src="./assets/qtbj.webp" alt="other apps open"></div>
@@ -303,12 +331,6 @@
                         <img src="./assets/main_delete_enter.svg" alt="automatically delete line breaks"
                             class="card_bg">
                         <div><img src="./assets/zdsc.png" alt="automatically delete line breaks"></div>
-                    </div>
-                    <div class="card more_other">
-                        <h3>Search for images</h3>
-                        <p>Use Internet engines (Baidu, Google, Yandex) to search for images with a similar location to
-                            the box</p>
-                        <img src="./assets/main_search.svg" alt="search icons in images" class="card_bg">
                     </div>
                 </div>
             </div>
@@ -362,7 +384,8 @@
             </div>
         </div>
         <span class="other_download"><span id="download_old_b"><a href="https://github.com/xushengfeng/eSearch/releases"
-                    target="_bank">Download all versions</a></span>
+                    target="_bank">Download all
+                    versions</a></span>
             <span><a href="https://sourceforge.net/projects/e-search/files/" target="_bank">SourceForge</a></span>
             <span><a href="https://gitee.com/xsf-root/eSearch/releases/" target="_bank">Gitee</a></span>
             <span><a href="plugin.html" target="_blank">Download plugins</a></span>
@@ -380,7 +403,8 @@
         <div>
             <img src="./assets/icon.svg" alt="logo" width="64">
             <h2>eSearch</h2>
-            <p>Screenshot OCR search translate search for picture paste the picture on the screen screen recorder</p>
+            <p>Screenshot OCR search translate search for picture paste the picture on the screen screen recorder
+            </p>
         </div>
         <div>
             <div>
@@ -403,8 +427,10 @@
         <div>
             <a href="https://esearch-translator.netlify.app" target="_blank" rel="noopener noreferrer">Polymerization of
                 translation</a>
-            <a href="https://esearch-meta.netlify.app" target="_blank" rel="noopener noreferrer">Meta search engine</a>
-            <a href="http://xlinkote.netlify.app" target="_blank" rel="noopener noreferrer">xlinkote Double chain notes
+            <a href="https://esearch-meta.netlify.app" target="_blank" rel="noopener noreferrer">Meta search
+                engine</a>
+            <a href="http://xlinkote.netlify.app" target="_blank" rel="noopener noreferrer">xlinkote Double chain
+                notes
                 with free typesetting</a>
         </div>
         <div class="about_p2">
