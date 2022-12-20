@@ -1,3 +1,5 @@
+import photo_svg from "../assets/p.jpg";
+
 // 导航栏跳转
 document.getElementById("nav").onclick = (e) => {
     let el = <HTMLElement>e.target;
@@ -274,63 +276,17 @@ document.getElementById("gn_tz").onclick = (e) => {
     }
 };
 
-document.onkeydown = (e) => {
-    return;
-    var bcr = document.getElementById("gn_keyboard").getBoundingClientRect();
-    var o = {
-        ArrowUp: "up",
-        w: "up",
-        ArrowRight: "right",
-        d: "right",
-        ArrowDown: "down",
-        s: "down",
-        ArrowLeft: "left",
-        a: "left",
-    };
-    var arrow, d;
-    arrow = o[e.key];
-    if (document.getElementById(`key_${e.key}`)) {
-        document.getElementById(`key_${e.key}`).className = "kbd_b";
-        if (bcr.top + bcr.height >= 0) e.preventDefault();
-    }
-    if (e.ctrlKey) {
-        document.getElementById("key_ctrl").className = "kbd_b";
-        d = 5;
-    } else if (e.shiftKey) {
-        document.getElementById("key_shift").className = "kbd_b";
-        d = 10;
-    } else {
-        d = 1;
-    }
-    let key_el = <HTMLElement>document.querySelector(".gn_clip_keyboard_c > :nth-child(4)");
-    let xx = key_el.style.left || "0";
-    let yy = key_el.style.top || "0";
-    let x = Number(xx.replace("px", ""));
-    let y = Number(yy.replace("px", ""));
-    switch (arrow) {
-        case "up":
-            key_el.style.left = x + "px";
-            key_el.style.top = y - d + "px";
-            break;
-        case "right":
-            key_el.style.left = x + d + "px";
-            key_el.style.top = y + "px";
-            break;
-        case "down":
-            key_el.style.left = x + "px";
-            key_el.style.top = y + d + "px";
-            break;
-        case "left":
-            key_el.style.left = x - d + "px";
-            key_el.style.top = y + "px";
-            break;
-    }
+const clip_editor = document.getElementById("clip_editor") as HTMLCanvasElement;
+let img = document.createElement("img");
+img.src = photo_svg;
+img.onload = () => {
+    clip_editor.getContext("2d").drawImage(img, 0, -100);
 };
 
-document.onkeyup = (e) => {
-    if (document.getElementById(`key_${e.key}`)) document.getElementById(`key_${e.key}`).className = "";
-    if (e.key == "Control") document.getElementById("key_ctrl").className = "";
-    if (e.key == "Shift") document.getElementById("key_shift").className = "";
+document.onscroll = () => {
+    if (clip_editor.getBoundingClientRect().y < window.innerHeight) {
+        clip_editor.style.transform = `scale(200)`;
+    }
 };
 
 setInterval(() => {
