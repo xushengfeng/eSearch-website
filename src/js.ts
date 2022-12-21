@@ -282,12 +282,21 @@ img.src = photo_svg;
 img.onload = () => {
     clip_editor.getContext("2d").drawImage(img, 0, -100);
 };
-
-document.onscroll = () => {
-    if (clip_editor.getBoundingClientRect().y < window.innerHeight) {
-        clip_editor.style.transform = `scale(200)`;
-    }
-};
+const editor_t = document.querySelector(".gn_clip_editor > .editor_t") as HTMLElement;
+let ob = new IntersectionObserver(
+    (e) => {
+        console.log(e[0]);
+        if (e[0].intersectionRatio > 0.5) {
+            clip_editor.style.transform = `scale(200)`;
+            editor_t.classList.add("editor_t_big");
+        } else {
+            clip_editor.style.transform = ``;
+            editor_t.classList.remove("editor_t_big");
+        }
+    },
+    { threshold: 0.5 }
+);
+ob.observe(clip_editor.parentElement);
 
 setInterval(() => {
     var i = Math.random();

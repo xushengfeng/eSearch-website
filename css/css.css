@@ -311,7 +311,22 @@ button {
 .gn_clip_editor {
     grid-area: 1 / 2 / 3 / 3;
 }
-#clip_editor{
+.gn_clip_editor > .editor_t {
+    transition: 5s;
+    position: relative;
+    z-index: 1;
+    font-size: 1.8em;
+    width: 100%;
+    top: 0;
+}
+.editor_t_big {
+    font-weight: bolder;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 4em !important;
+    top: 40% !important;
+}
+#clip_editor {
     transition: 5s;
     image-rendering: pixelated;
 }
