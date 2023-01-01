@@ -110,7 +110,7 @@ var requestOptions = {
     method: "GET",
     redirect: "follow",
 };
-fetch("https://api.github.com/repos/xushengfeng/eSearch/releases", { method: "GET" })
+fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
     .then((response) => response.text())
     .then((r) => {
         result = JSON.parse(r);
