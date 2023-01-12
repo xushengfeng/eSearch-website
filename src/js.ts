@@ -175,7 +175,6 @@ function fasthub(url: string) {
         "https://github.91chi.fun/",
         "https://ghproxy.com/",
         "https://proxy.zyun.vip/",
-        "https://github.91chi.fun/",
         "https://git.xfj0.cn/",
         "https://ghps.cc/",
         "https://ghdl.feizhuqwq.cf/",
