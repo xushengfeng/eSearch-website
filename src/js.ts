@@ -40,23 +40,23 @@ function c_platform(platform: string) {
     let d = en_lang ? "Donwload" : "下载";
     switch (platform) {
         case "Windows":
-            main_download.innerHTML = `<button id=".exe">${d}</button>`;
+            main_download.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
             platform_select.value = "Windows";
             break;
         case "Linux":
-            main_download.innerHTML = `<button id="_amd64.deb">${d} deb</button><button id=".x86_64.rpm">${d} rpm</button>`;
+            main_download.innerHTML = `<button id="-linux-amd64.deb">${d} deb</button><button id="-linux-x86_64.rpm">${d} rpm</button>`;
             platform_select.value = "Linux";
             break;
         case "macOS":
-            main_download.innerHTML = `<button id=".dmg">${d}</button>`;
+            main_download.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
             platform_select.value = "macOS";
             break;
         case "Android":
-            main_download.innerHTML = `<button id=".exe">${d}</button>`;
+            main_download.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
             platform_select.value = "Windows";
             break;
         case "iOS":
-            main_download.innerHTML = `<button id=".dmg">${d}</button>`;
+            main_download.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
             platform_select.value = "macOS";
             break;
     }
@@ -75,33 +75,37 @@ var result;
 var v = "1.9.7";
 var up_time = 1672486590000;
 var files_object = {
-    "-win.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win.zip`,
+    "-win32-x64.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.zip`,
         size: `未知`,
     },
-    ".exe": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch.Setup.${v}.exe`,
+    "-win32-x64.exe": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.exe`,
         size: `未知`,
     },
-    ".tar.gz": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.tar.gz`,
+    "-linux-x64.tar.gz": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.tar.gz`,
         size: `未知`,
     },
-    "_amd64.deb": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}_amd64.deb`,
+    "-linux-amd64.deb": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}-linux-amd64.deb`,
         size: `未知`,
     },
-    ".x86_64.rpm": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.x86_64.rpm`,
+    "-linux-x86_64.rpm": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.rpm`,
+        size: `未知`,
+    },
+    "-linux-x86_64.AppImage": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.AppImage`,
         size: `未知`,
     },
     ".aur": { url: ``, size: `未知` },
-    ".dmg": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}.dmg`,
+    "-darwin-x64.dmg": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.dmg`,
         size: `未知`,
     },
-    "-mac.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-mac.zip`,
+    "-darwin-x64.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.zip`,
         size: `未知`,
     },
 };
@@ -124,10 +128,14 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", 
             let url = <string>result[0].assets[i].browser_download_url;
             let name = <string>result[0].assets[i].name;
             let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
+            console.log(hz);
+
             if (!files_object[hz]) continue;
             files_object[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
             files_object[hz].url = url;
         }
+        console.log(files_object);
+
         up_time = new Date(result[0].published_at).getTime();
         v = result[0].name;
         show_download();
@@ -191,13 +199,13 @@ function fasthub(url: string) {
 // 下载界面添加按钮
 function show_download() {
     let a_l = document.getElementById("download").querySelectorAll("a");
-    a_l[0].href = fasthub(files_object[".exe"].url);
-    a_l[1].href = fasthub(files_object["-win.zip"].url);
-    a_l[2].href = fasthub(files_object["_amd64.deb"].url);
-    a_l[3].href = fasthub(files_object[".x86_64.rpm"].url);
-    a_l[4].href = fasthub(files_object[".tar.gz"].url);
-    a_l[5].href = fasthub(files_object[".dmg"].url);
-    a_l[6].href = fasthub(files_object["-mac.zip"].url);
+    a_l[0].href = fasthub(files_object["-win32-x64.exe"].url);
+    a_l[1].href = fasthub(files_object["-win32-x64.zip"].url);
+    a_l[2].href = fasthub(files_object["-linux-amd64.deb"].url);
+    a_l[3].href = fasthub(files_object["-linux-x86_64.rpm"].url);
+    a_l[4].href = fasthub(files_object["-linux-x64.tar.gz"].url);
+    a_l[5].href = fasthub(files_object["-darwin-x64.dmg"].url);
+    a_l[6].href = fasthub(files_object["-darwin-x64.zip"].url);
     a_l[7].href = fasthub(`https://github.com/xushengfeng/eSearch/archive/refs/tags/${v}.tar.gz`);
     a_l[8].href = fasthub(`https://github.com/xushengfeng/eSearch/archive/refs/tags/${v}.zip`);
 }
