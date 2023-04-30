@@ -8,6 +8,7 @@ module.exports = defineConfig({
                 main: resolve(__dirname, "index.html"),
                 nested: resolve(__dirname, "en.html"),
                 plugin: resolve(__dirname, "plugin.html"),
+                download: resolve(__dirname, "download.html"),
             },
         },
     },

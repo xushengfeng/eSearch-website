@@ -64,10 +64,6 @@ a {
     display: block;
     padding: 8px;
 }
-#nav a img {
-    width: 16px;
-    display: block;
-}
 #icon {
     transition: var(--transition);
     height: 24px;
