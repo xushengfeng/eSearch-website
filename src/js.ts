@@ -182,11 +182,9 @@ function fasthub(url: string) {
     const proxy_list = [
         "https://github.91chi.fun/",
         "https://ghproxy.com/",
-        "https://proxy.zyun.vip/",
         "https://git.xfj0.cn/",
         "https://ghps.cc/",
         "https://ghdl.feizhuqwq.cf/",
-        "https://gh2.yanqishui.work/",
     ];
     let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
     if (fasturl) {
