@@ -37,7 +37,7 @@ var main_download = document.getElementById("main_download");
 var platform_select = <HTMLSelectElement>document.getElementById("platform");
 
 function c_platform(platform: string) {
-    let d = en_lang ? "Donwload" : "下载";
+    let d = en_lang ? "Download" : "下载";
     switch (platform) {
         case "Windows":
             main_download.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
@@ -185,6 +185,7 @@ function fasthub(url: string) {
         "https://git.xfj0.cn/",
         "https://ghps.cc/",
         "https://ghdl.feizhuqwq.cf/",
+        "https://github.moeyy.xyz/",
     ];
     let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
     if (fasturl) {
