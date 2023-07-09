@@ -693,6 +693,26 @@ address > a:nth-child(2) {
     border-left: #000 solid 1px;
     padding-left: 4px;
 }
+
+#ocr_l {
+    outline: none;
+    border: none;
+}
+
+#m_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#m_list a {
+    text-decoration: none;
+}
+#m_list div {
+    padding: 0.4em;
+}
+#m_list div:not(.match_l) {
+    opacity: 0.2;
+}
 @media (max-width: 900px) {
     body {
         overflow-x: hidden;
