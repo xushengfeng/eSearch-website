@@ -9,6 +9,7 @@ module.exports = defineConfig({
                 nested: resolve(__dirname, "en.html"),
                 plugin: resolve(__dirname, "plugin.html"),
                 download: resolve(__dirname, "download.html"),
+                ocr: resolve(__dirname, "ocr.html"),
             },
         },
     },
