@@ -179,17 +179,18 @@ if (document.getElementById("fastdownload"))
         c_other_version_link();
     };
 function fasthub(url: string) {
-    const proxy_list = [
-        "https://github.91chi.fun/",
-        "https://ghproxy.com/",
-        "https://git.xfj0.cn/",
-        "https://ghps.cc/",
-        "https://ghdl.feizhuqwq.cf/",
-        "https://github.moeyy.xyz/",
+    const proxy_list: { url: string; replace: boolean }[] = [
+        { url: "https://git.xfj0.cn/", replace: false },
+        { url: "https://github.moeyy.xyz/", replace: false },
+        { url: "https://kkgithub.com/", replace: true },
     ];
     let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
     if (fasturl) {
-        return proxy + url;
+        if (proxy.replace) {
+            return url.replace("https://github.com/", proxy.url);
+        } else {
+            return proxy.url + url;
+        }
     } else {
         return url;
     }
