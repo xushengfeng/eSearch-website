@@ -72,8 +72,8 @@ var is_phone = window.matchMedia("(max-width: 900px)").matches;
 
 // 获取软件资源
 var result;
-var v = "1.10.0";
-var up_time = 1681026415000;
+var v = "1.11.0";
+var up_time = 1702051200000;
 var files_object = {
     "-win32-x64.zip": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.zip`,
