@@ -88,7 +88,7 @@ var files_object = {
         size: `未知`,
     },
     "-linux-amd64.deb": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch_${v}-linux-amd64.deb`,
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-amd64.deb`,
         size: `未知`,
     },
     "-linux-x86_64.rpm": {
