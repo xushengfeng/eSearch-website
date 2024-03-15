@@ -43,6 +43,71 @@ function initBento() {
 const navTipEl = el("div");
 navTipEl.append("滚动或拖动来查看");
 
+const downloadEl = el("div");
+
+// 根据平台在首页显示下载按钮
+var userAgent = navigator.userAgent.toLowerCase();
+var platform = "Unknown";
+if (userAgent.indexOf("win") > -1) {
+    platform = "Windows";
+} else if (userAgent.indexOf("iphone") > -1) {
+    platform = "iOS";
+} else if (userAgent.indexOf("mac") > -1) {
+    platform = "macOS";
+} else if (userAgent.indexOf("linux") > -1) {
+    if (userAgent.indexOf("android") > -1) {
+        platform = "Android";
+    } else {
+        platform = "Linux";
+    }
+} else {
+    platform = "Unknown";
+}
+
+const platformSelect = el("select", [
+    el("option", { value: "Windows" }, "Windows"),
+    el("option", { value: "macOS" }, "macOS"),
+    el("option", { value: "Linux" }, "Linux"),
+]);
+
+const mainDownload = el("div");
+
+function cPlatform(platform: string) {
+    let d = "下载";
+    switch (platform) {
+        case "Windows":
+            mainDownload.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
+            platformSelect.value = "Windows";
+            break;
+        case "Linux":
+            mainDownload.innerHTML = `<button id="-linux-amd64.deb">${d} deb</button><button id="-linux-x86_64.rpm">${d} rpm</button>`;
+            platformSelect.value = "Linux";
+            break;
+        case "macOS":
+            mainDownload.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
+            platformSelect.value = "macOS";
+            break;
+        case "Android":
+            mainDownload.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
+            platformSelect.value = "Windows";
+            break;
+        case "iOS":
+            mainDownload.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
+            platformSelect.value = "macOS";
+            break;
+    }
+}
+
+cPlatform(platform);
+
+platformSelect.oninput = () => {
+    cPlatform(platformSelect.value);
+};
+
+downloadEl.append(mainDownload, platformSelect);
+
 infintyBento.push({ x: 0, y: 0, w: 1, h: 1, gapX: 4, gapY: 4, el: navTipEl });
+
+infintyBento.push({ x: 0, y: 1, w: 2, h: 1, gapX: 3, gapY: 4, el: downloadEl });
 
 initBento();
