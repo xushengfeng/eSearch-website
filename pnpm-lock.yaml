@@ -11,6 +11,9 @@ dependencies:
   markdown-it:
     specifier: ^13.0.1
     version: 13.0.1
+  redom:
+    specifier: ^4.0.0
+    version: 4.0.0
 
 devDependencies:
   '@types/markdown-it':
@@ -361,6 +364,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /redom@4.0.0:
+    resolution: {integrity: sha512-+UwnK/sKnjqtzQRANQw3gKJsxAO45ZdeF7VNQky7iGirc0nx6IQL9otv6KJwNAJJ/tQ75k42NZUuJPVV5ehVSg==}
+    dev: false
 
   /resolve@1.22.1:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
