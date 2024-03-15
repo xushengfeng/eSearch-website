@@ -31,6 +31,14 @@ body {
 }
 a {
     color: var(--color);
+    -webkit-user-drag: none;
+    -moz-window-dragging: no-drag;
+}
+
+img {
+    -webkit-user-drag: none;
+    -moz-window-dragging: no-drag;
+    pointer-events: none;
 }
 
 select,
