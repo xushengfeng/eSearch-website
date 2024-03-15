@@ -27,6 +27,7 @@ body {
     height: 100dvh;
     width: 100dvw;
     overflow: hidden;
+    user-select: none;
 }
 a {
     color: var(--color);
@@ -35,6 +36,29 @@ a {
 select,
 button {
     border: none;
+}
+
+.tip {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 8px;
+    backdrop-filter: var(--blur);
+    background-color: #fff9;
+    border: 1px solid #fff9;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+    gap: 4px;
+    & > button {
+        background-color: transparent;
+        padding: 4px;
+        border-radius: 8px;
+        border: 1px solid #fff9;
+        cursor: pointer;
+    }
 }
 
 #bento {

@@ -22,10 +22,12 @@ function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
     }
 }
 
-let x = window.innerWidth / 2 - blockSize / 2;
-let y = window.innerHeight / 2 - blockSize / 2;
+let x = 0;
+let y = 0;
 const repeatX = 10;
 const repeatY = 6;
+
+moveToRect({ x: -1, y: 0, w: 2, h: 1 });
 
 document.onwheel = (e) => {
     if (log2El.contains(e.target as HTMLElement)) return;
@@ -38,6 +40,12 @@ function moveB(x: number, y: number) {
     b.style.left = x + "px";
     b.style.top = y + "px";
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
+}
+
+function moveToRect(r: { x: number; y: number; w: number; h: number }) {
+    x = window.innerWidth / 2 - (r.x * blockSize + (r.w * blockSize) / 2);
+    y = window.innerHeight / 2 - (r.y * blockSize + (r.h * blockSize) / 2);
+    moveB(x, y);
 }
 
 function fillBento() {
@@ -522,3 +530,21 @@ infintyBento.push({
 });
 
 initBento();
+
+document.body.append(
+    el(
+        "div",
+        { class: "tip" },
+        el("span", t("滚动或按住鼠标移动")),
+        el("button", "🎲", {
+            onclick: () => {
+                const i = Math.floor(Math.random() * infintyBento.length);
+                b.style.transition = "0.6s";
+                moveToRect(infintyBento[i]);
+                setTimeout(() => {
+                    b.style.transition = "";
+                }, 400);
+            },
+        })
+    )
+);
