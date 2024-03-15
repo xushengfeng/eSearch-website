@@ -19,22 +19,25 @@ function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
         el.style.top = (i.y + cy * (i.h + gapY)) * blockSize + gap + "px";
         el.style.width = i.w * blockSize - gap * 2 + "px";
         el.style.height = i.h * blockSize - gap * 2 + "px";
-        console.log(cx, cy);
     }
 }
 
-let x = 0;
-let y = 0;
+let x = window.innerWidth / 2 - blockSize / 2;
+let y = window.innerHeight / 2 - blockSize / 2;
 const repeatX = 10;
 const repeatY = 6;
 
 document.onwheel = (e) => {
     x -= e.deltaX;
     y -= e.deltaY;
+    moveB(x, y);
+};
+
+function moveB(x: number, y: number) {
     b.style.left = x + "px";
     b.style.top = y + "px";
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
-};
+}
 
 function initBento() {
     b.innerHTML = "";
@@ -43,7 +46,7 @@ function initBento() {
         b.append(i.el);
     }
 
-    r({ x: 0, y: 0 }, repeatX, repeatY);
+    moveB(x, y);
 }
 
 let lan = navigator.language || "zh-HANS";
