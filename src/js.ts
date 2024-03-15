@@ -122,6 +122,8 @@ const y以图搜图 = el("div");
 
 const x形状 = el("div");
 
+const translate = el("div");
+
 infintyBento.push({ x: 0, y: 0, w: 1, h: 1, el: navTipEl });
 infintyBento.push({ x: 0, y: 1, w: 2, h: 1, el: downloadEl });
 infintyBento.push({ x: 1, y: -1, w: 2, h: 2, el: ocrEl });
@@ -129,5 +131,13 @@ infintyBento.push({ x: 1, y: 2, w: 1, h: 2, el: logEl });
 infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
 infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
+infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
+
+infintyBento.push({ x: 3, y: -1, w: 1, h: 1, el: el("div") }); // 搜索引擎
+infintyBento.push({ x: 3, y: 0, w: 1, h: 1, el: el("div") }); // 背景模糊
+infintyBento.push({ x: 3, y: 1, w: 1, h: 1, el: el("div") }); // start
+infintyBento.push({ x: 2, y: -2, w: 1, h: 1, el: el("div") }); // ocr语言
+infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div") }); // 跨平台
+infintyBento.push({ x: 0, y: 3, w: 1, h: 1, el: el("div") }); // 开源
 
 initBento();
