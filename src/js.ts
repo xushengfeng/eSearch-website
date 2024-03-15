@@ -13,7 +13,7 @@ function r(rect: { x: number; y: number; w: number; h: number }) {
         if (i.y + cy * (i.h + i.gapY) + i.h < rect.y) cy++;
         let el = i.el;
         el.style.left = (i.x + cx * (i.w + i.gapX)) * blockSize + "px";
-        el.style.top = (i.y + cy * (i.w + i.gapY)) * blockSize + "px";
+        el.style.top = (i.y + cy * (i.h + i.gapY)) * blockSize + "px";
         el.style.width = i.w * blockSize + "px";
         el.style.height = i.h * blockSize + "px";
         console.log(cx, cy);
