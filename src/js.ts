@@ -425,7 +425,27 @@ infintyBento.push({
         t条幅("интерфейс и OCR поддерживает несколько языков ")
     ),
 });
-infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div", title("跨平台")) }); // 跨平台
+import windowsImg from "../assets/Windows.svg";
+import linuxImg from "../assets/Linux.svg";
+import macosImg from "../assets/macOS.svg";
+infintyBento.push({
+    x: -1,
+    y: 2,
+    w: 2,
+    h: 1,
+    el: el(
+        "div",
+        title("跨平台"),
+        { class: "platform" },
+        el(
+            "div",
+            { class: "center" },
+            el("img", { src: windowsImg }),
+            el("img", { src: linuxImg }),
+            el("img", { src: macosImg })
+        )
+    ),
+}); // 跨平台
 import githubImg from "../assets/icons/Github.svg";
 import giteeImg from "../assets/icons/Gitee.svg";
 let codeBg = el("div");
@@ -499,7 +519,7 @@ infintyBento.push({
 import qr from "../assets/qr.svg";
 infintyBento.push({
     x: -1,
-    y: 2,
+    y: 4,
     w: 1,
     h: 1,
     el: el("div", { class: "qr" }, el("img", { class: "center", width: 200, src: qr })),
