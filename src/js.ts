@@ -333,7 +333,23 @@ const recordEl = el("div", { class: "record" }, el("div", { class: "center" }, [
 
 const y以图搜图 = el("div", title("以图搜图"));
 
-const x形状 = el("div", title("多种形状"));
+const x形状 = el("div", title("多种形状"), { class: "shape" });
+import shape_arrow from "../assets/shape/arrow.svg";
+import shape_circle from "../assets/shape/circle.svg";
+import shape_rect from "../assets/shape/rect.svg";
+import shape_line from "../assets/shape/line.svg";
+import shape_polyline from "../assets/shape/polyline.svg";
+import shape_polygon from "../assets/shape/polygon.svg";
+import shape_number from "../assets/shape/number.svg";
+x形状.append(
+    el("img", { src: shape_arrow }),
+    el("img", { src: shape_circle }),
+    el("img", { src: shape_rect }),
+    el("img", { src: shape_line }),
+    el("img", { src: shape_polyline }),
+    el("img", { src: shape_polygon }),
+    el("img", { src: shape_number })
+);
 
 const translate = el("div", title("翻译"));
 

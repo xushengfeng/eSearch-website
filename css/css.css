@@ -242,3 +242,12 @@ button {
         }
     }
 }
+
+.shape {
+    & > .title {
+        display: block;
+    }
+    & > img {
+        width: 80px;
+    }
+}
