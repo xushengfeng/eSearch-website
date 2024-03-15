@@ -290,7 +290,7 @@ const ocrEl = el("div", title("离线OCR", "bottom"));
 
 const logEl = el("div", title("更新记录"));
 
-const recordEl = el("div", title("录屏"));
+const recordEl = el("div", { class: "record" }, el("div", { class: "center" }, [el("div"), el("div")]));
 
 const y以图搜图 = el("div", title("以图搜图"));
 

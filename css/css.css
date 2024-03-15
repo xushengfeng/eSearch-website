@@ -169,3 +169,28 @@ button {
         transform: translateX(-50%);
     }
 }
+
+.record {
+    & > div {
+        & > :first-child {
+            width: 200px;
+            height: 40px;
+            background-color: #222;
+            border-radius: 12px 12px 0 0;
+            transform-origin: bottom left;
+            rotate: -15deg;
+            transition: var(--transition);
+        }
+        & > :last-child {
+            width: 200px;
+            height: 120px;
+            border-radius: 0 0 12px 12px;
+            background-color: #222;
+        }
+        &:hover {
+            & > :first-child {
+                rotate: -10deg;
+            }
+        }
+    }
+}
