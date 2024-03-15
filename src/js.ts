@@ -251,13 +251,15 @@ function useFastGit(b: boolean) {
 
 if (lan.split("-")[0] === "zh") useFastGit(true);
 
-function title(string: string) {
-    return el("span", { class: "title" }, t(string));
+function title(string: string, posi?: "bottom") {
+    const s = el("span", { class: "title" }, t(string));
+    if (posi === "bottom") s.classList.add("b");
+    return s;
 }
 
 downloadEl.append(el("span", { class: "title" }, t("立即下载")), el("div", platformSelect, mainDownload));
 
-const ocrEl = el("div", title("离线OCR"));
+const ocrEl = el("div", title("离线OCR", "bottom"));
 
 const logEl = el("div", title("更新记录"));
 
@@ -317,6 +319,122 @@ infintyBento.push({
     ),
 });
 infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div", title("跨平台")) }); // 跨平台
-infintyBento.push({ x: 0, y: 3, w: 1, h: 1, el: el("div", title("开源")) }); // 开源
+infintyBento.push({ x: -1, y: 3, w: 2, h: 1, el: el("div", title("开源")) }); // 开源
+infintyBento.push({
+    x: 1,
+    y: 4,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        title("新特性"),
+        el("a", { class: "center", href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜"))
+    ),
+});
+infintyBento.push({
+    x: 4,
+    y: -1,
+    w: 2,
+    h: 1,
+    el: el("div", title("贴图归位")),
+});
+infintyBento.push({
+    x: -2,
+    y: -1,
+    w: 1,
+    h: 2,
+    el: el("div", title("AI识图")),
+});
+infintyBento.push({
+    x: -1,
+    y: 1,
+    w: 1,
+    h: 1,
+    el: el("div", title("取色器")),
+});
+infintyBento.push({
+    x: -1,
+    y: 2,
+    w: 1,
+    h: 1,
+    el: el("div", title("二维码")),
+});
+infintyBento.push({
+    x: 4,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el("div", title("按键提示")),
+});
+infintyBento.push({
+    x: -2,
+    y: 1,
+    w: 1,
+    h: 4,
+    el: el("div", title("滚动截屏")),
+});
+infintyBento.push({
+    x: 6,
+    y: -1,
+    w: 2,
+    h: 2,
+    el: el("div", title("自动排版")),
+});
+infintyBento.push({
+    x: 5,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el("div", title("鼠标穿透")),
+});
+infintyBento.push({
+    x: 4,
+    y: 1,
+    w: 2,
+    h: 1,
+    el: el("div", title("多屏幕")),
+});
+infintyBento.push({
+    x: 4,
+    y: 2,
+    w: 1,
+    h: 1,
+    el: el("div", title("深色模式")),
+});
+infintyBento.push({
+    x: 4,
+    y: 3,
+    w: 1,
+    h: 1,
+    el: el("div", title("滤镜")),
+});
+infintyBento.push({
+    x: 5,
+    y: 2,
+    w: 1,
+    h: 1,
+    el: el("div", title("自由截屏（测试版）")),
+});
+infintyBento.push({
+    x: 0,
+    y: -2,
+    w: 1,
+    h: 1,
+    el: el("div", title("编辑录屏")),
+});
+infintyBento.push({
+    x: 3,
+    y: -2,
+    w: 1,
+    h: 1,
+    el: el("div", title("录制摄像头")),
+});
+infintyBento.push({
+    x: 6,
+    y: 1,
+    w: 1,
+    h: 2,
+    el: el("div", title("自定义界面")),
+});
 
 initBento();

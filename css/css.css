@@ -54,6 +54,17 @@ button {
         font-weight: bold;
         font-size: 2em;
     }
+    & > .b {
+        top: auto;
+        bottom: 2rem;
+    }
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .logo {
