@@ -69,10 +69,14 @@ const t = (text: string) => {
     }
 };
 
-const navTipEl = el("div");
-navTipEl.append("滚动或拖动来查看");
+const navTipEl = el("div", { class: "logo" });
+import logo from "../assets/icon.svg";
+navTipEl.append(
+    el("img", { src: logo, width: 300 }),
+    el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索")))
+);
 
-const downloadEl = el("div");
+const downloadEl = el("div", { class: "download" });
 
 // 根据平台在首页显示下载按钮
 var userAgent = navigator.userAgent.toLowerCase();
@@ -101,31 +105,76 @@ const platformSelect = el("select", [
 
 const mainDownload = el("div");
 
+var v = "1.11.0";
+var up_time = 1702051200000;
+var filesObject: { [key: string]: { url: string; size: string; fastUrl?: string } } = {
+    "-win32-x64.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.zip`,
+        size: `未知`,
+    },
+    "-win32-x64.exe": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.exe`,
+        size: `未知`,
+    },
+    "-linux-x64.tar.gz": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.tar.gz`,
+        size: `未知`,
+    },
+    "-linux-amd64.deb": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-amd64.deb`,
+        size: `未知`,
+    },
+    "-linux-x86_64.rpm": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.rpm`,
+        size: `未知`,
+    },
+    "-linux-x86_64.AppImage": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.AppImage`,
+        size: `未知`,
+    },
+    ".aur": { url: ``, size: `未知` },
+    "-darwin-x64.dmg": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.dmg`,
+        size: `未知`,
+    },
+    "-darwin-x64.zip": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.zip`,
+        size: `未知`,
+    },
+};
+
 function cPlatform(platform: string) {
-    let d = "下载";
+    mainDownload.innerHTML = "";
     switch (platform) {
         case "Windows":
-            mainDownload.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
+            mainDownload.append(getDownloadItem("-win32-x64.exe", "exe"), getDownloadItem("-win32-x64.zip", "压缩包"));
             platformSelect.value = "Windows";
             break;
         case "Linux":
-            mainDownload.innerHTML = `<button id="-linux-amd64.deb">${d} deb</button><button id="-linux-x86_64.rpm">${d} rpm</button>`;
+            mainDownload.append(
+                getDownloadItem("-linux-amd64.deb", "deb"),
+                getDownloadItem("-linux-x86_64.rpm", "rpm"),
+                getDownloadItem("-linux-x86_64.AppImage", "AppImage")
+            );
             platformSelect.value = "Linux";
             break;
         case "macOS":
-            mainDownload.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
+            mainDownload.append(
+                getDownloadItem("-darwin-x64.dmg", "dmg"),
+                getDownloadItem("-darwin-x64.zip", "压缩包")
+            );
             platformSelect.value = "macOS";
             break;
         case "Android":
-            mainDownload.innerHTML = `<button id="-win32-x64.exe">${d}</button>`;
-            platformSelect.value = "Windows";
+            cPlatform("Windows");
             break;
         case "iOS":
-            mainDownload.innerHTML = `<button id="-darwin-x64.dmg">${d}</button>`;
-            platformSelect.value = "macOS";
+            cPlatform("macOS");
             break;
     }
 }
+
+let fastUrl = lan.split("-")[0] === "zh";
 
 cPlatform(platform);
 
@@ -133,21 +182,100 @@ platformSelect.oninput = () => {
     cPlatform(platformSelect.value);
 };
 
-downloadEl.append(mainDownload, platformSelect);
+function getDownloadItem(type: string, text: string) {
+    return el("a", t(text), {
+        href: fastUrl ? filesObject[type].fastUrl : filesObject[type].url,
+        download: true,
+        target: "_blank",
+        "data-type": type,
+    });
+}
 
-const ocrEl = el("div");
+// 获取软件资源
 
-const logEl = el("div");
+fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
+    .then((response) => response.text())
+    .then((r) => {
+        let result = JSON.parse(r);
+        for (let i in result) {
+            if (result[i].prerelease) {
+                delete result[i];
+            }
+        }
+        result = result.flat();
+        for (let i in result[0].assets) {
+            let url = <string>result[0].assets[i].browser_download_url;
+            let name = <string>result[0].assets[i].name;
+            let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
+            console.log(hz);
 
-const recordEl = el("div");
+            if (!filesObject[hz]) continue;
+            filesObject[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+            filesObject[hz].url = url;
+        }
+        console.log(filesObject);
+        useFastGit(fastUrl);
 
-const y以图搜图 = el("div");
+        up_time = new Date(result[0].published_at).getTime();
+        v = result[0].name;
+    })
+    .catch((error) => {
+        console.error("error", error);
+    });
 
-const x形状 = el("div");
+function fasthub(url: string) {
+    const proxy_list: { url: string; replace: boolean }[] = [
+        { url: "https://git.xfj0.cn/", replace: false },
+        { url: "https://github.moeyy.xyz/", replace: false },
+        { url: "https://kkgithub.com/", replace: true },
+    ];
+    let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
+    if (proxy.replace) {
+        return url.replace("https://github.com/", proxy.url);
+    } else {
+        return proxy.url + url;
+    }
+}
 
-const translate = el("div");
+function useFastGit(b: boolean) {
+    if (b)
+        for (let i in filesObject) {
+            filesObject[i].fastUrl = fasthub(filesObject[i].url);
+        }
 
-infintyBento.push({ x: 0, y: 0, w: 1, h: 1, el: navTipEl });
+    mainDownload.querySelectorAll("a").forEach((a) => {
+        let o = filesObject[a.getAttribute("data-type")];
+        a.href = b ? o.fastUrl : o.url;
+    });
+}
+
+if (lan.split("-")[0] === "zh") useFastGit(true);
+
+function title(string: string) {
+    return el("span", { class: "title" }, t(string));
+}
+
+downloadEl.append(el("span", { class: "title" }, t("立即下载")), el("div", platformSelect, mainDownload));
+
+const ocrEl = el("div", title("离线OCR"));
+
+const logEl = el("div", title("更新记录"));
+
+const recordEl = el("div", title("录屏"));
+
+const y以图搜图 = el("div", title("以图搜图"));
+
+const x形状 = el("div", title("多种形状"));
+
+const translate = el("div", title("翻译"));
+
+function t条幅(text: string) {
+    let s = el("div", { class: "slide" });
+    s.append(el("span", text), el("span", text));
+    return s;
+}
+
+infintyBento.push({ x: -1, y: 0, w: 2, h: 1, el: navTipEl });
 infintyBento.push({ x: 0, y: 1, w: 2, h: 1, el: downloadEl });
 infintyBento.push({ x: 1, y: -1, w: 2, h: 2, el: ocrEl });
 infintyBento.push({ x: 1, y: 2, w: 1, h: 2, el: logEl });
@@ -156,11 +284,39 @@ infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
 
-infintyBento.push({ x: 3, y: -1, w: 1, h: 1, el: el("div") }); // 搜索引擎
-infintyBento.push({ x: 3, y: 0, w: 1, h: 1, el: el("div") }); // 背景模糊
-infintyBento.push({ x: 3, y: 1, w: 1, h: 1, el: el("div") }); // start
-infintyBento.push({ x: 2, y: -2, w: 1, h: 1, el: el("div") }); // ocr语言
-infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div") }); // 跨平台
-infintyBento.push({ x: 0, y: 3, w: 1, h: 1, el: el("div") }); // 开源
+infintyBento.push({ x: 3, y: -1, w: 1, h: 1, el: el("div", title("自定义搜索引擎")) }); // 搜索引擎
+infintyBento.push({ x: 3, y: 0, w: 1, h: 1, el: el("div", title("背景模糊")) }); // 背景模糊
+infintyBento.push({
+    x: 3,
+    y: 1,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        el("a", { class: "star", href: "https://github.com/xushengfeng/eSearch", target: "_blank" }, [
+            el("span", "🌟"),
+            el("span", t("去GitHub点Star")),
+            el("span", t("或fork，或提issue，这是我开发的动力")),
+        ])
+    ),
+});
+infintyBento.push({
+    x: 2,
+    y: -2,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        { class: "lang" },
+        el("a", t("下载OCR语言包"), { target: "_blank", href: "./ocr.html" }),
+        t条幅("界面和OCR支持多种语言"),
+        t条幅("Interface and OCR support multiple languages "),
+        t条幅("Interface et OCR prennent en charge plusieurs langues "),
+        t条幅("Interfaz y OCR soportan varios idiomas "),
+        t条幅("интерфейс и OCR поддерживает несколько языков ")
+    ),
+});
+infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div", title("跨平台")) }); // 跨平台
+infintyBento.push({ x: 0, y: 3, w: 1, h: 1, el: el("div", title("开源")) }); // 开源
 
 initBento();
