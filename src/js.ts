@@ -379,12 +379,13 @@ infintyBento.push({
     h: 1,
     el: el("div", title("取色器")),
 });
+import qr from "../assets/qr.svg";
 infintyBento.push({
     x: -1,
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("二维码")),
+    el: el("div", { class: "qr" }, el("img", { class: "center", width: 200, src: qr })),
 });
 infintyBento.push({
     x: 4,

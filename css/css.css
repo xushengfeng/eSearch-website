@@ -194,3 +194,27 @@ button {
         }
     }
 }
+
+.qr {
+    opacity: 0.8;
+    display: block;
+    &::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: var(--l-color);
+        box-shadow: 0 0 16px var(--l-color);
+        top: 0;
+        left: 0;
+        position: absolute;
+        animation: scan 2s infinite cubic-bezier(0.23, 0.53, 0.77, 0.47);
+    }
+}
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 100%;
+    }
+}
