@@ -28,6 +28,7 @@ const repeatX = 10;
 const repeatY = 6;
 
 document.onwheel = (e) => {
+    if (log2El.contains(e.target as HTMLElement)) return;
     x -= e.deltaX;
     y -= e.deltaY;
     moveB(x, y);
@@ -245,6 +246,8 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", 
 
         up_time = new Date(result[0].published_at).getTime();
         v = result[0].name;
+
+        showLog();
     })
     .catch((error) => {
         console.error("error", error);
@@ -288,7 +291,43 @@ downloadEl.append(el("span", { class: "title" }, t("立即下载")), el("div", p
 
 const ocrEl = el("div", title("离线OCR", "bottom"));
 
-const logEl = el("div", title("更新记录"));
+const log2El = el("div");
+const logEl = el("div", title("更新记录"), log2El, { class: "log" });
+
+import markdownit from "markdown-it";
+function showLog() {
+    const md = markdownit({
+        html: true,
+        linkify: true,
+        typographer: true,
+    });
+    const defaultRender =
+        md.renderer.rules.link_open ||
+        function (tokens, idx, options, env, self) {
+            return self.renderToken(tokens, idx, options);
+        };
+    md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+        const aIndex = tokens[idx].attrIndex("target");
+        if (aIndex < 0) {
+            tokens[idx].attrPush(["target", "_blank"]);
+        } else {
+            tokens[idx].attrs[aIndex][1] = "_blank";
+        }
+        return defaultRender(tokens, idx, options, env, self);
+    };
+
+    for (let i in result) {
+        const li = el("li");
+        const h = el("span");
+        h.className = "log_v";
+        h.innerText = result[i].tag_name;
+        li.appendChild(h);
+        const div = el("div");
+        div.innerHTML = md.render(result[i].body);
+        li.append(h, div);
+        log2El.appendChild(li);
+    }
+}
 
 const recordEl = el("div", { class: "record" }, el("div", { class: "center" }, [el("div"), el("div")]));
 

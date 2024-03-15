@@ -227,3 +227,18 @@ button {
         top: 100%;
     }
 }
+
+.log {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    & > div {
+        overflow: scroll;
+        & .log_v {
+            font-size: 1.2rem;
+            font-weight: bolder;
+            border-left: var(--l-color) solid 4px;
+            padding-left: 4px;
+        }
+    }
+}
