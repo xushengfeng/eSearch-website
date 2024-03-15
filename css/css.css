@@ -32,12 +32,14 @@ a {
     color: var(--color);
 }
 
-#bento{
+#bento {
     position: relative;
 }
-#bento>div{
+#bento > div {
     position: absolute;
     background: #0001;
+    border-radius: 16px;
+    box-sizing: border-box;
 }
 
 #nav {

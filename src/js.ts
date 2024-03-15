@@ -2,6 +2,7 @@ import { el } from "redom";
 
 let infintyBento: { x: number; y: number; w: number; h: number; gapX: number; gapY: number; el: HTMLElement }[] = [];
 const blockSize = 360;
+const gap = 10;
 
 const b = document.getElementById("bento");
 
@@ -12,10 +13,10 @@ function r(rect: { x: number; y: number; w: number; h: number }) {
         if (i.x + cx * (i.w + i.gapX) + i.w < rect.x) cx++;
         if (i.y + cy * (i.h + i.gapY) + i.h < rect.y) cy++;
         let el = i.el;
-        el.style.left = (i.x + cx * (i.w + i.gapX)) * blockSize + "px";
-        el.style.top = (i.y + cy * (i.h + i.gapY)) * blockSize + "px";
-        el.style.width = i.w * blockSize + "px";
-        el.style.height = i.h * blockSize + "px";
+        el.style.left = (i.x + cx * (i.w + i.gapX)) * blockSize + gap + "px";
+        el.style.top = (i.y + cy * (i.h + i.gapY)) * blockSize + gap + "px";
+        el.style.width = i.w * blockSize - gap * 2 + "px";
+        el.style.height = i.h * blockSize - gap * 2 + "px";
         console.log(cx, cy);
     }
 }
