@@ -1,20 +1,22 @@
 import { el } from "redom";
 
-let infintyBento: { x: number; y: number; w: number; h: number; gapX: number; gapY: number; el: HTMLElement }[] = [];
+let infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
 const blockSize = 360;
 const gap = 10;
 
 const b = document.getElementById("bento");
 
-function r(rect: { x: number; y: number; w: number; h: number }) {
+function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
     for (let i of infintyBento) {
-        let cx = Math.floor((rect.x - i.x) / (i.w + i.gapX));
-        let cy = Math.floor((rect.y - i.y) / (i.h + i.gapY));
-        if (i.x + cx * (i.w + i.gapX) + i.w < rect.x) cx++;
-        if (i.y + cy * (i.h + i.gapY) + i.h < rect.y) cy++;
+        const gapX = repeatX - i.w;
+        const gapY = repeatY - i.h;
+        let cx = Math.floor((p.x - i.x) / (i.w + gapX));
+        let cy = Math.floor((p.y - i.y) / (i.h + gapY));
+        if (i.x + cx * (i.w + gapX) + i.w < p.x) cx++;
+        if (i.y + cy * (i.h + gapY) + i.h < p.y) cy++;
         let el = i.el;
-        el.style.left = (i.x + cx * (i.w + i.gapX)) * blockSize + gap + "px";
-        el.style.top = (i.y + cy * (i.h + i.gapY)) * blockSize + gap + "px";
+        el.style.left = (i.x + cx * (i.w + gapX)) * blockSize + gap + "px";
+        el.style.top = (i.y + cy * (i.h + gapY)) * blockSize + gap + "px";
         el.style.width = i.w * blockSize - gap * 2 + "px";
         el.style.height = i.h * blockSize - gap * 2 + "px";
         console.log(cx, cy);
@@ -23,12 +25,15 @@ function r(rect: { x: number; y: number; w: number; h: number }) {
 
 let x = 0;
 let y = 0;
+const repeatX = 10;
+const repeatY = 6;
+
 document.onwheel = (e) => {
     x -= e.deltaX;
     y -= e.deltaY;
     b.style.left = x + "px";
     b.style.top = y + "px";
-    r({ x: -x / blockSize, y: -y / blockSize, w: 10, h: 10 });
+    r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
 };
 
 function initBento() {
@@ -38,7 +43,7 @@ function initBento() {
         b.append(i.el);
     }
 
-    r({ x: 0, y: 0, w: 10, h: 10 });
+    r({ x: 0, y: 0 }, repeatX, repeatY);
 }
 
 const navTipEl = el("div");
@@ -117,12 +122,12 @@ const y以图搜图 = el("div");
 
 const x形状 = el("div");
 
-infintyBento.push({ x: 0, y: 0, w: 1, h: 1, gapX: 4, gapY: 4, el: navTipEl });
-infintyBento.push({ x: 0, y: 1, w: 2, h: 1, gapX: 3, gapY: 4, el: downloadEl });
-infintyBento.push({ x: 1, y: -1, w: 2, h: 2, gapX: 3, gapY: 3, el: ocrEl });
-infintyBento.push({ x: 1, y: 2, w: 1, h: 2, gapX: 4, gapY: 3, el: logEl });
-infintyBento.push({ x: 0, y: -1, w: 1, h: 1, gapX: 4, gapY: 4, el: recordEl });
-infintyBento.push({ x: -1, y: -1, w: 1, h: 1, gapX: 4, gapY: 4, el: y以图搜图 });
-infintyBento.push({ x: 2, y: 1, w: 1, h: 1, gapX: 4, gapY: 4, el: x形状 });
+infintyBento.push({ x: 0, y: 0, w: 1, h: 1, el: navTipEl });
+infintyBento.push({ x: 0, y: 1, w: 2, h: 1, el: downloadEl });
+infintyBento.push({ x: 1, y: -1, w: 2, h: 2, el: ocrEl });
+infintyBento.push({ x: 1, y: 2, w: 1, h: 2, el: logEl });
+infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
+infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
+infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 
 initBento();
