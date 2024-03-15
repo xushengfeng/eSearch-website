@@ -219,11 +219,11 @@ function getDownloadItem(type: string, text: string) {
 }
 
 // 获取软件资源
-
+let result: any[];
 fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
     .then((response) => response.text())
     .then((r) => {
-        let result = JSON.parse(r);
+        result = JSON.parse(r);
         for (let i in result) {
             if (result[i].prerelease) {
                 delete result[i];
@@ -322,7 +322,8 @@ infintyBento.push({
     h: 1,
     el: el(
         "div",
-        el("a", { class: "star", href: "https://github.com/xushengfeng/eSearch", target: "_blank" }, [
+        { class: "star" },
+        el("a", { href: "https://github.com/xushengfeng/eSearch", target: "_blank" }, [
             el("span", "🌟"),
             el("span", t("去GitHub点Star")),
             el("span", t("或fork，或提issue，这是我开发的动力")),

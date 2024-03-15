@@ -47,14 +47,14 @@ button {
     border-radius: 16px;
     box-sizing: border-box;
     overflow: hidden;
+    padding: 2rem;
     & > .title {
-        position: absolute;
-        left: 2rem;
-        top: 2rem;
         font-weight: bold;
         font-size: 2em;
     }
     & > .b {
+        position: absolute;
+        left: 2rem;
         top: auto;
         bottom: 2rem;
     }
@@ -83,6 +83,11 @@ button {
     justify-content: center;
     background: linear-gradient(var(--l-color), var(--h-color));
     color: white;
+    & > .title {
+        position: absolute;
+        left: 2rem;
+        top: 2rem;
+    }
     & > :last-child {
         display: flex;
         align-items: center;
@@ -110,19 +115,22 @@ button {
 }
 
 .star {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-decoration: none;
-    background: linear-gradient(#222, #000);
-    color: white;
-}
-.star > :nth-child(1) {
-    font-size: 100px;
-    animation: jump 0.6s infinite alternate;
-    text-shadow: 0 0 10px #ff0;
+    padding: 0 !important;
+    & > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-decoration: none;
+        background: linear-gradient(#222, #000);
+        color: white;
+        & > :nth-child(1) {
+            font-size: 100px;
+            animation: jump 0.6s infinite alternate;
+            text-shadow: 0 0 10px #ff0;
+        }
+    }
 }
 @keyframes jump {
     0% {
@@ -135,6 +143,7 @@ button {
 }
 
 .lang {
+    padding: 0 !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
