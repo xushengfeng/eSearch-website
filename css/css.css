@@ -284,3 +284,17 @@ button {
         width: 80px;
     }
 }
+
+.photo_text {
+    font-family: serif;
+    filter: blur(0.5px);
+}
+
+.sync {
+    & > div > span {
+        background: #0002;
+    }
+    & > :first-child {
+        font-size: 1.2em;
+    }
+}

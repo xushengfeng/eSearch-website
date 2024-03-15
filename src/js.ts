@@ -544,6 +544,20 @@ infintyBento.push({
     h: 2,
     el: el("div", title("自定义界面")),
 });
+const syncSelect = el("div", { class: "center sync" });
+infintyBento.push({
+    x: 4,
+    y: 4,
+    w: 1,
+    h: 1,
+    el: el("div", title("同步选择"), syncSelect),
+});
+const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区");
+const syncOCR = el("div", { class: "photo_text" });
+syncOCR.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText.slice(6));
+const syncOCR2 = el("div");
+syncOCR2.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText.slice(6));
+syncSelect.append(syncOCR, syncOCR2);
 
 initBento();
 
