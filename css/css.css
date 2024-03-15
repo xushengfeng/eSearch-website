@@ -298,3 +298,32 @@ button {
         font-size: 1.2em;
     }
 }
+
+@font-face {
+    font-family: code;
+    src: url("../assets/Fira.otf");
+}
+
+.opensource {
+    background: linear-gradient(rgb(0, 255, 106), rgb(0, 255, 76));
+    & .title {
+        color: white;
+    }
+    & a {
+        display: inline-block;
+    }
+    & img {
+        width: 100px;
+    }
+    & > :first-child {
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        white-space: pre;
+        font-family: code;
+        color: white;
+        font-size: 16px;
+    }
+}

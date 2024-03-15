@@ -426,7 +426,44 @@ infintyBento.push({
     ),
 });
 infintyBento.push({ x: 0, y: 2, w: 1, h: 1, el: el("div", title("跨平台")) }); // 跨平台
-infintyBento.push({ x: -1, y: 3, w: 2, h: 1, el: el("div", title("开源")) }); // 开源
+import githubImg from "../assets/icons/Github.svg";
+import giteeImg from "../assets/icons/Gitee.svg";
+let codeBg = el("div");
+const codeCharts = ["~", "<", ">", "?", "#", "@", "$", "&", "*", "%", "0", "*", "+", "-"];
+let codeBgC = "";
+for (let y = 0; y < 18; y++) {
+    for (let x = 0; x < 100; x++) {
+        const d = Math.sqrt((x - 50) ** 2 + (y - 9) ** 2);
+        const feq = d / (30 * Math.sqrt(2));
+        const code = codeCharts[Math.floor(Math.random() * codeCharts.length)];
+        codeBgC += Math.random() < feq - 0.1 ? code : " ";
+    }
+    codeBgC += "\n";
+}
+
+codeBg.innerText = codeBgC;
+infintyBento.push({
+    x: -1,
+    y: 3,
+    w: 2,
+    h: 1,
+    el: el(
+        "div",
+        { class: "opensource" },
+        codeBg,
+        el(
+            "div",
+            { class: "center" },
+            el(
+                "a",
+                { href: "https://github.com/xushengfeng/eSearch", target: "_blank" },
+                el("img", { src: githubImg })
+            ),
+            el("a", { href: "https://gitee.com/xsf-root/eSearch", target: "_blank" }, el("img", { src: giteeImg }))
+        )
+    ),
+}); // 开源
+
 infintyBento.push({
     x: 1,
     y: 4,
