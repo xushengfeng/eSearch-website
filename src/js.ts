@@ -107,8 +107,22 @@ platformSelect.oninput = () => {
 
 downloadEl.append(mainDownload, platformSelect);
 
-infintyBento.push({ x: 0, y: 0, w: 1, h: 1, gapX: 4, gapY: 4, el: navTipEl });
+const ocrEl = el("div");
 
+const logEl = el("div");
+
+const recordEl = el("div");
+
+const y以图搜图 = el("div");
+
+const x形状 = el("div");
+
+infintyBento.push({ x: 0, y: 0, w: 1, h: 1, gapX: 4, gapY: 4, el: navTipEl });
 infintyBento.push({ x: 0, y: 1, w: 2, h: 1, gapX: 3, gapY: 4, el: downloadEl });
+infintyBento.push({ x: 1, y: -1, w: 2, h: 2, gapX: 3, gapY: 3, el: ocrEl });
+infintyBento.push({ x: 1, y: 2, w: 1, h: 2, gapX: 4, gapY: 3, el: logEl });
+infintyBento.push({ x: 0, y: -1, w: 1, h: 1, gapX: 4, gapY: 4, el: recordEl });
+infintyBento.push({ x: -1, y: -1, w: 1, h: 1, gapX: 4, gapY: 4, el: y以图搜图 });
+infintyBento.push({ x: 2, y: 1, w: 1, h: 1, gapX: 4, gapY: 4, el: x形状 });
 
 initBento();
