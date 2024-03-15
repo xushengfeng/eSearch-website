@@ -36,6 +36,22 @@ document.onwheel = (e) => {
     moveB(x, y);
 };
 
+let startE: PointerEvent;
+let startP = { x, y };
+b.onpointerdown = (e) => {
+    startE = e;
+    startP = { x, y };
+};
+b.onpointermove = (e) => {
+    if (!startE) return;
+    x = startP.x + e.clientX - startE.clientX;
+    y = startP.y + e.clientY - startE.clientY;
+    moveB(x, y);
+};
+window.onpointerup = (e) => {
+    startE = null;
+};
+
 function moveB(x: number, y: number) {
     b.style.left = x + "px";
     b.style.top = y + "px";
