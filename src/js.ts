@@ -46,6 +46,26 @@ function initBento() {
     r({ x: 0, y: 0 }, repeatX, repeatY);
 }
 
+let lan = navigator.language || "zh-HANS";
+
+let lanMap: { [key: string]: string } = {};
+
+if (lan.split("-")[0] != "zh") {
+    fetch("/language/en.json")
+        .then((res) => res.json())
+        .then((data) => {
+            lanMap = data;
+        });
+}
+
+const t = (text: string) => {
+    if (lan.split("-")[0] === "zh") {
+        return text;
+    } else {
+        return lanMap[text];
+    }
+};
+
 const navTipEl = el("div");
 navTipEl.append("滚动或拖动来查看");
 
