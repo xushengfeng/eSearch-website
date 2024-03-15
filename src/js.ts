@@ -39,8 +39,35 @@ function moveB(x: number, y: number) {
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
 }
 
+function fillBento() {
+    let smallL: { x: number; y: number; has: boolean }[] = [];
+    for (let i = 0; i < repeatX; i++) {
+        for (let j = 0; j < repeatY; j++) {
+            smallL.push({ x: i, y: j, has: false });
+        }
+    }
+    for (let i of infintyBento) {
+        let x = i.x < 0 ? repeatX + i.x : i.x;
+        let y = i.y < 0 ? repeatY + i.y : i.y;
+        for (let ix = 0; ix < i.w; ix++) {
+            for (let iy = 0; iy < i.h; iy++) {
+                let nx = (x + ix) % repeatX;
+                let ny = (y + iy) % repeatY;
+                smallL.find((v) => v.x === nx && v.y === ny).has = true;
+            }
+        }
+    }
+    for (let i of smallL) {
+        if (!i.has) {
+            infintyBento.push({ x: i.x, y: i.y, w: 1, h: 1, el: el("div", `#${i.x},${i.y}`) });
+        }
+    }
+}
+
 function initBento() {
     b.innerHTML = "";
+
+    fillBento();
 
     for (let i of infintyBento) {
         b.append(i.el);
