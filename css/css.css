@@ -332,3 +332,29 @@ button {
         width: 100px;
     }
 }
+
+.pick_color {
+    & > div {
+        padding: 4px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px #0002;
+        & > div {
+            display: flex;
+            flex-direction: column;
+            border-radius: 6px;
+            width: max-content;
+            text-align: center;
+            font-family: code;
+            & > div {
+                line-height: 32px;
+                height: 32px;
+                transition: 0.4s;
+                border-radius: 6px;
+                padding: 0 4px;
+            }
+            & > :hover {
+                background-color: #0002;
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"color": "^4.2.3",
 		"ipad-cursor": "^0.3.1",
 		"markdown-it": "^13.0.1",
 		"redom": "^4.0.0"

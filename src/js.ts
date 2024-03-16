@@ -509,12 +509,46 @@ infintyBento.push({
     h: 2,
     el: el("div", title("AI识图")),
 });
+import Color from "color";
+const allColorFormat = ["HEX", "RGB", "HSL", "HSV", "CMYK"];
+// 色彩空间转换
+function colorConversion(rgba: number[] | string, type: string): string {
+    const color = new Color(rgba);
+    if (color.alpha() !== 1) return "/";
+    switch (type) {
+        case "HEX":
+            return color.hex();
+        case "RGB":
+            return color.rgb().string();
+        case "HSL":
+            const hsl = color.hsl().round().array();
+            return `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+        case "HSV":
+            const hsv = color.hsv().round().array();
+            return `hsv(${hsv[0]}, ${hsv[1]}%, ${hsv[2]}%)`;
+        case "CMYK":
+            const cmyk = color.cmyk().round().array();
+            return `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+        default:
+            return "";
+    }
+}
+function pickColor(l: string) {
+    let color = Color.rgb(l);
+    let clipColorTextColor = color.alpha() == 1 ? (color.isLight() ? "#000" : "#fff") : "";
+    let div = el("div", { style: { background: color.hex(), color: clipColorTextColor } });
+    for (let i in allColorFormat) {
+        div.append(el("div", colorConversion(color, allColorFormat[i])));
+    }
+    return div;
+}
+
 infintyBento.push({
     x: -1,
     y: 1,
     w: 1,
     h: 1,
-    el: el("div", title("取色器")),
+    el: el("div", title("取色器"), { class: "pick_color" }, el("div", { class: "center" }, pickColor("#3a69ff"))),
 });
 import qr from "../assets/qr.svg";
 infintyBento.push({
