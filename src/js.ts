@@ -27,8 +27,6 @@ let y = 0;
 const repeatX = 10;
 const repeatY = 6;
 
-moveToRect({ x: -1, y: 0, w: 2, h: 1 });
-
 document.onwheel = (e) => {
     if (log2El.contains(e.target as HTMLElement)) return;
     x -= e.deltaX;
@@ -56,6 +54,8 @@ function moveB(x: number, y: number) {
     b.style.left = x + "px";
     b.style.top = y + "px";
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
+
+    pickColorXY();
 }
 
 function moveToRect(r: { x: number; y: number; w: number; h: number }) {
@@ -533,7 +533,7 @@ function colorConversion(rgba: number[] | string, type: string): string {
             return "";
     }
 }
-function pickColor(l: string) {
+function pickColor(l: number[]) {
     let color = Color.rgb(l);
     let clipColorTextColor = color.alpha() == 1 ? (color.isLight() ? "#000" : "#fff") : "";
     let div = el("div", { style: { background: color.hex(), color: clipColorTextColor } });
@@ -543,12 +543,35 @@ function pickColor(l: string) {
     return div;
 }
 
+let canPickColor = false;
+function pickColorXY() {
+    if (!canPickColor) return;
+    let x = pickColorBg.getBoundingClientRect().x;
+    let y = pickColorBg.getBoundingClientRect().y;
+    x = Math.max(0, Math.min(pickColorCanvas.width, x));
+    y = Math.max(0, Math.min(pickColorCanvas.height, y));
+    const color = pickColorCanvas.getContext("2d").getImageData(x, y, 1, 1).data;
+    pickColorEl.innerHTML = "";
+    pickColorEl.append(pickColor(Array.from(color)));
+}
+import photo from "../assets/p.jpg";
+const pickColorCanvas = el("canvas");
+let img = document.createElement("img");
+img.src = photo;
+img.onload = () => {
+    pickColorCanvas.width = img.naturalWidth;
+    pickColorCanvas.height = img.naturalHeight;
+    pickColorCanvas.getContext("2d").drawImage(img, 0, 0);
+    canPickColor = true;
+};
+const pickColorEl = el("div", { class: "center" }, pickColor([58, 105, 255]));
+const pickColorBg = el("div");
 infintyBento.push({
     x: -1,
     y: 1,
     w: 1,
     h: 1,
-    el: el("div", title("取色器"), { class: "pick_color" }, el("div", { class: "center" }, pickColor("#3a69ff"))),
+    el: el("div", { class: "pick_color" }, pickColorBg, pickColorEl),
 });
 import qr from "../assets/qr.svg";
 infintyBento.push({
@@ -651,6 +674,8 @@ syncOCR2.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText
 syncSelect.append(syncOCR, syncOCR2);
 
 initBento();
+
+moveToRect({ x: -1, y: 0, w: 2, h: 1 });
 
 document.body.append(
     el(
