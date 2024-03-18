@@ -769,6 +769,38 @@ const syncOCR2 = el("div");
 syncOCR2.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText.slice(6));
 syncSelect.append(syncOCR, syncOCR2);
 
+infintyBento.push({
+    x: 6,
+    y: 3,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        title("关于"),
+        el(
+            "div",
+            el(
+                "a",
+                { href: "https://www.netlify.com", target: "_blank" },
+                el("img", { src: "https://www.netlify.com/v3/img/components/netlify-light.svg" })
+            ),
+            el("p", t("网站灵感来源："), el("a", "amie", { href: "https://www.amie.so/recap", target: "_blank" })),
+            el(
+                "p",
+                t("此网站源码："),
+                el("a", "GitHub", { href: "https://github.com/xushengfeng/eSearch-website/", target: "_blank" })
+            ),
+            el("p", "2021 - 2024"),
+            el(
+                "address",
+                el("a", { href: "https://github.com/xushengfeng", target: "_blank" }, "xushengfeng"),
+                el("br"),
+                el("a", { href: "mailto:xushengfeng_zg@163.com" }, "xushengfeng_zg@163.com")
+            )
+        )
+    ),
+});
+
 initBento();
 
 moveToRect({ x: -1, y: 0, w: 2, h: 1 });
