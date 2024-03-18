@@ -495,6 +495,12 @@ button {
 }
 
 .camera {
+    & > .title {
+        z-index: 1;
+        position: absolute;
+        top: 8px;
+        color: white;
+    }
     & > .wp {
         position: absolute;
         left: 0;
@@ -504,5 +510,18 @@ button {
     & > img:not(.wp) {
         width: 280px;
         border-radius: 4px;
+    }
+    & > :last-child {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: green;
+        & > img {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
     }
 }

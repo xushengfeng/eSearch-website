@@ -701,6 +701,7 @@ infintyBento.push({
     h: 1,
     el: el("div", title("编辑录屏")),
 });
+import manImg from "../assets/a-professor.svg";
 infintyBento.push({
     x: 3,
     y: -2,
@@ -712,7 +713,7 @@ infintyBento.push({
         { class: "camera" },
         el("img", { src: wallPaper2, class: "wp" }),
         el("img", { src: windowImg, class: "center" }),
-        el("div", el("img"))
+        el("div", el("img", { src: manImg }))
     ),
 });
 infintyBento.push({
