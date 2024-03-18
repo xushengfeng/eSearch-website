@@ -328,8 +328,21 @@ button {
     }
 }
 .platform {
-    & img {
-        width: 100px;
+    background-color: #2b2e3a;
+    color: white;
+    & > div {
+        backdrop-filter: var(--blur);
+        background-color: var(--bar-bg);
+        padding: 16px;
+        border-radius: 8px;
+        align-items: center;
+        display: flex;
+        & > img {
+            width: 100px;
+        }
+    }
+    & > img {
+        width: 400px;
     }
 }
 

@@ -429,6 +429,7 @@ infintyBento.push({
 import windowsImg from "../assets/Windows.svg";
 import linuxImg from "../assets/Linux.svg";
 import macosImg from "../assets/macOS.svg";
+import electronImg from "../assets/icons/Electron_Software_Framework_Logo.svg";
 infintyBento.push({
     x: -1,
     y: 2,
@@ -438,6 +439,7 @@ infintyBento.push({
         "div",
         title("跨平台"),
         { class: "platform" },
+        el("img", { class: "center", src: electronImg }),
         el(
             "div",
             { class: "center" },
