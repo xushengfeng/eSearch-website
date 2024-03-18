@@ -437,3 +437,42 @@ button {
         border-radius: 4px;
     }
 }
+
+.search_engine {
+    & > img {
+        --w: 100px;
+        width: var(--w);
+        position: absolute;
+        left: calc(50% - var(--w) / 2);
+        top: calc(50% - var(--w) / 2);
+        border-radius: 16px;
+        transition: var(--transition);
+        filter: drop-shadow(0 0 4px 0 white);
+    }
+    & > img:nth-last-of-type(2) {
+        transform: translate(-16px, -16px);
+    }
+    & > img:nth-last-of-type(3) {
+        transform: translate(16px, -16px);
+    }
+    & > img:nth-last-of-type(4) {
+        transform: translate(0px, 16px);
+    }
+    &:hover {
+        & > img:nth-last-of-type(1) {
+            rotate: 5deg;
+        }
+        & > img:nth-last-of-type(2) {
+            transform: translate(-84px, -33px);
+            rotate: -10deg;
+        }
+        & > img:nth-last-of-type(3) {
+            transform: translate(68px, -38px);
+            rotate: 18deg;
+        }
+        & > img:nth-last-of-type(4) {
+            transform: translate(0px, 82px);
+            rotate: -8deg;
+        }
+    }
+}

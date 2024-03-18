@@ -393,7 +393,25 @@ infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
 
-infintyBento.push({ x: 3, y: -1, w: 1, h: 1, el: el("div", title("自定义搜索引擎")) }); // 搜索引擎
+import bingImg from "../assets/icons/bing.svg";
+import baiduImg from "../assets/icons/baidu.svg";
+import googleImg from "../assets/icons/google.svg";
+import yandexImg from "../assets/icons/yandex.svg";
+infintyBento.push({
+    x: 3,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        { class: "search_engine" },
+        title("自定义搜索引擎"),
+        el("img", { src: baiduImg }),
+        el("img", { src: yandexImg }),
+        el("img", { src: googleImg }),
+        el("img", { src: bingImg })
+    ),
+}); // 搜索引擎
 infintyBento.push({ x: 3, y: 0, w: 1, h: 1, el: el("div", title("背景模糊")) }); // 背景模糊
 infintyBento.push({
     x: 3,
