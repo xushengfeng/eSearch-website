@@ -484,7 +484,7 @@ infintyBento.push({
         )
     ),
 }); // 开源
-
+import devImg from "../assets/a-cube-filled-with-mechancial-elements.svg";
 infintyBento.push({
     x: 1,
     y: 4,
@@ -492,8 +492,11 @@ infintyBento.push({
     h: 1,
     el: el(
         "div",
+        { class: "dev" },
         title("新特性"),
-        el("a", { class: "center", href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜"))
+        el("img", { src: devImg }),
+        el("a", { class: "center", href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜")),
+        aiTip()
     ),
 });
 infintyBento.push({

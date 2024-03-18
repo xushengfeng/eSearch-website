@@ -408,3 +408,19 @@ button {
         filter: drop-shadow(0 0 4px var(--h-color));
     }
 }
+
+.dev {
+    & img {
+        --w: 480px;
+        width: var(--w);
+        position: absolute;
+        left: calc(50% - var(--w) / 2);
+        bottom: -200px;
+    }
+    & a {
+        background-color: var(--bar-bg);
+        backdrop-filter: var(--blur);
+        padding: 4px;
+        border-radius: 4px;
+    }
+}
