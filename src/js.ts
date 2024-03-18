@@ -770,8 +770,8 @@ syncOCR2.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText
 syncSelect.append(syncOCR, syncOCR2);
 
 infintyBento.push({
-    x: 6,
-    y: 3,
+    x: 8,
+    y: 4,
     w: 1,
     h: 1,
     el: el(
@@ -799,6 +799,41 @@ infintyBento.push({
             )
         )
     ),
+});
+infintyBento.push({
+    x: 7,
+    y: 1,
+    w: 1,
+    h: 1,
+    el: el("div", title("精确控制")),
+});
+infintyBento.push({
+    x: 7,
+    y: 2,
+    w: 1,
+    h: 1,
+    el: el("div", title("快捷键")),
+});
+infintyBento.push({
+    x: 5,
+    y: 4,
+    w: 1,
+    h: 1,
+    el: el("div", title("正则替换")),
+});
+infintyBento.push({
+    x: 6,
+    y: 3,
+    w: 2,
+    h: 2,
+    el: el("div", title("界面展示")),
+});
+infintyBento.push({
+    x: 5,
+    y: 3,
+    w: 1,
+    h: 1,
+    el: el("div", title("反馈")),
 });
 
 initBento();
