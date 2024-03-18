@@ -316,6 +316,8 @@ function title(string: string, posi?: "bottom") {
     return s;
 }
 
+const center = { class: "center" };
+
 downloadEl.append(el("span", { class: "title" }, t("立即下载")), el("div", platformSelect, mainDownload));
 
 const ocrEl = el("div", title("离线OCR", "bottom"));
@@ -365,8 +367,8 @@ const recordEl = el(
     "div",
     { class: "record" },
     el("img", { src: wallPaper1, class: "wp" }),
-    el("img", { src: windowImg, class: "center" }),
-    el("div", { class: "center" })
+    el("img", { src: windowImg, ...center }),
+    el("div", { ...center })
 );
 
 const y以图搜图 = el("div", title("以图搜图"));
@@ -501,7 +503,7 @@ infintyBento.push({
         "div",
         title("跨平台"),
         { class: "platform" },
-        el("img", { class: "center", src: electronImg }),
+        el("img", { ...center, src: electronImg }),
         el(
             "div",
             { class: "center" },
@@ -559,7 +561,7 @@ infintyBento.push({
         { class: "dev" },
         title("新特性"),
         el("img", { src: devImg }),
-        el("a", { class: "center", href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜")),
+        el("a", { ...center, href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜")),
         aiTip()
     ),
 });
@@ -647,7 +649,7 @@ infintyBento.push({
     y: 4,
     w: 1,
     h: 1,
-    el: el("div", { class: "qr" }, el("img", { class: "center", width: 200, src: qr })),
+    el: el("div", { class: "qr" }, el("img", { ...center, width: 200, src: qr })),
 });
 infintyBento.push({
     x: 4,
@@ -704,7 +706,7 @@ infintyBento.push({
         { class: "muti_screen" },
         title("多屏幕"),
         el("img", { src: mutiScreen }),
-        el("img", { class: "center", src: logo }),
+        el("img", { ...center, src: logo }),
         aiTip()
     ),
 });
@@ -747,7 +749,7 @@ infintyBento.push({
         title("录制摄像头"),
         { class: "camera" },
         el("img", { src: wallPaper2, class: "wp" }),
-        el("img", { src: windowImg, class: "center" }),
+        el("img", { src: windowImg, ...center }),
         el("div", el("img", { src: manImg }))
     ),
 });
