@@ -56,6 +56,7 @@ function moveB(x: number, y: number) {
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
 
     pickColorXY();
+    logClip();
 }
 
 function moveToRect(r: { x: number; y: number; w: number; h: number }) {
@@ -588,12 +589,27 @@ infintyBento.push({
     h: 1,
     el: el("div", title("按键提示")),
 });
+function aiTip() {
+    return el("span", t("此插画由AI绘制"), {
+        style: {
+            position: "absolute",
+            bottom: "4px",
+            right: "4px",
+        },
+    });
+}
+
+import scrollImg from "../assets/rockets-and-space-ship.svg";
+const longClipEl = el("div", el("img", { src: scrollImg }));
+function logClip() {
+    longClipEl.style.height = window.innerHeight - longClipEl.getBoundingClientRect().y - 100 + "px";
+}
 infintyBento.push({
     x: -2,
     y: 1,
     w: 1,
-    h: 4,
-    el: el("div", title("滚动截屏")),
+    h: 3,
+    el: el("div", { class: "long_clip" }, title("滚动截屏"), longClipEl, aiTip()),
 });
 infintyBento.push({
     x: 6,
@@ -609,12 +625,20 @@ infintyBento.push({
     h: 1,
     el: el("div", title("鼠标穿透")),
 });
+import mutiScreen from "../assets/a-muti-screen-wall.svg";
 infintyBento.push({
     x: 4,
     y: 1,
     w: 2,
     h: 1,
-    el: el("div", title("多屏幕")),
+    el: el(
+        "div",
+        { class: "muti_screen" },
+        title("多屏幕"),
+        el("img", { src: mutiScreen }),
+        el("img", { class: "center", src: logo }),
+        aiTip()
+    ),
 });
 infintyBento.push({
     x: 4,
