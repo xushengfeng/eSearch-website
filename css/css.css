@@ -213,27 +213,44 @@ button {
 }
 
 .record {
+    & > .wp {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    & > img:not(.wp) {
+        width: 280px;
+        border-radius: 4px;
+    }
     & > div {
-        & > :first-child {
-            width: 200px;
-            height: 40px;
-            background-color: #222;
-            border-radius: 12px 12px 0 0;
-            transform-origin: bottom left;
-            rotate: -15deg;
-            transition: var(--transition);
+        width: 200px;
+        height: 200px;
+        border: dashed 2px;
+        border-radius: 4px;
+        &::after {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            background-color: red;
+            content: "";
+            border-radius: 4px;
+            /* 闪烁动画 */
+            animation: blink 1s linear infinite;
         }
-        & > :last-child {
-            width: 200px;
-            height: 120px;
-            border-radius: 0 0 12px 12px;
-            background-color: #222;
-        }
-        &:hover {
-            & > :first-child {
-                rotate: -10deg;
-            }
-        }
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
     }
 }
 
@@ -474,5 +491,18 @@ button {
             transform: translate(0px, 82px);
             rotate: -8deg;
         }
+    }
+}
+
+.camera {
+    & > .wp {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+    }
+    & > img:not(.wp) {
+        width: 280px;
+        border-radius: 4px;
     }
 }

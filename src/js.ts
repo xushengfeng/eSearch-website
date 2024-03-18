@@ -354,7 +354,16 @@ function showLog() {
     }
 }
 
-const recordEl = el("div", { class: "record" }, el("div", { class: "center" }, [el("div"), el("div")]));
+import windowImg from "../assets/window.svg";
+import wallPaper1 from "../assets/wallpaper/win11.jpg";
+import wallPaper2 from "../assets/wallpaper/macos.jpg";
+const recordEl = el(
+    "div",
+    { class: "record" },
+    el("img", { src: wallPaper1, class: "wp" }),
+    el("img", { src: windowImg, class: "center" }),
+    el("div", { class: "center" })
+);
 
 const y以图搜图 = el("div", title("以图搜图"));
 
@@ -696,7 +705,14 @@ infintyBento.push({
     y: -2,
     w: 1,
     h: 1,
-    el: el("div", title("录制摄像头")),
+    el: el(
+        "div",
+        title("录制摄像头"),
+        { class: "camera" },
+        el("img", { src: wallPaper2, class: "wp" }),
+        el("img", { src: windowImg, class: "center" }),
+        el("div", el("img"))
+    ),
 });
 infintyBento.push({
     x: 6,
