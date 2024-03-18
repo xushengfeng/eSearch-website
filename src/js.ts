@@ -371,7 +371,21 @@ const recordEl = el(
     el("div", { ...center })
 );
 
-const y以图搜图 = el("div", title("以图搜图"));
+import photoImg from "../assets/a-mountain.svg";
+import photoImg1 from "../assets/a-mountain1.svg";
+import photoImg2 from "../assets/colorful-waves-from-center-diverging-in-all-direct.svg";
+const y以图搜图 = el(
+    "div",
+    title("以图搜图"),
+    aiTip(),
+    { class: "search_photo" },
+    el("div", center, el("img", { src: photoImg2 })),
+    el("div", center, el("img", { src: photoImg })),
+    el("div", center, el("div", el("img", { src: photoImg }))),
+    el("div", center, el("div", el("img", { src: photoImg }))),
+    el("div", center, el("div", el("img", { src: photoImg }))),
+    el("div", center, el("div", el("img", { src: photoImg1 })))
+);
 
 const x形状 = el("div", title("多种形状"), { class: "shape" });
 import shape_arrow from "../assets/shape/arrow.svg";
