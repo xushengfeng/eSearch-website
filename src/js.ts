@@ -247,36 +247,40 @@ function getDownloadItem(type: string, text: string) {
 // 获取软件资源
 let result: any[];
 fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
-    .then((response) => response.text())
-    .then((r) => {
-        result = JSON.parse(r);
-        for (let i in result) {
-            if (result[i].prerelease) {
-                delete result[i];
-            }
-        }
-        result = result.flat();
-        for (let i in result[0].assets) {
-            let url = <string>result[0].assets[i].browser_download_url;
-            let name = <string>result[0].assets[i].name;
-            let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
-            console.log(hz);
-
-            if (!filesObject[hz]) continue;
-            filesObject[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
-            filesObject[hz].url = url;
-        }
-        console.log(filesObject);
-        useFastGit(fastUrl);
-
-        up_time = new Date(result[0].published_at).getTime();
-        v = result[0].name;
-
-        showLog();
-    })
+    .then((response) => response.json())
+    .then((r) => releasesX(r))
     .catch((error) => {
-        console.error("error", error);
+        fetch("/releases.json", { method: "GET" })
+            .then((response) => response.json())
+            .then((r) => releasesX(r));
     });
+
+const releasesX = (r) => {
+    result = r;
+    for (let i in result) {
+        if (result[i].prerelease) {
+            delete result[i];
+        }
+    }
+    result = result.flat();
+    for (let i in result[0].assets) {
+        let url = <string>result[0].assets[i].browser_download_url;
+        let name = <string>result[0].assets[i].name;
+        let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
+        console.log(hz);
+
+        if (!filesObject[hz]) continue;
+        filesObject[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+        filesObject[hz].url = url;
+    }
+    console.log(filesObject);
+    useFastGit(fastUrl);
+
+    up_time = new Date(result[0].published_at).getTime();
+    v = result[0].name;
+
+    showLog();
+};
 
 function fasthub(url: string) {
     const proxy_list: { url: string; replace: boolean }[] = [
