@@ -634,7 +634,8 @@ function aiTip() {
 import scrollImg from "../assets/rockets-and-space-ship.svg";
 const longClipEl = el("div", el("img", { src: scrollImg }));
 function logClip() {
-    longClipEl.style.height = window.innerHeight - longClipEl.getBoundingClientRect().y - 100 + "px";
+    const h = window.innerHeight - longClipEl.getBoundingClientRect().y - 100;
+    longClipEl.style.height = Math.max(h, 200) + "px";
 }
 infintyBento.push({
     x: -2,
