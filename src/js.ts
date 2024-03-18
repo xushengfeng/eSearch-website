@@ -421,7 +421,38 @@ infintyBento.push({
         el("img", { src: bingImg })
     ),
 }); // 搜索引擎
-infintyBento.push({ x: 3, y: 0, w: 1, h: 1, el: el("div", title("背景模糊")) }); // 背景模糊
+
+import bg1 from "../assets/bookshelf.svg";
+import bg2 from "../assets/blackhole.svg";
+import bg3 from "../assets/forest.svg";
+const virtualBgEl = el(
+    "div",
+    el("div"),
+    el("img", { src: bg2 }),
+    el("img", { src: bg3 }),
+    el("div", el("img", { src: wallPaper1 }))
+);
+infintyBento.push({
+    x: 3,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        { class: "virtual_bg" },
+        title("虚拟背景"),
+        el("img", { src: bg1 }),
+        virtualBgEl,
+        el("img", { src: manImg }),
+        aiTip()
+    ),
+});
+let virtualBgI = 1;
+setInterval(() => {
+    virtualBgEl.style.left = virtualBgI * 100 + "%";
+    virtualBgI--;
+    if (virtualBgI === -4) virtualBgI = 1;
+}, 1600);
 infintyBento.push({
     x: 3,
     y: 1,

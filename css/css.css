@@ -82,7 +82,7 @@ button {
     overflow: hidden;
     padding: 2rem;
     & > .title {
-        font-weight: bold;
+        font-weight: lighter;
         font-size: 2em;
     }
     & > .b {
@@ -517,11 +517,48 @@ button {
         bottom: 16px;
         border-radius: 16px;
         overflow: hidden;
-        background: green;
+        background: url("../assets/bookshelf.svg") center / 100%;
         & > img {
             width: 100px;
             height: 100px;
             display: block;
         }
+    }
+}
+
+.virtual_bg {
+    & > img {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    & > div {
+        display: flex;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: var(--transition);
+        & > * {
+            aspect-ratio: 1;
+            height: 100%;
+        }
+        & > :first-child {
+            backdrop-filter: var(--blur);
+        }
+        & > :last-child > img {
+            height: 100%;
+        }
+    }
+    & > .title {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        backdrop-filter: var(--blur);
+        background: var(--bar-bg);
+        padding: 4px;
+        border-radius: 4px;
     }
 }
