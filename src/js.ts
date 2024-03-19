@@ -745,12 +745,26 @@ infintyBento.push({
     h: 1,
     el: el("div", title("自由截屏（测试版）")),
 });
+import film from "../assets/a-film-strip.svg";
 infintyBento.push({
     x: 0,
     y: -2,
     w: 1,
     h: 1,
-    el: el("div", title("编辑录屏")),
+    el: el(
+        "div",
+        { class: "edit_record" },
+        title("编辑录屏"),
+        el("p", t("并把他们转为mp4、gif、webm……")),
+        el(
+            "div",
+            el("img", { src: film }),
+            el("img", { src: film }),
+            el("img", { src: film }),
+            el("img", { src: film })
+        ),
+        aiTip()
+    ),
 });
 import manImg from "../assets/a-professor.svg";
 infintyBento.push({

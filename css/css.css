@@ -586,9 +586,17 @@ button {
     }
     & > div:nth-of-type(1) {
         width: 100%;
+        display: flex;
+        justify-content: center;
         & > img {
             display: block;
             width: 100%;
+            transition: var(--transition);
+        }
+    }
+    &:hover {
+        & > div:nth-of-type(1) > img {
+            width: 140%;
         }
     }
     & > div:nth-of-type(2) {
@@ -633,5 +641,18 @@ button {
         z-index: 1;
         top: 0;
         left: 0;
+    }
+}
+
+.edit_record {
+    & > div {
+        display: flex;
+        animation: slide 6s infinite linear;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        & > img {
+            height: 180px;
+        }
     }
 }
