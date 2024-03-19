@@ -156,6 +156,13 @@ const platformSelect = el("select", [
     el("option", { value: "Linux" }, "Linux"),
 ]);
 
+const useFastGitEl = el("input", {
+    type: "checkbox",
+    oninput: () => {
+        useFastGit(useFastGitEl.checked);
+    },
+});
+
 const mainDownload = el("div");
 
 var v = "1.11.0";
@@ -173,16 +180,16 @@ var filesObject: { [key: string]: { url: string; size: string; fastUrl?: string 
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.tar.gz`,
         size: `未知`,
     },
-    "-linux-amd64.deb": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-amd64.deb`,
+    "-linux-x64.deb": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.deb`,
         size: `未知`,
     },
-    "-linux-x86_64.rpm": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.rpm`,
+    "-linux-x64.rpm": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.rpm`,
         size: `未知`,
     },
-    "-linux-x86_64.AppImage": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x86_64.AppImage`,
+    "-linux-x64.AppImage": {
+        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.AppImage`,
         size: `未知`,
     },
     ".aur": { url: ``, size: `未知` },
@@ -195,6 +202,7 @@ var filesObject: { [key: string]: { url: string; size: string; fastUrl?: string 
         size: `未知`,
     },
 };
+var fileType = Object.keys(filesObject);
 
 function cPlatform(platform: string) {
     mainDownload.innerHTML = "";
@@ -205,9 +213,9 @@ function cPlatform(platform: string) {
             break;
         case "Linux":
             mainDownload.append(
-                getDownloadItem("-linux-amd64.deb", "deb"),
-                getDownloadItem("-linux-x86_64.rpm", "rpm"),
-                getDownloadItem("-linux-x86_64.AppImage", "AppImage")
+                getDownloadItem("-linux-x64.deb", "deb"),
+                getDownloadItem("-linux-x64.rpm", "rpm"),
+                getDownloadItem("-linux-x64.AppImage", "AppImage")
             );
             platformSelect.value = "Linux";
             break;
@@ -244,8 +252,11 @@ function getDownloadItem(type: string, text: string) {
     });
 }
 
+let dev = false;
+
 // 获取软件资源
 let result: any[];
+let devResult: any[];
 fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
     .then((response) => response.json())
     .then((r) => releasesX(r))
@@ -256,22 +267,23 @@ fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", 
     });
 
 const releasesX = (r) => {
-    result = r;
-    for (let i in result) {
-        if (result[i].prerelease) {
-            delete result[i];
+    devResult = r;
+    result = structuredClone(r);
+
+    if (!dev)
+        for (let i in result) {
+            if (result[i].prerelease) {
+                delete result[i];
+            }
         }
-    }
     result = result.flat();
     for (let i in result[0].assets) {
         let url = <string>result[0].assets[i].browser_download_url;
         let name = <string>result[0].assets[i].name;
-        let hz = name.replace(/e-?[sS]earch.+[0-9]\.[0-9]\.[0-9]/, "");
-        console.log(hz);
-
-        if (!filesObject[hz]) continue;
-        filesObject[hz].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
-        filesObject[hz].url = url;
+        let x = fileType.find((i) => name.includes(i));
+        if (!x) continue;
+        filesObject[x].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
+        filesObject[x].url = url;
     }
     console.log(filesObject);
     useFastGit(fastUrl);
@@ -308,7 +320,10 @@ function useFastGit(b: boolean) {
     });
 }
 
-if (lan.split("-")[0] === "zh") useFastGit(true);
+if (lan.split("-")[0] === "zh") {
+    useFastGit(true);
+    useFastGitEl.checked = true;
+}
 
 function title(string: string, posi?: "bottom") {
     const s = el("span", { class: "title" }, t(string));
@@ -318,7 +333,10 @@ function title(string: string, posi?: "bottom") {
 
 const center = { class: "center" };
 
-downloadEl.append(el("span", { class: "title" }, t("立即下载")), el("div", platformSelect, mainDownload));
+downloadEl.append(
+    el("span", { class: "title" }, t("立即下载")),
+    el("div", el("div", platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))), mainDownload)
+);
 
 const ocrEl = el("div", title("离线OCR", "bottom"));
 
@@ -346,7 +364,7 @@ function showLog() {
         }
         return defaultRender(tokens, idx, options, env, self);
     };
-
+    log2El.innerHTML = "";
     for (let i in result) {
         const li = el("li");
         const h = el("span");
@@ -575,7 +593,19 @@ infintyBento.push({
         { class: "dev" },
         title("新特性"),
         el("img", { src: devImg }),
-        el("a", { ...center, href: "https://github.com/xushengfeng/eSearch/releases" }, t("测试版尝鲜")),
+        el(
+            "a",
+            {
+                ...center,
+                href: "https://github.com/xushengfeng/eSearch/releases",
+                target: "_blank",
+                onclick: () => {
+                    dev = true;
+                    releasesX(devResult);
+                },
+            },
+            t("测试版尝鲜")
+        ),
         aiTip()
     ),
 });
