@@ -658,24 +658,28 @@ function pickColor(l: number[]) {
 }
 
 let canPickColor = false;
+let lastPickColor = 0;
+const pickColorCanvas = el("canvas");
+const pickColorCanvasCtx = pickColorCanvas.getContext("2d", { willReadFrequently: true });
 function pickColorXY() {
     if (!canPickColor) return;
+    if (new Date().getTime() - lastPickColor < 100) return;
+    lastPickColor = new Date().getTime();
     let x = pickColorBg.getBoundingClientRect().x;
     let y = pickColorBg.getBoundingClientRect().y;
     x = Math.max(0, Math.min(pickColorCanvas.width, x));
     y = Math.max(0, Math.min(pickColorCanvas.height, y));
-    const color = pickColorCanvas.getContext("2d").getImageData(x, y, 1, 1).data;
+    const color = pickColorCanvasCtx.getImageData(x, y, 1, 1).data;
     pickColorEl.innerHTML = "";
     pickColorEl.append(pickColor(Array.from(color)));
 }
 import photo from "../assets/p.jpg";
-const pickColorCanvas = el("canvas");
 let img = document.createElement("img");
 img.src = photo;
 img.onload = () => {
     pickColorCanvas.width = img.naturalWidth;
     pickColorCanvas.height = img.naturalHeight;
-    pickColorCanvas.getContext("2d").drawImage(img, 0, 0);
+    pickColorCanvasCtx.drawImage(img, 0, 0);
     canPickColor = true;
 };
 const pickColorEl = el("div", { class: "center" }, pickColor([58, 105, 255]));
