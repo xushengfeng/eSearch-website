@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240"
+   height="240"
+   id="svg5"
+   sodipodi:docname="deepl.svg"
+   version="1.1"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="px"
+     showgrid="true"
+     units="px"
+     width="512px"
+     inkscape:zoom="2.7968813"
+     inkscape:cx="22.346319"
+     inkscape:cy="112.08913"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="false"
+     showborder="true"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid907"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1133"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect857"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+  </defs>
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g669"
+       transform="translate(1.345052)">
+      <path
+         d="m 23.248596,61.753612 v 95.067548 c 0,4.93834 2.589602,9.46538 6.814756,11.93472 l 81.776958,47.46515 c 4.22491,2.46935 9.40438,2.46935 13.62929,0 l 81.77687,-47.46517 c 4.22527,-2.46934 6.81483,-6.99636 6.81483,-11.9347 V 61.753612 c 0,-4.938707 -2.58956,-9.465736 -6.81483,-11.934721 L 125.4696,2.3536579 c -4.22491,-2.46925211 -9.40438,-2.46925211 -13.62929,0 L 30.063352,49.956105 c -4.225154,2.468996 -6.814756,6.996026 -6.814756,11.797507 z"
+         fill="#0f2b46"
+         id="path132"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 152.72856,239.9561 -0.13617,-20.57746 0.13617,-18.93112 -47.70309,11.79752"
+         fill="#0f2b46"
+         id="path134"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 150.54713,198.80083 8.99554,-2.33213 -3.40758,1.92045 c -2.0442,1.23468 -3.40724,3.42957 -3.40724,5.89892 v 3.84126 z"
+         fill="#142c46"
+         id="path136"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 85.666375,66.00973 c 5.45179,-5.350027 14.174655,-5.350027 19.626455,0 5.86063,5.624481 5.86063,14.952978 0,20.577459 -5.4518,5.35001 -14.174665,5.35001 -19.626455,0 -5.860628,-5.624481 -5.860628,-14.952978 0,-20.577459 z"
+         fill="#ffffff"
+         id="path138"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 146.99912,101.8132 c 5.4518,-5.35038 14.17466,-5.35038 19.62645,0 5.86063,5.62449 5.86063,14.95263 0,20.5771 -5.45179,5.35039 -14.17465,5.35039 -19.62645,0 -5.86064,-5.62447 -5.86064,-14.95264 0,-20.5771 z"
+         fill="#ffffff"
+         id="path140"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 85.666375,139.67681 c 5.45179,-5.35001 14.174655,-5.35001 19.626455,0 5.86063,5.62448 5.86063,14.95298 0,20.57745 -5.4518,5.35003 -14.174665,5.35003 -19.626455,0 -5.860628,-5.62447 -5.860628,-14.95298 0,-20.57745 z"
+         fill="#ffffff"
+         id="path142"
+         style="stroke-width:3.54588" />
+      <path
+         d="M 102.29691,83.978482 143.18517,107.71105 150,103.86981 109.11139,80 Z"
+         fill="#ffffff"
+         id="path144"
+         style="stroke-width:3.54588" />
+      <path
+         d="m 145.91124,125.13303 -36.79985,21.40045 -6.81448,-3.97812 36.7995,-21.26356 z"
+         fill="#ffffff"
+         id="path146"
+         style="stroke-width:3.54588" />
+    </g>
+  </g>
+</svg>

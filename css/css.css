@@ -81,10 +81,6 @@ button {
     box-sizing: border-box;
     overflow: hidden;
     padding: 2rem;
-    & > .title {
-        font-weight: lighter;
-        font-size: 2em;
-    }
     & > .b {
         position: absolute;
         left: 2rem;
@@ -99,11 +95,26 @@ button {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+.title {
+    font-weight: lighter;
+    font-size: 2em;
+    margin: 0;
+}
+.subtitle {
+    font-weight: lighter;
+    font-size: 1.6em;
+}
 
 .logo {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    transform-origin: center center;
+    transform: scale(5);
+    z-index: 999;
+    position: absolute;
+    background: #fff;
+    transition: 1.2s;
 }
 .logo > :nth-child(2) > * {
     text-align: center;
@@ -657,5 +668,44 @@ button {
         & > img {
             height: 180px;
         }
+    }
+}
+
+.ocr {
+    --c: #dde;
+    background: -webkit-linear-gradient(top, transparent 15px, var(--c) 0),
+        -webkit-linear-gradient(left, transparent 15px, var(--c) 0);
+    background-size: 16px 16px;
+}
+
+.translate {
+    & > :last-child {
+        & img {
+            width: 36px;
+        }
+    }
+}
+
+.ctrl {
+    & > :first-child {
+        display: grid;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        cursor: crosshair;
+        & > div {
+            border: 0.5px solid #eee;
+        }
+        & > div:hover {
+            background-color: #0002;
+        }
+    }
+    & > :not(:first-child) {
+        position: relative;
+        pointer-events: none;
     }
 }

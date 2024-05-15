@@ -129,6 +129,13 @@ navTipEl.append(
     el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索")))
 );
 
+window.onload = () => {
+    navTipEl.style.transform = "scale(1)";
+};
+navTipEl.ontransitionend = () => {
+    navTipEl.style.transition = "0s";
+};
+
 const downloadEl = el("div", { class: "download" });
 
 // 根据平台在首页显示下载按钮
@@ -325,9 +332,28 @@ if (lan.split("-")[0] === "zh") {
     useFastGitEl.checked = true;
 }
 
-function title(string: string, posi?: "bottom") {
-    const s = el("span", { class: "title" }, t(string));
+function devEl() {
+    return el("span", "测试版", {
+        style: {
+            "font-size": "12px",
+            background: "#e9c018",
+            color: "#fff",
+            padding: "2px",
+            "border-radius": "4px",
+        },
+    });
+}
+
+function title(string: string, posi?: "bottom", dev?: boolean) {
+    const s = el("h2", { class: "title" }, t(string));
     if (posi === "bottom") s.classList.add("b");
+    if (dev) {
+        s.append(devEl());
+    }
+    return s;
+}
+function subtitle(string: string) {
+    const s = el("h3", { class: "subtitle" }, t(string));
     return s;
 }
 
@@ -338,7 +364,7 @@ downloadEl.append(
     el("div", el("div", platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))), mainDownload)
 );
 
-const ocrEl = el("div", title("离线OCR", "bottom"));
+const ocrEl = el("div", { class: "ocr" }, title("离线OCR", "bottom"));
 
 const log2El = el("div");
 const logEl = el("div", title("更新记录"), log2El, { class: "log" });
@@ -413,17 +439,35 @@ import shape_line from "../assets/shape/line.svg";
 import shape_polyline from "../assets/shape/polyline.svg";
 import shape_polygon from "../assets/shape/polygon.svg";
 import shape_number from "../assets/shape/number.svg";
-x形状.append(
-    el("img", { src: shape_arrow }),
-    el("img", { src: shape_circle }),
-    el("img", { src: shape_rect }),
-    el("img", { src: shape_line }),
-    el("img", { src: shape_polyline }),
-    el("img", { src: shape_polygon }),
-    el("img", { src: shape_number })
-);
+x形状.append(imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number]));
 
-const translate = el("div", title("翻译"));
+function imgL(l: string[]) {
+    const d = document.createDocumentFragment();
+    for (let i of l) {
+        d.append(el("img", { src: i }));
+    }
+    return d;
+}
+
+import t_bing from "../assets/icons/translate/bing.svg";
+import t_baidu from "../assets/icons/translate/baidu.svg";
+import t_caiyun from "../assets/icons/translate/caiyun.svg";
+import t_chatgpt from "../assets/icons/translate/chatgpt.svg";
+import t_deepl from "../assets/icons/translate/deepl.svg";
+import t_gemini from "../assets/icons/translate/gemini.svg";
+import t_niu from "../assets/icons/translate/niu.svg";
+import t_youdao from "../assets/icons/translate/youdao.svg";
+
+const translate = el(
+    "div",
+    { class: "translate" },
+    title("翻译"),
+    subtitle("反射"),
+    el("p", "你好世界=>Hello world=>你好世界"),
+    subtitle("多语言"),
+    subtitle("多引擎对照")
+);
+translate.append(el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])));
 
 function t条幅(text: string) {
     let s = el("div", { class: "slide" });
@@ -439,6 +483,46 @@ infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
 infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
+
+const noBorder = { style: { border: "none" } };
+infintyBento.push({
+    x: 1,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: el("div", noBorder, el("div", center, subtitle("🛡隐私"), el("p", "本地运行，不依赖网络"))),
+});
+infintyBento.push({
+    x: 2,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: el("div", noBorder, el("div", center, subtitle("🎯准确"), el("p", "使用PaddleOCR v4模型"))),
+});
+infintyBento.push({
+    x: 2,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el("div", noBorder, el("div", center, subtitle("🆓0元/万字"), el("p", "不限量使用"))),
+});
+infintyBento.push({
+    x: 1,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        noBorder,
+        el(
+            "div",
+            center,
+            el("p", "基于开源的", el("a", { href: "https://github.com/paddle/paddleocr" }, "PaddleOCR")),
+            el("p", "开箱即用"),
+            el("a", { href: "https://github.com/xushengfeng/eSearch-OCR" }, el("p", "js库"))
+        )
+    ),
+});
 
 import bingImg from "../assets/icons/bing.svg";
 import baiduImg from "../assets/icons/baidu.svg";
@@ -621,7 +705,7 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 2,
-    el: el("div", title("AI识图")),
+    el: el("div", title("AI识图", null, true)),
 });
 import Color from "color";
 const allColorFormat = ["HEX", "RGB", "HSL", "HSV", "CMYK"];
@@ -777,7 +861,7 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("自由截屏（测试版）")),
+    el: el("div", title("自由截屏", null, true)),
 });
 import film from "../assets/a-film-strip.svg";
 infintyBento.push({
@@ -868,26 +952,63 @@ infintyBento.push({
         )
     ),
 });
+
+const cursorEl = el("div");
+const ctrlEl = el(
+    "div",
+    { class: "ctrl" },
+    cursorEl,
+    title("精确控制"),
+    el("p", el("span", { style: { "font-family": "code" } }, "↑↓←→"), "自由移动"),
+    el("p", el("span", { style: { "font-family": "code" } }, "+-*/()"), "四则运算精确分割"),
+    el("p", "放大到像素编辑")
+);
 infintyBento.push({
     x: 7,
     y: 1,
     w: 1,
     h: 1,
-    el: el("div", title("精确控制")),
+    el: ctrlEl,
 });
+
+for (let i = 0; i < 36; i++) {
+    cursorEl.append(el("div"));
+}
+
 infintyBento.push({
     x: 7,
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("快捷键")),
+    el: el("div", title("快捷键"), el("p", "全局"), el("p", "截屏"), el("p", "编辑器"), el("p", "41种可自定义快捷键")),
 });
 infintyBento.push({
     x: 5,
     y: 4,
     w: 1,
     h: 1,
-    el: el("div", title("正则替换")),
+    el: el(
+        "div",
+        title("高效编辑"),
+        el("p", "使用正则表达式替换"),
+        el("p", "自定义js脚本处理文字", devEl()),
+        el("p", "联动其他编辑器"),
+        el(
+            "span",
+            {
+                style: {
+                    position: "absolute",
+                    bottom: "0",
+                    width: "100%",
+                    left: "0",
+                    "text-align": "center",
+                    "font-size": "4rem",
+                    "font-family": "code",
+                },
+            },
+            "(t)=>λt"
+        )
+    ),
 });
 infintyBento.push({
     x: 6,
@@ -901,7 +1022,34 @@ infintyBento.push({
     y: 3,
     w: 1,
     h: 1,
-    el: el("div", title("反馈")),
+    el: el(
+        "div",
+        title("反馈"),
+        el(
+            "div",
+            center,
+            el(
+                "div",
+                el(
+                    "a",
+                    {
+                        href: "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
+                    },
+                    t("错误报告")
+                )
+            ),
+            el(
+                "div",
+                el(
+                    "a",
+                    {
+                        href: "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
+                    },
+                    t("功能建议")
+                )
+            )
+        )
+    ),
 });
 
 initBento();
