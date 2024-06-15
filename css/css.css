@@ -73,6 +73,7 @@ button {
 #bento {
     position: relative;
     background: #0001;
+    touch-action: none;
 }
 #bento > div {
     position: absolute;
