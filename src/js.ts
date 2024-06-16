@@ -689,8 +689,7 @@ infintyBento.push({
                 },
             },
             t("测试版尝鲜")
-        ),
-        aiTip()
+        )
     ),
 });
 infintyBento.push({
