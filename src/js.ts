@@ -357,8 +357,9 @@ function subtitle(string: string) {
     return s;
 }
 
-function a(string: string, href: string) {
-    return el("a", string, { href, target: "_blank" });
+function a(string: string | HTMLElement | HTMLElement[], href: string) {
+    if (typeof string === "string") return el("a", t(string), { href, target: "_blank" });
+    else return el("a", string, { href, target: "_blank" });
 }
 
 const center = { class: "center" };
@@ -531,9 +532,9 @@ infintyBento.push({
         el(
             "div",
             center,
-            el("p", "基于开源的", el("a", { href: "https://github.com/paddle/paddleocr" }, "PaddleOCR")),
+            el("p", "基于开源的", a("PaddleOCR", "https://github.com/paddle/paddleocr")),
             el("p", "开箱即用"),
-            el("a", { href: "https://github.com/xushengfeng/eSearch-OCR" }, el("p", "js库"))
+            el("p", a("js库", "https://github.com/xushengfeng/eSearch-OCR"))
         )
     ),
 });
@@ -597,11 +598,10 @@ infintyBento.push({
     el: el(
         "div",
         { class: "star" },
-        el("a", { href: "https://github.com/xushengfeng/eSearch", target: "_blank" }, [
-            el("span", "🌟"),
-            el("span", t("去GitHub点Star")),
-            el("span", t("或fork，或提issue，这是我开发的动力")),
-        ])
+        a(
+            [el("span", "🌟"), el("span", t("去GitHub点Star")), el("span", t("或fork，或提issue，这是我开发的动力"))],
+            "https://github.com/xushengfeng/eSearch"
+        )
     ),
 });
 infintyBento.push({
@@ -612,7 +612,7 @@ infintyBento.push({
     el: el(
         "div",
         { class: "lang" },
-        el("a", t("下载OCR语言包"), { target: "_blank", href: "./ocr.html" }),
+        a("下载OCR语言包", "./ocr.html"),
         t条幅("界面和OCR支持多种语言"),
         t条幅("Interface and OCR support multiple languages "),
         t条幅("Interface et OCR prennent en charge plusieurs langues "),
@@ -671,12 +671,8 @@ infintyBento.push({
         el(
             "div",
             { class: "center" },
-            el(
-                "a",
-                { href: "https://github.com/xushengfeng/eSearch", target: "_blank" },
-                el("img", { src: githubImg })
-            ),
-            el("a", { href: "https://gitee.com/xsf-root/eSearch", target: "_blank" }, el("img", { src: giteeImg }))
+            a(el("img", { src: githubImg }), "https://github.com/xushengfeng/eSearch"),
+            a(el("img", { src: giteeImg }), "https://gitee.com/xsf-root/eSearch")
         )
     ),
 }); // 开源
@@ -944,23 +940,18 @@ infintyBento.push({
         title("关于"),
         el(
             "div",
-            el(
-                "a",
-                { href: "https://www.netlify.com", target: "_blank" },
-                el("img", { src: "https://www.netlify.com/v3/img/components/netlify-light.svg" })
+            a(
+                el("img", { src: "https://www.netlify.com/v3/img/components/netlify-light.svg" }),
+                "https://www.netlify.com"
             ),
-            el("p", t("网站灵感来源："), el("a", "amie", { href: "https://www.amie.so/recap", target: "_blank" })),
-            el(
-                "p",
-                t("此网站源码："),
-                el("a", "GitHub", { href: "https://github.com/xushengfeng/eSearch-website/", target: "_blank" })
-            ),
+            el("p", t("网站灵感来源："), a("amie", "https://www.amie.so/recap")),
+            el("p", t("此网站源码："), a("Github", "https://github.com/xushengfeng/eSearch-website/")),
             el("p", "2021 - 2024"),
             el(
                 "address",
-                el("a", { href: "https://github.com/xushengfeng", target: "_blank" }, "xushengfeng"),
+                a("xushengfeng", "https://github.com/xushengfeng"),
                 el("br"),
-                el("a", { href: "mailto:xushengfeng_zg@163.com" }, "xushengfeng_zg@163.com")
+                a("xushengfeng_zg@163.com", "mailto:xushengfeng_zg@163.com")
             )
         )
     ),
@@ -1043,22 +1034,16 @@ infintyBento.push({
             center,
             el(
                 "div",
-                el(
-                    "a",
-                    {
-                        href: "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
-                    },
-                    t("错误报告")
+                a(
+                    "错误报告",
+                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF"
                 )
             ),
             el(
                 "div",
-                el(
-                    "a",
-                    {
-                        href: "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
-                    },
-                    t("功能建议")
+                a(
+                    "功能建议",
+                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B"
                 )
             )
         )
