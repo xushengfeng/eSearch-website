@@ -357,6 +357,10 @@ function subtitle(string: string) {
     return s;
 }
 
+function a(string: string, href: string) {
+    return el("a", string, { href, target: "_blank" });
+}
+
 const center = { class: "center" };
 
 downloadEl.append(
@@ -364,7 +368,7 @@ downloadEl.append(
     el("div", el("div", platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))), mainDownload)
 );
 
-const ocrEl = el("div", { class: "ocr" }, title("离线OCR", "bottom"));
+const ocrEl = el("div", { class: "ocr" }, title("离线文字识别（OCR）", "bottom"));
 
 const log2El = el("div");
 const logEl = el("div", title("更新记录"), log2El, { class: "log" });
@@ -490,14 +494,24 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: el("div", noBorder, el("div", center, subtitle("🛡隐私"), el("p", "本地运行，不依赖网络"))),
+    el: el("div", noBorder, el("div", center, subtitle("🛡隐私"), el("p", "本地运行，不依赖网络，不上传数据到服务器"))),
 });
 infintyBento.push({
     x: 2,
     y: -1,
     w: 1,
     h: 1,
-    el: el("div", noBorder, el("div", center, subtitle("🎯准确"), el("p", "使用PaddleOCR v4模型"))),
+    el: el(
+        "div",
+        noBorder,
+        el(
+            "div",
+            center,
+            subtitle("🎯准确"),
+            el("p", "使用PaddleOCR v4模型"),
+            el("p", a("在线试用", "https://webocr.netlify.app"))
+        )
+    ),
 });
 infintyBento.push({
     x: 2,
