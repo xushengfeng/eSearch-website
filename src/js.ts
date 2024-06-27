@@ -363,6 +363,7 @@ function a(string: string | HTMLElement | HTMLElement[], href: string) {
 }
 
 const center = { class: "center" };
+const noBorder = { style: { border: "none" } };
 
 downloadEl.append(
     el("span", { class: "title" }, t("立即下载")),
@@ -463,16 +464,7 @@ import t_gemini from "../assets/icons/translate/gemini.svg";
 import t_niu from "../assets/icons/translate/niu.svg";
 import t_youdao from "../assets/icons/translate/youdao.svg";
 
-const translate = el(
-    "div",
-    { class: "translate" },
-    title("翻译"),
-    subtitle("反射"),
-    el("p", "你好世界=>Hello world=>你好世界"),
-    subtitle("多语言"),
-    subtitle("多引擎对照")
-);
-translate.append(el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])));
+const translate = el("div", { class: "translate" }, title("翻译"));
 
 function t条幅(text: string) {
     let s = el("div", { class: "slide" });
@@ -488,8 +480,32 @@ infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
 infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
+infintyBento.push({
+    x: 3,
+    y: 2,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        { class: "translate_e", ...noBorder },
+        subtitle("多引擎"),
+        imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])
+    ),
+});
+infintyBento.push({
+    x: 3,
+    y: 3,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        noBorder,
+        subtitle("屏幕翻译"),
+        el("p", t("翻译屏幕文字并覆盖在上")),
+        el("p", t("支持自动翻译：定时识别翻译"))
+    ),
+});
 
-const noBorder = { style: { border: "none" } };
 infintyBento.push({
     x: 1,
     y: -1,

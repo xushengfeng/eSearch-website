@@ -686,6 +686,11 @@ button {
         }
     }
 }
+.translate_e {
+    & img {
+        width: 36px;
+    }
+}
 
 .ctrl {
     & > :first-child {
