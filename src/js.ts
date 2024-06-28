@@ -361,8 +361,12 @@ function a(string: string | HTMLElement | HTMLElement[], href: string) {
     if (typeof string === "string") return el("a", t(string), { href, target: "_blank" });
     else return el("a", string, { href, target: "_blank" });
 }
+function p(string: string) {
+    return el("p", t(string));
+}
 
 const center = { class: "center" };
+const bg = { ...center, style: { width: "100%" } };
 const noBorder = { style: { border: "none" } };
 
 downloadEl.append(
@@ -850,7 +854,12 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el("div", title("鼠标穿透")),
+    el: el(
+        "div",
+        title("置于顶层"),
+        p("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
+        p("支持失去焦点自动关闭窗口")
+    ),
 });
 import mutiScreen from "../assets/a-muti-screen-wall.svg";
 infintyBento.push({
@@ -881,12 +890,14 @@ infintyBento.push({
     h: 1,
     el: el("div", title("滤镜")),
 });
+
+import free_clip from "../assets/free.svg";
 infintyBento.push({
     x: 5,
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("自由截屏", null, true)),
+    el: el("div", title("自由截屏", null, true), el("img", { src: free_clip, ...bg })),
 });
 import film from "../assets/a-film-strip.svg";
 infintyBento.push({
