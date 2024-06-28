@@ -123,11 +123,9 @@ const t = (text: string) => {
 };
 
 const navTipEl = el("div", { class: "logo" });
-import logo from "../assets/icon.svg";
-navTipEl.append(
-    el("img", { src: logo, width: 300 }),
-    el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索")))
-);
+import logo from "../assets/icon.svg?raw";
+navTipEl.innerHTML = logo;
+navTipEl.append(el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索"))));
 
 window.onload = () => {
     navTipEl.style.transform = "scale(1)";

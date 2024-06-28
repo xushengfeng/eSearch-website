@@ -117,6 +117,9 @@ button {
     background: #fff;
     transition: 1.2s;
 }
+.logo > :nth-child(1) {
+    transform: scale(calc(300 / 192));
+}
 .logo > :nth-child(2) > * {
     text-align: center;
 }
