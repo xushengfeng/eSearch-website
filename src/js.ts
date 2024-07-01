@@ -537,7 +537,7 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el("div", noBorder, el("div", center, subtitle("🆓0元/万字"), el("p", "不限量使用"))),
+    el: el("div", noBorder, el("div", center, subtitle("🪙0元/万字"), el("p", "不限量使用"))),
 });
 infintyBento.push({
     x: 1,
@@ -727,12 +727,38 @@ infintyBento.push({
     h: 1,
     el: el("div", title("贴图归位")),
 });
+const money = "¥$€£";
+let mBg = "";
+for (let i = 0; i < 800; i++) {
+    mBg += money[Math.floor(Math.random() * 4)];
+}
+infintyBento.push({
+    x: -2,
+    y: 0,
+    w: 1,
+    h: 1,
+    el: el(
+        "div",
+        { class: "free" },
+        title("自由免费"),
+        p("所以功能均不受限使用，无订阅与买断"),
+        p("只有高级版"),
+        p("享受以下所以功能："),
+        p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
+        el("div", mBg)
+    ),
+});
 infintyBento.push({
     x: -2,
     y: -1,
     w: 1,
-    h: 2,
-    el: el("div", title("AI识图", null, true)),
+    h: 1,
+    el: el(
+        "div",
+        title("文档与教程"),
+        p("快速上手、详细功能教程、高级技巧"),
+        el("div", center, a("点击打开", "./docs/index.md"))
+    ),
 });
 import Color from "color";
 const allColorFormat = ["HEX", "RGB", "HSL", "HSV", "CMYK"];
@@ -838,7 +864,7 @@ infintyBento.push({
     y: 1,
     w: 1,
     h: 3,
-    el: el("div", { class: "long_clip" }, title("滚动截屏"), longClipEl, aiTip()),
+    el: el("div", { class: "long_clip" }, title("滚动截屏"), p("万向滚动拼接"), longClipEl, aiTip()),
 });
 infintyBento.push({
     x: 6,

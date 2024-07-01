@@ -432,6 +432,7 @@ button {
         top: 0;
         display: flex;
         justify-content: center;
+        z-index: -1;
     }
     & img {
         height: 1060px;
@@ -716,5 +717,19 @@ button {
     & > :not(:first-child) {
         position: relative;
         pointer-events: none;
+    }
+}
+
+.free {
+    color: #f0972a;
+    & > :last-child {
+        position: absolute;
+        left: 0;
+        top: 0;
+        white-space: break-spaces;
+        font-family: code;
+        color: #efefe0;
+        z-index: -1;
+        font-size: 1.8rem;
     }
 }
