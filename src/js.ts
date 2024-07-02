@@ -123,8 +123,9 @@ const t = (text: string) => {
 };
 
 const navTipEl = el("div", { class: "logo" });
-import logo from "../assets/icon.svg?raw";
-navTipEl.innerHTML = logo;
+import logo from "../assets/icon.svg";
+import logoSVG from "../assets/icon.svg?raw";
+navTipEl.innerHTML = logoSVG;
 navTipEl.append(el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索"))));
 
 window.onload = () => {
@@ -447,7 +448,10 @@ import shape_line from "../assets/shape/line.svg";
 import shape_polyline from "../assets/shape/polyline.svg";
 import shape_polygon from "../assets/shape/polygon.svg";
 import shape_number from "../assets/shape/number.svg";
-x形状.append(imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number]));
+import shape_mask from "../assets/shape/mask.svg";
+x形状.append(
+    imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number, shape_mask])
+);
 
 function imgL(l: string[]) {
     const d = document.createDocumentFragment();
@@ -841,7 +845,7 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el("div", title("按键提示")),
+    el: el("div", title("按键提示"), p("提示组合键"), p("自定义大小，位置")),
 });
 function aiTip() {
     return el("span", t("此插画由AI绘制"), {
@@ -959,12 +963,64 @@ infintyBento.push({
         el("div", el("img", { src: manImg }))
     ),
 });
+import tools_close from "../docs/assets/icons/close.svg";
+import tools_save from "../docs/assets/icons/save.svg";
+import tools_copy from "../docs/assets/icons/copy.svg";
+import tools_ocr from "../docs/assets/icons/ocr.svg";
+import tools_search from "../docs/assets/icons/search.svg";
+import tools_record from "../docs/assets/icons/record.svg";
+import tools_open from "../docs/assets/icons/open.svg";
+import tools_long from "../docs/assets/icons/long_clip.svg";
+import tools_scan from "../docs/assets/icons/scan.svg";
+import tools_translate from "../docs/assets/icons/translate.svg";
+
+const toolsBar = el("div", { class: "tools" });
+const tools = [
+    tools_close,
+    tools_save,
+    tools_copy,
+    tools_ocr,
+    tools_search,
+    tools_record,
+    tools_open,
+    tools_long,
+    tools_scan,
+    tools_translate,
+];
+for (let i of tools) {
+    toolsBar.append(el("div", el("img", { src: i })));
+}
+
+function random(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+}
+
+setInterval(() => {
+    const n = Math.floor(random(2, tools.length + 1));
+    const size = Math.floor(random(30, 80));
+    const icon = random(0.5, 1);
+    toolsBar.style.setProperty("--size", size + "px");
+    toolsBar.style.setProperty("--n", n.toString());
+    toolsBar.style.setProperty("--icon", icon.toString());
+    toolsBar.querySelectorAll("div").forEach((e) => {
+        const order = Math.floor(random(1, tools.length + 1));
+        e.style.order = order.toString();
+    });
+}, 1800);
 infintyBento.push({
     x: 6,
     y: 1,
     w: 1,
     h: 2,
-    el: el("div", title("自定义界面")),
+    el: el(
+        "div",
+        title("自定义界面"),
+        p("在设置可视化地编辑工具栏工具显示"),
+        p("自定义取色器、大小栏等的显示"),
+        p("自定义界面字体、毛玻璃效果"),
+        p("……"),
+        toolsBar
+    ),
 });
 const syncSelect = el("div", { class: "center sync" });
 infintyBento.push({

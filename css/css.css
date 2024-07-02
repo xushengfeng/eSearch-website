@@ -733,3 +733,33 @@ button {
         font-size: 1.8rem;
     }
 }
+
+.tools {
+    display: flex;
+    flex-direction: column;
+    --size: 60px;
+    --icon: 0.7;
+    --n: 9;
+    height: calc(var(--size) * var(--n));
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border-radius: calc(var(--size) / 6);
+    width: var(--size);
+    & > div {
+        width: var(--size);
+        height: var(--size);
+        position: relative;
+        flex-shrink: 0;
+        transition: var(--transition);
+        border-radius: calc(var(--size) / 6);
+        & > img {
+            position: absolute;
+            width: calc(var(--size) * var(--icon));
+            --d: calc(var(--size) * (1 - var(--icon)) / 2);
+            left: var(--d);
+            top: var(--d);
+            transition: var(--transition);
+        }
+    }
+}
