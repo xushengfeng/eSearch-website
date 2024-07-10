@@ -112,6 +112,7 @@ button {
     justify-content: space-evenly;
     transform-origin: center center;
     transform: scale(5);
+    filter: blur(4px);
     z-index: 999;
     position: absolute;
     background: #fff;

@@ -130,6 +130,7 @@ navTipEl.append(el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }
 
 window.onload = () => {
     navTipEl.style.transform = "scale(1)";
+    navTipEl.style.filter = "none";
 };
 navTipEl.ontransitionend = () => {
     navTipEl.style.transition = "0s";
