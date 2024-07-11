@@ -693,7 +693,7 @@ button {
 }
 .translate_e {
     & img {
-        width: 36px;
+        width: 48px;
     }
 }
 
@@ -747,6 +747,7 @@ button {
     box-shadow: var(--shadow);
     border-radius: calc(var(--size) / 6);
     width: var(--size);
+    margin: auto;
     & > div {
         width: var(--size);
         height: var(--size);
@@ -763,4 +764,12 @@ button {
             transition: var(--transition);
         }
     }
+}
+
+.translator {
+    display: flex;
+    width: 200%;
+    justify-content: space-around;
+    left: 100%;
+    transition: 0.4s;
 }

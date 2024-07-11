@@ -471,8 +471,6 @@ import t_gemini from "../assets/icons/translate/gemini.svg";
 import t_niu from "../assets/icons/translate/niu.svg";
 import t_youdao from "../assets/icons/translate/youdao.svg";
 
-const translate = el("div", { class: "translate" }, title("翻译"));
-
 function t条幅(text: string) {
     let s = el("div", { class: "slide" });
     s.append(el("span", text), el("span", text));
@@ -486,31 +484,40 @@ infintyBento.push({ x: 1, y: 2, w: 1, h: 2, el: logEl });
 infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
 infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
-infintyBento.push({ x: 2, y: 2, w: 2, h: 2, el: translate });
+infintyBento.push({
+    x: 2,
+    y: 2,
+    w: 1,
+    h: 2,
+    el: el(
+        "div",
+        { class: "translate_e" },
+        title("多引擎翻译"),
+        el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
+        p("自定义API，聚合显示多个引擎翻译结果"),
+        p("方便复制结果"),
+        el("p", t("朗读"), devEl()),
+        el("p", t("自定义MDIC词典查询"), devEl())
+    ),
+});
+
+import figure_svg from "../assets/figure.svg";
+import game_svg from "../assets/game.svg";
+const translatePel = el("div", center);
+translatePel.classList.add("translator");
+translatePel.append(el("img", { src: figure_svg }), el("img", { src: game_svg }));
+const translatorL = ["100%", "0%"];
+let translatorI = 0;
+setInterval(() => {
+    translatePel.style.left = translatorL[translatorI];
+    translatorI = 1 - translatorI;
+}, 2000);
 infintyBento.push({
     x: 3,
     y: 2,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "translate_e", ...noBorder },
-        subtitle("多引擎"),
-        imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])
-    ),
-});
-infintyBento.push({
-    x: 3,
-    y: 3,
-    w: 1,
-    h: 1,
-    el: el(
-        "div",
-        noBorder,
-        subtitle("屏幕翻译"),
-        el("p", t("翻译屏幕文字并覆盖在上")),
-        el("p", t("支持自动翻译：定时识别翻译"))
-    ),
+    el: el("div", title("屏幕翻译"), p("翻译屏幕文字并覆盖在上"), translatePel),
 });
 
 infintyBento.push({
@@ -748,7 +755,7 @@ infintyBento.push({
         title("自由免费"),
         p("所以功能均不受限使用，无订阅与买断"),
         p("只有高级版"),
-        p("享受以下所以功能："),
+        p("享受以下所有功能："),
         p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
         el("div", mBg)
     ),
@@ -926,7 +933,7 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("自由截屏", null, true), el("img", { src: free_clip, ...bg })),
+    el: el("div", title("自由截屏"), el("img", { src: free_clip, ...bg })),
 });
 import film from "../assets/a-film-strip.svg";
 infintyBento.push({
@@ -1019,6 +1026,7 @@ infintyBento.push({
         p("在设置可视化地编辑工具栏工具显示"),
         p("自定义取色器、大小栏等的显示"),
         p("自定义界面字体、毛玻璃效果"),
+        el("p", t("自定义强调色、背景色"), devEl()),
         p("……"),
         toolsBar
     ),
