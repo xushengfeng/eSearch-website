@@ -6,7 +6,6 @@ module.exports = defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, "index.html"),
-                nested: resolve(__dirname, "en.html"),
                 download: resolve(__dirname, "download.html"),
                 ocr: resolve(__dirname, "ocr.html"),
             },
