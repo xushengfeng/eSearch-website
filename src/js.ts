@@ -264,14 +264,16 @@ let dev = false;
 // 获取软件资源
 let result: any[];
 let devResult: any[];
-fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
-    .then((response) => response.json())
-    .then((r) => releasesX(r))
-    .catch((error) => {
-        fetch("/releases.json", { method: "GET" })
-            .then((response) => response.json())
-            .then((r) => releasesX(r));
-    });
+setTimeout(() => {
+    fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
+        .then((response) => response.json())
+        .then((r) => releasesX(r))
+        .catch((error) => {
+            fetch("/releases.json", { method: "GET" })
+                .then((response) => response.json())
+                .then((r) => releasesX(r));
+        });
+}, 10);
 
 const releasesX = (r) => {
     devResult = r;
