@@ -418,7 +418,7 @@ function showLog() {
     }
 }
 
-import windowImg from "../assets/window.svg";
+import windowImg from "../assets/window.webp";
 import wallPaper1 from "../assets/wallpaper/win11.jpg";
 import wallPaper2 from "../assets/wallpaper/macos.jpg";
 const recordEl = el(
