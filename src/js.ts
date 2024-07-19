@@ -1,4 +1,5 @@
 import { el } from "redom";
+import { image } from "dkh-ui";
 
 let infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
 const blockSize = 360;
@@ -499,10 +500,11 @@ infintyBento.push({
         el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
         p("自定义API，聚合显示多个引擎翻译结果"),
         p("方便复制结果"),
-        el("p", t("朗读"), devEl()),
         el("p", t("自定义MDIC词典查询"), devEl())
     ),
 });
+
+infintyBento.push({ x: 3, y: 3, w: 1, h: 1, el: el("div", title("自动识别元素"), p("利用边缘识别识别所有可见元素")) });
 
 import figure_svg from "../assets/figure.svg";
 import game_svg from "../assets/game.svg";
@@ -740,7 +742,7 @@ infintyBento.push({
     y: -1,
     w: 2,
     h: 1,
-    el: el("div", title("贴图归位")),
+    el: el("div", title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")),
 });
 const money = "¥$€£";
 let mBg = "";
@@ -881,12 +883,18 @@ infintyBento.push({
     h: 3,
     el: el("div", { class: "long_clip" }, title("滚动截屏"), p("万向滚动拼接"), longClipEl, aiTip()),
 });
+import autoDeleteEnter from "../assets/zdsc.webp";
 infintyBento.push({
     x: 6,
     y: -1,
     w: 2,
     h: 2,
-    el: el("div", title("自动排版")),
+    el: el(
+        "div",
+        title("自动排版"),
+        p("识别内容段落"),
+        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }).el
+    ),
 });
 infintyBento.push({
     x: 5,
@@ -920,14 +928,14 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("深色模式")),
+    el: el("div", title("深色模式"), p("自动跟随系统切换")),
 });
 infintyBento.push({
     x: 4,
     y: 3,
     w: 1,
     h: 1,
-    el: el("div", title("滤镜")),
+    el: el("div", title("滤镜"), p("马赛克、模糊、对比度、亮度、色调、黑白等")),
 });
 
 import free_clip from "../assets/free.svg";
@@ -1042,7 +1050,7 @@ infintyBento.push({
     h: 1,
     el: el("div", title("同步选择"), syncSelect),
 });
-const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区");
+const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区，方便校对");
 const syncOCR = el("div", { class: "photo_text" });
 syncOCR.append(testText.slice(0, 4), el("span", testText.slice(4, 6)), testText.slice(6));
 const syncOCR2 = el("div");
