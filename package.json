@@ -1,7 +1,10 @@
 {
 	"dependencies": {
+		"color": "^4.2.3",
+		"dkh-ui": "^0.2.1",
 		"ipad-cursor": "^0.3.1",
-		"markdown-it": "^13.0.1"
+		"markdown-it": "^13.0.1",
+		"redom": "^4.0.0"
 	},
 	"private": true,
 	"scripts": {
