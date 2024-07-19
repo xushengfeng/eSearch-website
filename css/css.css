@@ -112,11 +112,16 @@ button {
     justify-content: space-evenly;
     transform-origin: center center;
     transform: scale(5);
-    filter: blur(4px);
+    filter: blur(8px);
     z-index: 999;
     position: absolute;
     background: #fff;
     transition: 1.2s;
+    --op: 0.4;
+    & > * {
+        opacity: var(--op);
+        transition: inherit;
+    }
 }
 .logo > :nth-child(1) {
     transform: scale(calc(300 / 192));

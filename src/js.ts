@@ -128,9 +128,10 @@ import logoSVG from "../assets/icon.svg?raw";
 navTipEl.innerHTML = logoSVG;
 navTipEl.append(el("div", el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索"))));
 
-window.onload = () => {
+window.onload = window.onclick = () => {
     navTipEl.style.transform = "scale(1)";
     navTipEl.style.filter = "none";
+    navTipEl.style.setProperty("--op", "1");
 };
 navTipEl.ontransitionend = () => {
     navTipEl.style.transition = "0s";
