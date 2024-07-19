@@ -1,5 +1,5 @@
 import { el } from "redom";
-import { image } from "dkh-ui";
+import { image, view } from "dkh-ui";
 
 let infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
 const blockSize = 360;
@@ -500,7 +500,7 @@ infintyBento.push({
         el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
         p("自定义API，聚合显示多个引擎翻译结果"),
         p("方便复制结果"),
-        el("p", t("自定义MDIC词典查询"), devEl())
+        // el("p", t("自定义MDIC词典查询"), devEl())
     ),
 });
 
@@ -1141,12 +1141,29 @@ infintyBento.push({
         )
     ),
 });
+const photos = view("x").style({ overflow: "hidden" });
+const photos2 = view("x")
+    .add([
+        image("/readme/1.webp", "截屏页面"),
+        image("/readme/8.webp", "主页面"),
+        image("/readme/5.webp", "设置页面"),
+        image("/readme/6.webp", "深色模式"),
+        image("/readme/7.webp", "贴图"),
+    ])
+    .class("photos")
+    .style({ transition: "0.4s" });
+let photoi = 0;
+setInterval(() => {
+    photos2.style({ translate: `-${photoi}00%` });
+    photoi++;
+    if (photoi === 5) photoi = 0;
+}, 2000);
 infintyBento.push({
     x: 6,
     y: 3,
     w: 2,
     h: 2,
-    el: el("div", title("界面展示")),
+    el: el("div", title("界面展示"), photos.add(photos2).el),
 });
 infintyBento.push({
     x: 5,
