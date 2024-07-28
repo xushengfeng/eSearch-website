@@ -6,4 +6,4 @@
 
 -   [快速上手](start.md)
 -   [详细介绍](details.md)
--   使用技巧
+-   [使用技巧](more.md)
