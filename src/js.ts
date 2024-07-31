@@ -499,7 +499,7 @@ infintyBento.push({
         title("多引擎翻译"),
         el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
         p("自定义API，聚合显示多个引擎翻译结果"),
-        p("方便复制结果"),
+        p("方便复制结果")
         // el("p", t("自定义MDIC词典查询"), devEl())
     ),
 });
@@ -1151,7 +1151,7 @@ const photos2 = view("x")
         image("/readme/7.webp", "贴图"),
     ])
     .class("photos")
-    .style({ transition: "0.4s" });
+    .style({ transition: "0.4s", "align-items": "flex-start" });
 let photoi = 0;
 setInterval(() => {
     photos2.style({ translate: `-${photoi}00%` });
