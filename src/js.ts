@@ -174,7 +174,7 @@ const useFastGitEl = el("input", {
 
 const mainDownload = el("div");
 
-var v = "1.11.0";
+var v = "1.12.1";
 var up_time = 1702051200000;
 var filesObject: { [key: string]: { url: string; size: string; fastUrl?: string } } = {
     "-win32-x64.zip": {
