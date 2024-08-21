@@ -1,25 +1,25 @@
 import { el } from "redom";
-import { image, view } from "dkh-ui";
+import { image, pack, view } from "dkh-ui";
 
-let infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
+const infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
 const blockSize = 360;
 const gap = 10;
 
 const b = document.getElementById("bento");
 
 function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
-    for (let i of infintyBento) {
+    for (const i of infintyBento) {
         const gapX = repeatX - i.w;
         const gapY = repeatY - i.h;
         let cx = Math.floor((p.x - i.x) / (i.w + gapX));
         let cy = Math.floor((p.y - i.y) / (i.h + gapY));
         if (i.x + cx * (i.w + gapX) + i.w < p.x) cx++;
         if (i.y + cy * (i.h + gapY) + i.h < p.y) cy++;
-        let el = i.el;
-        el.style.left = (i.x + cx * (i.w + gapX)) * blockSize + gap + "px";
-        el.style.top = (i.y + cy * (i.h + gapY)) * blockSize + gap + "px";
-        el.style.width = i.w * blockSize - gap * 2 + "px";
-        el.style.height = i.h * blockSize - gap * 2 + "px";
+        const el = i.el;
+        el.style.left = `${(i.x + cx * (i.w + gapX)) * blockSize + gap}px`;
+        el.style.top = `${(i.y + cy * (i.h + gapY)) * blockSize + gap}px`;
+        el.style.width = `${i.w * blockSize - gap * 2}px`;
+        el.style.height = `${i.h * blockSize - gap * 2}px`;
     }
 }
 
@@ -52,8 +52,8 @@ window.onpointerup = (e) => {
 };
 
 function moveB(x: number, y: number) {
-    b.style.left = x + "px";
-    b.style.top = y + "px";
+    b.style.left = `${x}px`;
+    b.style.top = `${y}px`;
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
 
     pickColorXY();
@@ -67,24 +67,24 @@ function moveToRect(r: { x: number; y: number; w: number; h: number }) {
 }
 
 function fillBento() {
-    let smallL: { x: number; y: number; has: boolean }[] = [];
+    const smallL: { x: number; y: number; has: boolean }[] = [];
     for (let i = 0; i < repeatX; i++) {
         for (let j = 0; j < repeatY; j++) {
             smallL.push({ x: i, y: j, has: false });
         }
     }
-    for (let i of infintyBento) {
-        let x = i.x < 0 ? repeatX + i.x : i.x;
-        let y = i.y < 0 ? repeatY + i.y : i.y;
+    for (const i of infintyBento) {
+        const x = i.x < 0 ? repeatX + i.x : i.x;
+        const y = i.y < 0 ? repeatY + i.y : i.y;
         for (let ix = 0; ix < i.w; ix++) {
             for (let iy = 0; iy < i.h; iy++) {
-                let nx = (x + ix) % repeatX;
-                let ny = (y + iy) % repeatY;
+                const nx = (x + ix) % repeatX;
+                const ny = (y + iy) % repeatY;
                 smallL.find((v) => v.x === nx && v.y === ny).has = true;
             }
         }
     }
-    for (let i of smallL) {
+    for (const i of smallL) {
         if (!i.has) {
             infintyBento.push({ x: i.x, y: i.y, w: 1, h: 1, el: el("div", `#${i.x},${i.y}`) });
         }
@@ -96,18 +96,18 @@ function initBento() {
 
     fillBento();
 
-    for (let i of infintyBento) {
+    for (const i of infintyBento) {
         b.append(i.el);
     }
 
     moveB(x, y);
 }
 
-let lan = navigator.language || "zh-HANS";
+const lan = navigator.language || "zh-HANS";
 
 let lanMap: { [key: string]: string } = {};
 
-if (lan.split("-")[0] != "zh") {
+if (lan.split("-")[0] !== "zh") {
     fetch("/language/en.json")
         .then((res) => res.json())
         .then((data) => {
@@ -118,9 +118,8 @@ if (lan.split("-")[0] != "zh") {
 const t = (text: string) => {
     if (lan.split("-")[0] === "zh") {
         return text;
-    } else {
-        return lanMap[text];
     }
+    return lanMap[text];
 };
 
 const navTipEl = el("div", { class: "logo" });
@@ -141,8 +140,8 @@ navTipEl.ontransitionend = () => {
 const downloadEl = el("div", { class: "download" });
 
 // 根据平台在首页显示下载按钮
-var userAgent = navigator.userAgent.toLowerCase();
-var platform = "Unknown";
+const userAgent = navigator.userAgent.toLowerCase();
+let platform = "Unknown";
 if (userAgent.indexOf("win") > -1) {
     platform = "Windows";
 } else if (userAgent.indexOf("iphone") > -1) {
@@ -174,44 +173,44 @@ const useFastGitEl = el("input", {
 
 const mainDownload = el("div");
 
-var v = "1.12.1";
-var up_time = 1702051200000;
-var filesObject: { [key: string]: { url: string; size: string; fastUrl?: string } } = {
+let v = "1.12.1";
+let up_time = 1702051200000;
+const filesObject: { [key: string]: { url: string; size: string; fastUrl?: string } } = {
     "-win32-x64.zip": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.zip`,
-        size: `未知`,
+        size: "未知",
     },
     "-win32-x64.exe": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.exe`,
-        size: `未知`,
+        size: "未知",
     },
     "-linux-x64.tar.gz": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.tar.gz`,
-        size: `未知`,
+        size: "未知",
     },
     "-linux-x64.deb": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.deb`,
-        size: `未知`,
+        size: "未知",
     },
     "-linux-x64.rpm": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.rpm`,
-        size: `未知`,
+        size: "未知",
     },
     "-linux-x64.AppImage": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.AppImage`,
-        size: `未知`,
+        size: "未知",
     },
-    ".aur": { url: ``, size: `未知` },
+    ".aur": { url: "", size: "未知" },
     "-darwin-x64.dmg": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.dmg`,
-        size: `未知`,
+        size: "未知",
     },
     "-darwin-x64.zip": {
         url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.zip`,
-        size: `未知`,
+        size: "未知",
     },
 };
-var fileType = Object.keys(filesObject);
+const fileType = Object.keys(filesObject);
 
 function cPlatform(platform: string) {
     mainDownload.innerHTML = "";
@@ -224,14 +223,14 @@ function cPlatform(platform: string) {
             mainDownload.append(
                 getDownloadItem("-linux-x64.deb", "deb"),
                 getDownloadItem("-linux-x64.rpm", "rpm"),
-                getDownloadItem("-linux-x64.AppImage", "AppImage")
+                getDownloadItem("-linux-x64.AppImage", "AppImage"),
             );
             platformSelect.value = "Linux";
             break;
         case "macOS":
             mainDownload.append(
                 getDownloadItem("-darwin-x64.dmg", "dmg"),
-                getDownloadItem("-darwin-x64.zip", "压缩包")
+                getDownloadItem("-darwin-x64.zip", "压缩包"),
             );
             platformSelect.value = "macOS";
             break;
@@ -244,7 +243,7 @@ function cPlatform(platform: string) {
     }
 }
 
-let fastUrl = lan.split("-")[0] === "zh";
+const fastUrl = lan.split("-")[0] === "zh";
 
 cPlatform(platform);
 
@@ -282,16 +281,16 @@ const releasesX = (r) => {
     result = structuredClone(r);
 
     if (!dev)
-        for (let i in result) {
+        for (const i in result) {
             if (result[i].prerelease) {
                 delete result[i];
             }
         }
     result = result.flat();
-    for (let i in result[0].assets) {
-        let url = <string>result[0].assets[i].browser_download_url;
-        let name = <string>result[0].assets[i].name;
-        let x = fileType.find((i) => name.includes(i));
+    for (const i in result[0].assets) {
+        const url = <string>result[0].assets[i].browser_download_url;
+        const name = <string>result[0].assets[i].name;
+        const x = fileType.find((i) => name.includes(i));
         if (!x) continue;
         filesObject[x].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
         filesObject[x].url = url;
@@ -311,24 +310,23 @@ function fasthub(url: string) {
         { url: "https://github.moeyy.xyz/", replace: false },
         { url: "https://kkgithub.com/", replace: true },
     ];
-    let proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
+    const proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
     if (proxy.replace) {
         return url.replace("https://github.com/", proxy.url);
-    } else {
-        return proxy.url + url;
     }
+    return proxy.url + url;
 }
 
 function useFastGit(b: boolean) {
     if (b)
-        for (let i in filesObject) {
+        for (const i in filesObject) {
             filesObject[i].fastUrl = fasthub(filesObject[i].url);
         }
 
-    mainDownload.querySelectorAll("a").forEach((a) => {
-        let o = filesObject[a.getAttribute("data-type")];
-        a.href = b ? o.fastUrl : o.url;
-    });
+    for (const a of pack(mainDownload).queryAll("a")) {
+        const o = filesObject[a.el.getAttribute("data-type")];
+        (a.el as HTMLAnchorElement).href = b ? o.fastUrl : o.url;
+    }
 }
 
 if (lan.split("-")[0] === "zh") {
@@ -363,7 +361,7 @@ function subtitle(string: string) {
 
 function a(string: string | HTMLElement | HTMLElement[], href: string) {
     if (typeof string === "string") return el("a", t(string), { href, target: "_blank" });
-    else return el("a", string, { href, target: "_blank" });
+    return el("a", string, { href, target: "_blank" });
 }
 function p(string: string) {
     return el("p", t(string));
@@ -375,7 +373,7 @@ const noBorder = { style: { border: "none" } };
 
 downloadEl.append(
     el("span", { class: "title" }, t("立即下载")),
-    el("div", el("div", platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))), mainDownload)
+    el("div", el("div", platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))), mainDownload),
 );
 
 const ocrEl = el("div", { class: "ocr" }, title("离线文字识别（OCR）", "bottom"));
@@ -391,11 +389,8 @@ function showLog() {
         typographer: true,
     });
     const defaultRender =
-        md.renderer.rules.link_open ||
-        function (tokens, idx, options, env, self) {
-            return self.renderToken(tokens, idx, options);
-        };
-    md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+        md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+    md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
         const aIndex = tokens[idx].attrIndex("target");
         if (aIndex < 0) {
             tokens[idx].attrPush(["target", "_blank"]);
@@ -405,7 +400,7 @@ function showLog() {
         return defaultRender(tokens, idx, options, env, self);
     };
     log2El.innerHTML = "";
-    for (let i in result) {
+    for (const i in result) {
         const li = el("li");
         const h = el("span");
         h.className = "log_v";
@@ -426,7 +421,7 @@ const recordEl = el(
     { class: "record" },
     el("img", { src: wallPaper1, class: "wp" }),
     el("img", { src: windowImg, ...center }),
-    el("div", { ...center })
+    el("div", { ...center }),
 );
 
 import photoImg from "../assets/a-mountain.svg";
@@ -442,7 +437,7 @@ const y以图搜图 = el(
     el("div", center, el("div", el("img", { src: photoImg }))),
     el("div", center, el("div", el("img", { src: photoImg }))),
     el("div", center, el("div", el("img", { src: photoImg }))),
-    el("div", center, el("div", el("img", { src: photoImg1 })))
+    el("div", center, el("div", el("img", { src: photoImg1 }))),
 );
 
 const x形状 = el("div", title("多种形状"), { class: "shape" });
@@ -455,12 +450,12 @@ import shape_polygon from "../assets/shape/polygon.svg";
 import shape_number from "../assets/shape/number.svg";
 import shape_mask from "../assets/shape/mask.svg";
 x形状.append(
-    imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number, shape_mask])
+    imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number, shape_mask]),
 );
 
 function imgL(l: string[]) {
     const d = document.createDocumentFragment();
-    for (let i of l) {
+    for (const i of l) {
         d.append(el("img", { src: i }));
     }
     return d;
@@ -476,7 +471,7 @@ import t_niu from "../assets/icons/translate/niu.svg";
 import t_youdao from "../assets/icons/translate/youdao.svg";
 
 function t条幅(text: string) {
-    let s = el("div", { class: "slide" });
+    const s = el("div", { class: "slide" });
     s.append(el("span", text), el("span", text));
     return s;
 }
@@ -499,7 +494,7 @@ infintyBento.push({
         title("多引擎翻译"),
         el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
         p("自定义API，聚合显示多个引擎翻译结果"),
-        p("方便复制结果")
+        p("方便复制结果"),
         // el("p", t("自定义MDIC词典查询"), devEl())
     ),
 });
@@ -545,8 +540,8 @@ infintyBento.push({
             center,
             subtitle("🎯准确"),
             el("p", "使用PaddleOCR v4模型"),
-            el("p", a("在线试用", "https://webocr.netlify.app"))
-        )
+            el("p", a("在线试用", "https://webocr.netlify.app")),
+        ),
     ),
 });
 infintyBento.push({
@@ -569,8 +564,8 @@ infintyBento.push({
             center,
             el("p", "基于开源的", a("PaddleOCR", "https://github.com/paddle/paddleocr")),
             el("p", "开箱即用"),
-            el("p", a("js库", "https://github.com/xushengfeng/eSearch-OCR"))
-        )
+            el("p", a("js库", "https://github.com/xushengfeng/eSearch-OCR")),
+        ),
     ),
 });
 
@@ -590,7 +585,7 @@ infintyBento.push({
         el("img", { src: baiduImg }),
         el("img", { src: yandexImg }),
         el("img", { src: googleImg }),
-        el("img", { src: bingImg })
+        el("img", { src: bingImg }),
     ),
 }); // 搜索引擎
 
@@ -602,7 +597,7 @@ const virtualBgEl = el(
     el("div"),
     el("img", { src: bg2 }),
     el("img", { src: bg3 }),
-    el("div", el("img", { src: wallPaper1 }))
+    el("div", el("img", { src: wallPaper1 })),
 );
 infintyBento.push({
     x: 3,
@@ -616,12 +611,12 @@ infintyBento.push({
         el("img", { src: bg1 }),
         virtualBgEl,
         el("img", { src: manImg }),
-        aiTip()
+        aiTip(),
     ),
 });
 let virtualBgI = 1;
 setInterval(() => {
-    virtualBgEl.style.left = virtualBgI * 100 + "%";
+    virtualBgEl.style.left = `${virtualBgI * 100}%`;
     virtualBgI--;
     if (virtualBgI === -4) virtualBgI = 1;
 }, 1600);
@@ -635,8 +630,8 @@ infintyBento.push({
         { class: "star" },
         a(
             [el("span", "🌟"), el("span", t("去GitHub点Star")), el("span", t("或fork，或提issue，这是我开发的动力"))],
-            "https://github.com/xushengfeng/eSearch"
-        )
+            "https://github.com/xushengfeng/eSearch",
+        ),
     ),
 });
 infintyBento.push({
@@ -652,7 +647,7 @@ infintyBento.push({
         t条幅("Interface and OCR support multiple languages "),
         t条幅("Interface et OCR prennent en charge plusieurs langues "),
         t条幅("Interfaz y OCR soportan varios idiomas "),
-        t条幅("интерфейс и OCR поддерживает несколько языков ")
+        t条幅("интерфейс и OCR поддерживает несколько языков "),
     ),
 });
 import windowsImg from "../assets/Windows.svg";
@@ -674,13 +669,13 @@ infintyBento.push({
             { class: "center" },
             el("img", { src: windowsImg }),
             el("img", { src: linuxImg }),
-            el("img", { src: macosImg })
-        )
+            el("img", { src: macosImg }),
+        ),
     ),
 }); // 跨平台
 import githubImg from "../assets/icons/Github.svg";
 import giteeImg from "../assets/icons/Gitee.svg";
-let codeBg = el("div");
+const codeBg = el("div");
 const codeCharts = ["~", "<", ">", "?", "#", "@", "$", "&", "*", "%", "0", "*", "+", "-"];
 let codeBgC = "";
 for (let y = 0; y < 18; y++) {
@@ -707,8 +702,8 @@ infintyBento.push({
             "div",
             { class: "center" },
             a(el("img", { src: githubImg }), "https://github.com/xushengfeng/eSearch"),
-            a(el("img", { src: giteeImg }), "https://gitee.com/xsf-root/eSearch")
-        )
+            a(el("img", { src: giteeImg }), "https://gitee.com/xsf-root/eSearch"),
+        ),
     ),
 }); // 开源
 import devImg from "../assets/a-cube-filled-with-mechancial-elements.svg";
@@ -733,8 +728,8 @@ infintyBento.push({
                     releasesX(devResult);
                 },
             },
-            t("测试版尝鲜")
-        )
+            t("测试版尝鲜"),
+        ),
     ),
 });
 infintyBento.push({
@@ -762,7 +757,7 @@ infintyBento.push({
         p("只有高级版"),
         p("享受以下所有功能："),
         p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
-        el("div", mBg)
+        el("div", mBg),
     ),
 });
 infintyBento.push({
@@ -774,7 +769,7 @@ infintyBento.push({
         "div",
         title("文档与教程"),
         p("快速上手、详细功能教程、高级技巧"),
-        el("div", center, a("点击打开", "./docs/index.md"))
+        el("div", center, a("点击打开", "./docs/index.md")),
     ),
 });
 import Color from "color";
@@ -788,24 +783,27 @@ function colorConversion(rgba: number[] | string, type: string): string {
             return color.hex();
         case "RGB":
             return color.rgb().string();
-        case "HSL":
+        case "HSL": {
             const hsl = color.hsl().round().array();
             return `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
-        case "HSV":
+        }
+        case "HSV": {
             const hsv = color.hsv().round().array();
             return `hsv(${hsv[0]}, ${hsv[1]}%, ${hsv[2]}%)`;
-        case "CMYK":
+        }
+        case "CMYK": {
             const cmyk = color.cmyk().round().array();
             return `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+        }
         default:
             return "";
     }
 }
 function pickColor(l: number[]) {
-    let color = Color.rgb(l);
-    let clipColorTextColor = color.alpha() == 1 ? (color.isLight() ? "#000" : "#fff") : "";
-    let div = el("div", { style: { background: color.hex(), color: clipColorTextColor } });
-    for (let i in allColorFormat) {
+    const color = Color.rgb(l);
+    const clipColorTextColor = color.alpha() === 1 ? (color.isLight() ? "#000" : "#fff") : "";
+    const div = el("div", { style: { background: color.hex(), color: clipColorTextColor } });
+    for (const i in allColorFormat) {
         div.append(el("div", colorConversion(color, allColorFormat[i])));
     }
     return div;
@@ -828,7 +826,7 @@ function pickColorXY() {
     pickColorEl.append(pickColor(Array.from(color)));
 }
 import photo from "../assets/p.webp";
-let img = document.createElement("img");
+const img = document.createElement("img");
 img.src = photo;
 img.onload = () => {
     pickColorCanvas.width = img.naturalWidth;
@@ -874,7 +872,7 @@ import scrollImg from "../assets/rockets-and-space-ship.svg";
 const longClipEl = el("div", el("img", { src: scrollImg }));
 function logClip() {
     const h = window.innerHeight - longClipEl.getBoundingClientRect().y - 100;
-    longClipEl.style.height = Math.max(h, 200) + "px";
+    longClipEl.style.height = `${Math.max(h, 200)}px`;
 }
 infintyBento.push({
     x: -2,
@@ -893,7 +891,7 @@ infintyBento.push({
         "div",
         title("自动排版"),
         p("识别内容段落"),
-        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }).el
+        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }).el,
     ),
 });
 infintyBento.push({
@@ -905,7 +903,7 @@ infintyBento.push({
         "div",
         title("置于顶层"),
         p("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
-        p("支持失去焦点自动关闭窗口")
+        p("支持失去焦点自动关闭窗口"),
     ),
 });
 import mutiScreen from "../assets/a-muti-screen-wall.svg";
@@ -920,7 +918,7 @@ infintyBento.push({
         title("多屏幕"),
         el("img", { src: mutiScreen }),
         el("img", { ...center, src: logo }),
-        aiTip()
+        aiTip(),
     ),
 });
 infintyBento.push({
@@ -962,9 +960,9 @@ infintyBento.push({
             el("img", { src: film }),
             el("img", { src: film }),
             el("img", { src: film }),
-            el("img", { src: film })
+            el("img", { src: film }),
         ),
-        aiTip()
+        aiTip(),
     ),
 });
 import manImg from "../assets/a-professor.svg";
@@ -979,7 +977,7 @@ infintyBento.push({
         { class: "camera" },
         el("img", { src: wallPaper2, class: "wp" }),
         el("img", { src: windowImg, ...center }),
-        el("div", el("img", { src: manImg }))
+        el("div", el("img", { src: manImg })),
     ),
 });
 import tools_close from "../docs/assets/icons/close.svg";
@@ -1006,7 +1004,7 @@ const tools = [
     tools_scan,
     tools_translate,
 ];
-for (let i of tools) {
+for (const i of tools) {
     toolsBar.append(el("div", el("img", { src: i })));
 }
 
@@ -1018,13 +1016,13 @@ setInterval(() => {
     const n = Math.floor(random(2, tools.length + 1));
     const size = Math.floor(random(30, 80));
     const icon = random(0.5, 1);
-    toolsBar.style.setProperty("--size", size + "px");
+    toolsBar.style.setProperty("--size", `${size}px`);
     toolsBar.style.setProperty("--n", n.toString());
     toolsBar.style.setProperty("--icon", icon.toString());
-    toolsBar.querySelectorAll("div").forEach((e) => {
+    for (const e of pack(toolsBar).queryAll("div")) {
         const order = Math.floor(random(1, tools.length + 1));
-        e.style.order = order.toString();
-    });
+        e.style({ order: order.toString() });
+    }
 }, 1800);
 infintyBento.push({
     x: 6,
@@ -1039,7 +1037,7 @@ infintyBento.push({
         p("自定义界面字体、毛玻璃效果"),
         el("p", t("自定义强调色、背景色"), devEl()),
         p("……"),
-        toolsBar
+        toolsBar,
     ),
 });
 const syncSelect = el("div", { class: "center sync" });
@@ -1069,7 +1067,7 @@ infintyBento.push({
             "div",
             a(
                 el("img", { src: "https://www.netlify.com/v3/img/components/netlify-light.svg" }),
-                "https://www.netlify.com"
+                "https://www.netlify.com",
             ),
             el("p", t("网站灵感来源："), a("amie", "https://www.amie.so/recap")),
             el("p", t("此网站源码："), a("Github", "https://github.com/xushengfeng/eSearch-website/")),
@@ -1078,9 +1076,9 @@ infintyBento.push({
                 "address",
                 a("xushengfeng", "https://github.com/xushengfeng"),
                 el("br"),
-                a("xushengfeng_zg@163.com", "mailto:xushengfeng_zg@163.com")
-            )
-        )
+                a("xushengfeng_zg@163.com", "mailto:xushengfeng_zg@163.com"),
+            ),
+        ),
     ),
 });
 
@@ -1092,7 +1090,7 @@ const ctrlEl = el(
     title("精确控制"),
     el("p", el("span", { style: { "font-family": "code" } }, "↑↓←→"), "自由移动"),
     el("p", el("span", { style: { "font-family": "code" } }, "+-*/()"), "四则运算精确分割"),
-    el("p", "放大到像素编辑")
+    el("p", "放大到像素编辑"),
 );
 infintyBento.push({
     x: 7,
@@ -1137,8 +1135,8 @@ infintyBento.push({
                     "font-family": "code",
                 },
             },
-            "(t)=>λt"
-        )
+            "(t)=>λt",
+        ),
     ),
 });
 const photos = view("x").style({ overflow: "hidden" });
@@ -1180,17 +1178,17 @@ infintyBento.push({
                 "div",
                 a(
                     "错误报告",
-                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF"
-                )
+                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
+                ),
             ),
             el(
                 "div",
                 a(
                     "功能建议",
-                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B"
-                )
-            )
-        )
+                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
+                ),
+            ),
+        ),
     ),
 });
 
@@ -1212,6 +1210,6 @@ document.body.append(
                     b.style.transition = "";
                 }, 400);
             },
-        })
-    )
+        }),
+    ),
 );

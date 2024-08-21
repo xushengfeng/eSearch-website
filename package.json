@@ -1,7 +1,7 @@
 {
 	"dependencies": {
 		"color": "^4.2.3",
-		"dkh-ui": "^0.2.1",
+		"dkh-ui": "^0.7.0",
 		"ipad-cursor": "^0.3.1",
 		"markdown-it": "^13.0.1",
 		"redom": "^4.0.0"
@@ -13,6 +13,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
 		"@types/markdown-it": "^12.2.3",
 		"typescript": "^5.5.3",
 		"vite": "^5.3.4"

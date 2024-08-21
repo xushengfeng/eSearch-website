@@ -1,3 +1,4 @@
+import { pack } from "dkh-ui";
 import { initCursor } from "ipad-cursor";
 
 const latinLang = [
@@ -65,7 +66,7 @@ const cyrillicLang = [
 ];
 const devanagariLang = ["hi", "mr", "ne", "bh", "mai", "ang", "bho", "mah", "sck", "new", "gom", "sa", "bgc"];
 
-let url = {
+const url = {
     ch: "https://github.com/xushengfeng/eSearch-OCR/releases/download/4.0.0/ch.zip",
     en: "https://github.com/xushengfeng/eSearch-OCR/releases/download/4.0.0/en.zip",
     chinese_cht: "https://github.com/xushengfeng/eSearch-OCR/releases/download/4.0.0/chinese_cht.zip",
@@ -170,8 +171,8 @@ const l = {
     bgc: "哈尔穆克语",
 };
 const lel = document.getElementById("ocr_l") as HTMLSelectElement;
-for (let k in l) {
-    let el = document.createElement("option");
+for (const k in l) {
+    const el = document.createElement("option");
     el.innerText = l[k];
     el.value = k;
     lel.append(el);
@@ -181,9 +182,9 @@ lel.onchange = () => {
 };
 
 const mListEl = document.getElementById("m_list");
-for (let i in url) {
-    let el = document.createElement("div");
-    let a = document.createElement("a");
+for (const i in url) {
+    const el = document.createElement("div");
+    const a = document.createElement("a");
     a.href = url[i];
     a.download = "true";
     el.innerText = `${l[i]}`;
@@ -206,15 +207,15 @@ function getMName(lan: string) {
     } else {
         language = lan as keyof typeof url;
     }
-    mListEl.querySelectorAll(`div`).forEach((el) => {
-        console.log(el.dataset.m, language);
+    for (const el of pack(mListEl).queryAll("div")) {
+        console.log(el.el.dataset.m, language);
 
-        if (el.dataset.m == language) {
-            el.classList.add("match_l");
+        if (el.el.dataset.m === language) {
+            el.class("match_l");
         } else {
-            el.classList.remove("match_l");
+            el.el.classList.remove("match_l");
         }
-    });
+    }
 }
 
 getMName("ch");
