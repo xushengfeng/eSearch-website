@@ -419,8 +419,8 @@ function showLog() {
 }
 
 import windowImg from "../assets/window.webp";
-import wallPaper1 from "../assets/wallpaper/win11.jpg";
-import wallPaper2 from "../assets/wallpaper/macos.jpg";
+import wallPaper1 from "../assets/wallpaper/win11.webp";
+import wallPaper2 from "../assets/wallpaper/macos.webp";
 const recordEl = el(
     "div",
     { class: "record" },
@@ -827,7 +827,7 @@ function pickColorXY() {
     pickColorEl.innerHTML = "";
     pickColorEl.append(pickColor(Array.from(color)));
 }
-import photo from "../assets/p.jpg";
+import photo from "../assets/p.webp";
 let img = document.createElement("img");
 img.src = photo;
 img.onload = () => {
