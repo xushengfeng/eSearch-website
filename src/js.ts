@@ -785,7 +785,7 @@ infintyBento.push({
         "div",
         title("文档与教程"),
         p("快速上手、详细功能教程、高级技巧"),
-        el("div", center, a("点击打开", "./docs/index.md")),
+        el("div", center, a("点击打开", "https://github.com/xushengfeng/eSearch-website/blob/master/docs/index.md")),
     ),
 });
 import Color from "color";
