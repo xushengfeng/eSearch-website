@@ -361,11 +361,11 @@ function subtitle(string: string) {
     return s;
 }
 
-function a(string: string | HTMLElement | HTMLElement[], href: string) {
+function a_(string: string | HTMLElement | HTMLElement[], href: string) {
     if (typeof string === "string") return el("a", t(string), { href, target: "_blank" });
     return el("a", string, { href, target: "_blank" });
 }
-function p(string: string) {
+function p_(string: string) {
     return el("p", t(string));
 }
 
@@ -495,8 +495,8 @@ infintyBento.push({
         { class: "translate_e" },
         title("多引擎翻译"),
         el("div", imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
-        p("自定义API，聚合显示多个引擎翻译结果"),
-        p("方便复制结果"),
+        p_("自定义API，聚合显示多个引擎翻译结果"),
+        p_("方便复制结果"),
         // el("p", t("自定义MDIC词典查询"), devEl())
     ),
 });
@@ -505,10 +505,10 @@ infintyBento.push({
     y: 3,
     w: 1,
     h: 1,
-    el: view().add([title("连拍"), p("捕获精彩瞬间")]),
+    el: view().add([title("连拍"), p_("捕获精彩瞬间")]),
 });
 
-infintyBento.push({ x: 3, y: 3, w: 1, h: 1, el: el("div", title("自动识别元素"), p("利用边缘识别识别所有可见元素")) });
+infintyBento.push({ x: 3, y: 3, w: 1, h: 1, el: el("div", title("自动识别元素"), p_("利用边缘识别识别所有可见元素")) });
 
 import figure_svg from "../assets/figure.svg";
 import game_svg from "../assets/game.svg";
@@ -526,7 +526,7 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("屏幕翻译"), p("翻译屏幕文字并覆盖在上"), translatePel),
+    el: el("div", title("屏幕翻译"), p_("翻译屏幕文字并覆盖在上"), translatePel),
 });
 
 infintyBento.push({
@@ -549,7 +549,7 @@ infintyBento.push({
             center,
             subtitle("🎯准确"),
             el("p", "使用PaddleOCR v4模型"),
-            el("p", a("在线试用", "https://webocr.netlify.app")),
+            el("p", a_("在线试用", "https://webocr.netlify.app")),
         ),
     ),
 });
@@ -571,9 +571,9 @@ infintyBento.push({
         el(
             "div",
             center,
-            el("p", "基于开源的", a("PaddleOCR", "https://github.com/paddle/paddleocr")),
+            el("p", "基于开源的", a_("PaddleOCR", "https://github.com/paddle/paddleocr")),
             el("p", "开箱即用"),
-            el("p", a("js库", "https://github.com/xushengfeng/eSearch-OCR")),
+            el("p", a_("js库", "https://github.com/xushengfeng/eSearch-OCR")),
         ),
     ),
 });
@@ -637,7 +637,7 @@ infintyBento.push({
     el: el(
         "div",
         { class: "star" },
-        a(
+        a_(
             [el("span", "🌟"), el("span", t("去GitHub点Star")), el("span", t("或fork，或提issue，这是我开发的动力"))],
             "https://github.com/xushengfeng/eSearch",
         ),
@@ -651,7 +651,7 @@ infintyBento.push({
     el: el(
         "div",
         { class: "lang" },
-        a("下载OCR语言包", "./ocr.html"),
+        a_("下载OCR语言包", "./ocr.html"),
         t条幅("界面和OCR支持多种语言"),
         t条幅("Interface and OCR support multiple languages "),
         t条幅("Interface et OCR prennent en charge plusieurs langues "),
@@ -710,8 +710,8 @@ infintyBento.push({
         el(
             "div",
             { class: "center" },
-            a(el("img", { src: githubImg }), "https://github.com/xushengfeng/eSearch"),
-            a(el("img", { src: giteeImg }), "https://gitee.com/xsf-root/eSearch"),
+            a_(el("img", { src: githubImg }), "https://github.com/xushengfeng/eSearch"),
+            a_(el("img", { src: giteeImg }), "https://gitee.com/xsf-root/eSearch"),
         ),
     ),
 }); // 开源
@@ -746,14 +746,14 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: el("div", title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")),
+    el: el("div", title("贴图"), p_("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p_("一键归位")),
 });
 infintyBento.push({
     x: 5,
     y: -1,
     w: 1,
     h: 1,
-    el: view().add([title("高级图片编辑"), p("为图片添加圆角、阴影")]),
+    el: view().add([title("高级图片编辑"), p_("为图片添加圆角、阴影")]),
 });
 const money = "¥$€£";
 let mBg = "";
@@ -769,10 +769,10 @@ infintyBento.push({
         "div",
         { class: "free" },
         title("自由免费"),
-        p("所以功能均不受限使用，无订阅与买断"),
-        p("只有高级版"),
-        p("享受以下所有功能："),
-        p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
+        p_("所以功能均不受限使用，无订阅与买断"),
+        p_("只有高级版"),
+        p_("享受以下所有功能："),
+        p_("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
         el("div", mBg),
     ),
 });
@@ -784,8 +784,8 @@ infintyBento.push({
     el: el(
         "div",
         title("文档与教程"),
-        p("快速上手、详细功能教程、高级技巧"),
-        el("div", center, a("点击打开", "https://github.com/xushengfeng/eSearch-website/blob/master/docs/index.md")),
+        p_("快速上手、详细功能教程、高级技巧"),
+        el("div", center, a_("点击打开", "https://github.com/xushengfeng/eSearch-website/blob/master/docs/index.md")),
     ),
 });
 import Color from "color";
@@ -872,7 +872,7 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el("div", title("按键提示"), p("提示组合键"), p("自定义大小，位置")),
+    el: el("div", title("按键提示"), p_("提示组合键"), p_("自定义大小，位置")),
 });
 function aiTip() {
     return el("span", t("此插画由AI绘制"), {
@@ -895,7 +895,7 @@ infintyBento.push({
     y: 1,
     w: 1,
     h: 3,
-    el: el("div", { class: "long_clip" }, title("滚动截屏"), p("万向滚动拼接"), longClipEl, aiTip()),
+    el: el("div", { class: "long_clip" }, title("滚动截屏"), p_("万向滚动拼接"), longClipEl, aiTip()),
 });
 import autoDeleteEnter from "../assets/zdsc.webp";
 infintyBento.push({
@@ -906,7 +906,7 @@ infintyBento.push({
     el: el(
         "div",
         title("自动排版"),
-        p("识别内容段落"),
+        p_("识别内容段落"),
         image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }).el,
     ),
 });
@@ -918,8 +918,8 @@ infintyBento.push({
     el: el(
         "div",
         title("置于顶层"),
-        p("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
-        p("支持失去焦点自动关闭窗口"),
+        p_("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
+        p_("支持失去焦点自动关闭窗口"),
     ),
 });
 import mutiScreen from "../assets/a-muti-screen-wall.svg";
@@ -942,14 +942,14 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el("div", title("深色模式"), p("自动跟随系统切换")),
+    el: el("div", title("深色模式"), p_("自动跟随系统切换")),
 });
 infintyBento.push({
     x: 4,
     y: 3,
     w: 1,
     h: 1,
-    el: el("div", title("滤镜"), p("马赛克、模糊、对比度、亮度、色调、黑白等")),
+    el: el("div", title("滤镜"), p_("马赛克、模糊、对比度、亮度、色调、黑白等")),
 });
 
 import free_clip from "../assets/free.svg";
@@ -1048,11 +1048,11 @@ infintyBento.push({
     el: el(
         "div",
         title("自定义界面"),
-        p("在设置可视化地编辑工具栏工具显示"),
-        p("自定义取色器、大小栏等的显示"),
-        p("自定义界面字体、毛玻璃效果"),
+        p_("在设置可视化地编辑工具栏工具显示"),
+        p_("自定义取色器、大小栏等的显示"),
+        p_("自定义界面字体、毛玻璃效果"),
         el("p", t("自定义强调色、背景色")),
-        p("……"),
+        p_("……"),
         toolsBar,
     ),
 });
@@ -1081,18 +1081,18 @@ infintyBento.push({
         title("关于"),
         el(
             "div",
-            a(
+            a_(
                 el("img", { src: "https://www.netlify.com/v3/img/components/netlify-light.svg" }),
                 "https://www.netlify.com",
             ),
-            el("p", t("网站灵感来源："), a("amie", "https://www.amie.so/recap")),
-            el("p", t("此网站源码："), a("Github", "https://github.com/xushengfeng/eSearch-website/")),
+            el("p", t("网站灵感来源："), a_("amie", "https://www.amie.so/recap")),
+            el("p", t("此网站源码："), a_("Github", "https://github.com/xushengfeng/eSearch-website/")),
             el("p", "2021 - 2024"),
             el(
                 "address",
-                a("xushengfeng", "https://github.com/xushengfeng"),
+                a_("xushengfeng", "https://github.com/xushengfeng"),
                 el("br"),
-                a("xushengfeng_zg@163.com", "mailto:xushengfeng_zg@163.com"),
+                a_("xushengfeng_zg@163.com", "mailto:xushengfeng_zg@163.com"),
             ),
         ),
     ),
@@ -1192,14 +1192,14 @@ infintyBento.push({
             center,
             el(
                 "div",
-                a(
+                a_(
                     "错误报告",
                     "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
                 ),
             ),
             el(
                 "div",
-                a(
+                a_(
                     "功能建议",
                     "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
                 ),
