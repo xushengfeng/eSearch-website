@@ -1,0 +1,35 @@
+:root {
+    --hover-color: #0002;
+    --transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    --border-radius: 8px;
+    --blur: blur(16px);
+    --shadow: #0002 0 0 8px;
+    --bg: #fff;
+    --color: #000;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+article {
+    margin: 20px;
+}
+
+#nav {
+    list-style: none;
+}
+
+li img {
+    width: 36px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.match_l {
+    background-color: #f2f2f2;
+}

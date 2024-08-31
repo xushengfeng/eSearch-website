@@ -1,5 +1,4 @@
 import { pack } from "dkh-ui";
-import { initCursor } from "ipad-cursor";
 
 const latinLang = [
     "af",
@@ -219,5 +218,3 @@ function getMName(lan: string) {
 }
 
 getMName("ch");
-
-initCursor();
