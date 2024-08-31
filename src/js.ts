@@ -1,5 +1,19 @@
-import { el } from "redom";
-import { a, ele, type ElType, image, input, p, pack, select, setProperties, setProperty, txt, view } from "dkh-ui";
+import {
+    a,
+    button,
+    ele,
+    type ElType,
+    image,
+    input,
+    label,
+    p,
+    pack,
+    select,
+    setProperties,
+    setProperty,
+    txt,
+    view,
+} from "dkh-ui";
 
 const infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement | ElType<HTMLElement> }[] = [];
 const blockSize = 360;
@@ -129,7 +143,7 @@ import logo from "../assets/icon.svg";
 import logoSVG from "../assets/icon.svg?raw";
 navTipEl.el.innerHTML = logoSVG;
 navTipEl
-    .add(view().add([el("h1", "eSearch", { style: { "font-size": "3rem" } }), el("h2", t("识屏 · 搜索"))]))
+    .add(view().add([ele("h1").add(t("eSearch")).style({ "font-size": "3rem" }), ele("h2").add(t("识屏 · 搜索"))]))
     .on("transitionend", () => {
         navTipEl.style({ transition: "0s" });
     });
@@ -348,7 +362,7 @@ function title(string: string, posi?: "bottom", dev?: boolean) {
     return s;
 }
 function subtitle(string: string) {
-    const s = el("h3", { class: "subtitle" }, t(string));
+    const s = ele("h3").add(string).class("subtitle");
     return s;
 }
 
@@ -358,7 +372,7 @@ const noBorder = { style: { border: "none" } };
 
 downloadEl.add([
     txt("立即下载").class("title"),
-    view().add([view().add([platformSelect, el("label", useFastGitEl, t("使用加速链接下载"))]), mainDownload]),
+    view().add([view().add([platformSelect, label([useFastGitEl, "使用加速链接下载"])]), mainDownload]),
 ]);
 
 const ocrEl = view()
@@ -403,37 +417,33 @@ function showLog() {
 import windowImg from "../assets/window.webp";
 import wallPaper1 from "../assets/wallpaper/win11.webp";
 import wallPaper2 from "../assets/wallpaper/macos.webp";
-const recordEl = el(
-    "div",
-    { class: "record" },
-    image(wallPaper1, "").class("wp"),
-    image(windowImg, "").class(center.class),
-    view().class(center.class),
-);
+const recordEl = view()
+    .class("record")
+    .add([image(wallPaper1, "").class("wp"), image(windowImg, "").class(center.class), view().class(center.class)]);
 
 import photoImg from "../assets/a-mountain.svg";
 import photoImg1 from "../assets/a-mountain1.svg";
 import photoImg2 from "../assets/colorful-waves-from-center-diverging-in-all-direct.svg";
-const y以图搜图 = el(
-    "div",
-    title("以图搜图"),
-    aiTip(),
-    { class: "search_photo" },
-    view().class(center.class).add(image(photoImg2, "")),
-    view().class(center.class).add(image(photoImg, "")),
-    view()
-        .class(center.class)
-        .add(view().add(image(photoImg, ""))),
-    view()
-        .class(center.class)
-        .add(view().add(image(photoImg, ""))),
-    view()
-        .class(center.class)
-        .add(view().add(image(photoImg, ""))),
-    view()
-        .class(center.class)
-        .add(view().add(image(photoImg1, ""))),
-);
+const y以图搜图 = view()
+    .class("search_photo")
+    .add([
+        title("以图搜图"),
+        aiTip(),
+        view().class(center.class).add(image(photoImg2, "")),
+        view().class(center.class).add(image(photoImg, "")),
+        view()
+            .class(center.class)
+            .add(view().add(image(photoImg, ""))),
+        view()
+            .class(center.class)
+            .add(view().add(image(photoImg, ""))),
+        view()
+            .class(center.class)
+            .add(view().add(image(photoImg, ""))),
+        view()
+            .class(center.class)
+            .add(view().add(image(photoImg1, ""))),
+    ]);
 
 const x形状 = view().class("shape").add(title("多种形状"));
 import shape_arrow from "../assets/shape/arrow.svg";
@@ -480,15 +490,17 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "translate_e" },
-        title("多引擎翻译"),
-        view().add(imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
-        p("自定义API，聚合显示多个引擎翻译结果"),
-        p("方便复制结果"),
-        // p(t("自定义MDIC词典查询"), devEl())
-    ),
+    el: view()
+        .class("translate_e")
+        .add(
+            [
+                title("多引擎翻译"),
+                view().add(imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
+                p("自定义API，聚合显示多个引擎翻译结果"),
+                p("方便复制结果"),
+            ],
+            // p(t("自定义MDIC词典查询"), devEl())
+        ),
 });
 infintyBento.push({
     x: 2,
@@ -543,17 +555,17 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        noBorder,
-        el(
-            "div",
-            center,
-            subtitle("🎯准确"),
-            p("使用PaddleOCR v4模型"),
-            p().add(a("https://webocr.netlify.app").add("在线试用")),
+    el: view()
+        .style(noBorder.style)
+        .add(
+            view()
+                .class(center.class)
+                .add([
+                    subtitle("🎯准确"),
+                    p("使用PaddleOCR v4模型"),
+                    p().add(a("https://webocr.netlify.app").add("在线试用")),
+                ]),
         ),
-    ),
 });
 infintyBento.push({
     x: 2,
@@ -573,17 +585,17 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        noBorder,
-        el(
-            "div",
-            center,
-            p("基于开源的").add(a("https://github.com/paddle/paddleocr").add("PaddleOCR")),
-            p("开箱即用"),
-            p().add(a("https://github.com/xushengfeng/eSearch-OCR").add("js库")),
+    el: view()
+        .style(noBorder.style)
+        .add(
+            view()
+                .class(center.class)
+                .add([
+                    p("基于开源的").add(a("https://github.com/paddle/paddleocr").add("PaddleOCR")),
+                    p("开箱即用"),
+                    p().add(a("https://github.com/xushengfeng/eSearch-OCR").add("js库")),
+                ]),
         ),
-    ),
 });
 
 import bingImg from "../assets/icons/bing.svg";
@@ -595,31 +607,33 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "search_engine" },
-        title("自定义搜索引擎"),
-        image(baiduImg, ""),
-        image(yandexImg, ""),
-        image(googleImg, ""),
-        image(bingImg, ""),
-    ),
+    el: view()
+        .class("search_engine")
+        .add([
+            title("自定义搜索引擎"),
+            image(baiduImg, ""),
+            image(yandexImg, ""),
+            image(googleImg, ""),
+            image(bingImg, ""),
+        ]),
 }); // 搜索引擎
 
 import bg1 from "../assets/bookshelf.svg";
 import bg2 from "../assets/blackhole.svg";
 import bg3 from "../assets/forest.svg";
-const virtualBgEl = el("div", view(), image(bg2, ""), image(bg3, ""), view().add(image(wallPaper1, "")));
+const virtualBgEl = view().add([view(), image(bg2, ""), image(bg3, ""), view().add(image(wallPaper1, ""))]);
 infintyBento.push({
     x: 3,
     y: 0,
     w: 1,
     h: 1,
-    el: el("div", { class: "virtual_bg" }, title("虚拟背景"), image(bg1, ""), virtualBgEl, image(manImg, ""), aiTip()),
+    el: view()
+        .class("virtual_bg")
+        .add([title("虚拟背景"), image(bg1, ""), virtualBgEl, image(manImg, ""), aiTip()]),
 });
 let virtualBgI = 1;
 setInterval(() => {
-    virtualBgEl.style.left = `${virtualBgI * 100}%`;
+    virtualBgEl.el.style.left = `${virtualBgI * 100}%`;
     virtualBgI--;
     if (virtualBgI === -4) virtualBgI = 1;
 }, 1600);
@@ -628,31 +642,31 @@ infintyBento.push({
     y: 1,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "star" },
-        a("https://github.com/xushengfeng/eSearch").add([
-            txt("🌟"),
-            txt(t("去GitHub点Star")),
-            txt(t("或fork，或提issue，这是我开发的动力")),
-        ]),
-    ),
+    el: view()
+        .class("star")
+        .add(
+            a("https://github.com/xushengfeng/eSearch").add([
+                txt("🌟"),
+                txt(t("去GitHub点Star")),
+                txt(t("或fork，或提issue，这是我开发的动力")),
+            ]),
+        ),
 });
 infintyBento.push({
     x: 2,
     y: -2,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "lang" },
-        a("./ocr.html").add("下载OCR语言包"),
-        t条幅("界面和OCR支持多种语言"),
-        t条幅("Interface and OCR support multiple languages "),
-        t条幅("Interface et OCR prennent en charge plusieurs langues "),
-        t条幅("Interfaz y OCR soportan varios idiomas "),
-        t条幅("интерфейс и OCR поддерживает несколько языков "),
-    ),
+    el: view()
+        .class("lang")
+        .add([
+            a("./ocr.html").add("下载OCR语言包"),
+            t条幅("界面和OCR支持多种语言"),
+            t条幅("Interface and OCR support multiple languages "),
+            t条幅("Interface et OCR prennent en charge plusieurs langues "),
+            t条幅("Interfaz y OCR soportan varios idiomas "),
+            t条幅("интерфейс и OCR поддерживает несколько языков "),
+        ]),
 });
 import windowsImg from "../assets/Windows.svg";
 import linuxImg from "../assets/Linux.svg";
@@ -663,13 +677,15 @@ infintyBento.push({
     y: 2,
     w: 2,
     h: 1,
-    el: el(
-        "div",
-        title("跨平台"),
-        { class: "platform" },
-        image(electronImg, "").class(center.class),
-        el("div", { class: "center" }, image(windowsImg, ""), image(linuxImg, ""), image(macosImg, "")),
-    ),
+    el: view()
+        .class("platform")
+        .add([
+            title("跨平台"),
+            image(electronImg, "").class(center.class),
+            view()
+                .class(center.class)
+                .add([image(windowsImg, ""), image(linuxImg, ""), image(macosImg, "")]),
+        ]),
 }); // 跨平台
 import githubImg from "../assets/icons/Github.svg";
 import giteeImg from "../assets/icons/Gitee.svg";
@@ -692,17 +708,17 @@ infintyBento.push({
     y: 3,
     w: 2,
     h: 1,
-    el: el(
-        "div",
-        { class: "opensource" },
-        codeBg,
-        el(
-            "div",
-            { class: "center" },
-            a("https://github.com/xushengfeng/eSearch").add(image(githubImg, "github")),
-            a("https://gitee.com/xsf-root/eSearch").add(image(giteeImg, "gitee")),
-        ),
-    ),
+    el: view()
+        .class("opensource")
+        .add([
+            codeBg,
+            view()
+                .class(center.class)
+                .add([
+                    a("https://github.com/xushengfeng/eSearch").add(image(githubImg, "github")),
+                    a("https://gitee.com/xsf-root/eSearch").add(image(giteeImg, "gitee")),
+                ]),
+        ]),
 }); // 开源
 import devImg from "../assets/a-cube-filled-with-mechancial-elements.svg";
 infintyBento.push({
@@ -710,25 +726,19 @@ infintyBento.push({
     y: 4,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "dev" },
-        title("新特性"),
-        image(devImg, ""),
-        el(
-            "a",
-            {
-                ...center,
-                href: "https://github.com/xushengfeng/eSearch/releases",
-                target: "_blank",
-                onclick: () => {
+    el: view()
+        .class("dev")
+        .add([
+            title("新特性"),
+            image(devImg, ""),
+            a("https://github.com/xushengfeng/eSearch/releases")
+                .class(center.class)
+                .add("测试版尝鲜")
+                .on("click", () => {
                     dev = true;
                     releasesX(devResult);
-                },
-            },
-            t("测试版尝鲜"),
-        ),
-    ),
+                }),
+        ]),
 });
 infintyBento.push({
     x: 4,
@@ -754,30 +764,29 @@ infintyBento.push({
     y: 0,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "free" },
-        title("自由免费"),
-        p("所以功能均不受限使用，无订阅与买断"),
-        p("只有高级版"),
-        p("享受以下所有功能："),
-        p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
-        view().add(mBg),
-    ),
+    el: view()
+        .class("free")
+        .add([
+            title("自由免费"),
+            p("所以功能均不受限使用，无订阅与买断"),
+            p("只有高级版"),
+            p("享受以下所有功能："),
+            p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
+            view().add(mBg),
+        ]),
 });
 infintyBento.push({
     x: -2,
     y: -1,
     w: 1,
     h: 1,
-    el: el(
-        "div",
+    el: view().add([
         title("文档与教程"),
         p("快速上手、详细功能教程、高级技巧"),
         view()
             .class(center.class)
             .add(a("https://github.com/xushengfeng/eSearch-website/blob/master/docs/index.md").add("点击打开")),
-    ),
+    ]),
 });
 import Color from "color";
 const allColorFormat = ["HEX", "RGB", "HSL", "HSV", "CMYK"];
@@ -818,7 +827,7 @@ function pickColor(l: number[]) {
 
 let canPickColor = false;
 let lastPickColor = 0;
-const pickColorCanvas = el("canvas");
+const pickColorCanvas = ele("canvas").el;
 const pickColorCanvasCtx = pickColorCanvas.getContext("2d", { willReadFrequently: true });
 function pickColorXY() {
     if (!canPickColor) return;
@@ -897,24 +906,22 @@ infintyBento.push({
     y: -1,
     w: 2,
     h: 2,
-    el: el(
-        "div",
+    el: view().add([
         title("自动排版"),
         p("识别内容段落"),
-        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }).el,
-    ),
+        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }),
+    ]),
 });
 infintyBento.push({
     x: 5,
     y: 0,
     w: 1,
     h: 1,
-    el: el(
-        "div",
+    el: view().add([
         title("置于顶层"),
         p("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
         p("支持失去焦点自动关闭窗口"),
-    ),
+    ]),
 });
 import mutiScreen from "../assets/a-muti-screen-wall.svg";
 infintyBento.push({
@@ -922,14 +929,9 @@ infintyBento.push({
     y: 1,
     w: 2,
     h: 1,
-    el: el(
-        "div",
-        { class: "muti_screen" },
-        title("多屏幕"),
-        image(mutiScreen, ""),
-        image(logo, "").class(center.class),
-        aiTip(),
-    ),
+    el: view()
+        .class("muti_screen")
+        .add([title("多屏幕"), image(mutiScreen, ""), image(logo, "").class(center.class), aiTip()]),
 });
 infintyBento.push({
     x: 4,
@@ -960,14 +962,14 @@ infintyBento.push({
     y: -2,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        { class: "edit_record" },
-        title("编辑录屏"),
-        p(t("并把他们转为mp4、gif、webm……")),
-        el("div", image(film, ""), image(film, ""), image(film, ""), image(film, "")),
-        aiTip(),
-    ),
+    el: view()
+        .class("edit_record")
+        .add([
+            title("编辑录屏"),
+            p(t("并把他们转为mp4、gif、webm……")),
+            view().add([image(film, ""), image(film, ""), image(film, ""), image(film, "")]),
+            aiTip(),
+        ]),
 });
 import manImg from "../assets/a-professor.svg";
 infintyBento.push({
@@ -975,14 +977,14 @@ infintyBento.push({
     y: -2,
     w: 1,
     h: 1,
-    el: el(
-        "div",
-        title("录制摄像头"),
-        { class: "camera" },
-        image(wallPaper2, "").class("wp"),
-        image(windowImg, "").class(center.class),
-        view().add(image(manImg, "")),
-    ),
+    el: view()
+        .class("camera")
+        .add([
+            title("录制摄像头"),
+            image(wallPaper2, "").class("wp"),
+            image(windowImg, "").class(center.class),
+            view().add(image(manImg, "")),
+        ]),
 });
 import tools_close from "../docs/assets/icons/close.svg";
 import tools_save from "../docs/assets/icons/save.svg";
@@ -1031,8 +1033,7 @@ infintyBento.push({
     y: 1,
     w: 1,
     h: 2,
-    el: el(
-        "div",
+    el: view().add([
         title("自定义界面"),
         p("在设置可视化地编辑工具栏工具显示"),
         p("自定义取色器、大小栏等的显示"),
@@ -1040,7 +1041,7 @@ infintyBento.push({
         p(t("自定义强调色、背景色")),
         p("……"),
         toolsBar,
-    ),
+    ]),
 });
 const syncSelect = view().class("center", "sync");
 infintyBento.push({
@@ -1062,41 +1063,38 @@ infintyBento.push({
     y: 4,
     w: 1,
     h: 1,
-    el: el(
-        "div",
+    el: view().add([
         title("关于"),
-        el(
-            "div",
+        view().add([
             a("https://www.netlify.com").add(
                 image("https://www.netlify.com/v3/img/components/netlify-light.svg", "netlify"),
             ),
             p("网站灵感来源：").add(a("https://www.amie.so/recap").add("amie")),
             p("此网站源码：").add(a("https://github.com/xushengfeng/eSearch-website").add("Github")),
             p("2021 - 2024"),
-            el(
-                "address",
+            ele("address").add([
                 a("https://github.com/xushengfeng").add("xushengfeng"),
-                el("br"),
+                ele("br"),
                 a("mailto:xushengfeng_zg@163.com").add("xushengfeng_zg@163.com"),
-            ),
-        ),
-    ),
+            ]),
+        ]),
+    ]),
 });
 
 const cursorEl = view();
-const ctrlEl = el(
-    "div",
-    { class: "ctrl" },
-    cursorEl,
-    title("精确控制"),
-    p()
-        .add(txt("↑↓←→").style({ "font-family": "code" }))
-        .add("自由移动"),
-    p()
-        .add(txt("+-*/()").style({ "font-family": "code" }))
-        .add("四则运算精确分割"),
-    p("放大到像素编辑"),
-);
+const ctrlEl = view()
+    .class("ctrl")
+    .add([
+        cursorEl,
+        title("精确控制"),
+        p()
+            .add(txt("↑↓←→").style({ "font-family": "code" }))
+            .add("自由移动"),
+        p()
+            .add(txt("+-*/()").style({ "font-family": "code" }))
+            .add("四则运算精确分割"),
+        p("放大到像素编辑"),
+    ]);
 infintyBento.push({
     x: 7,
     y: 1,
@@ -1121,28 +1119,21 @@ infintyBento.push({
     y: 4,
     w: 1,
     h: 1,
-    el: el(
-        "div",
+    el: view().add([
         title("高效编辑"),
         p("使用正则表达式替换"),
         p("自定义js脚本处理文字").add(devEl()),
         p("联动其他编辑器"),
-        el(
-            "span",
-            {
-                style: {
-                    position: "absolute",
-                    bottom: "0",
-                    width: "100%",
-                    left: "0",
-                    "text-align": "center",
-                    "font-size": "4rem",
-                    "font-family": "code",
-                },
-            },
-            "(t)=>λt",
-        ),
-    ),
+        txt("(t)=>λt").style({
+            position: "absolute",
+            bottom: "0",
+            width: "100%",
+            left: "0",
+            "text-align": "center",
+            "font-size": "4rem",
+            "font-family": "code",
+        }),
+    ]),
 });
 const photos = view("x").style({ overflow: "hidden" });
 const photos2 = view("x")
@@ -1173,24 +1164,23 @@ infintyBento.push({
     y: 3,
     w: 1,
     h: 1,
-    el: el(
-        "div",
+    el: view().add([
         title("反馈"),
-        el(
-            "div",
-            center,
-            view().add(
-                a(
-                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
-                ).add("错误报告"),
-            ),
-            view().add(
-                a(
-                    "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
-                ).add("功能建议"),
-            ),
-        ),
-    ),
+        view()
+            .class(center.class)
+            .add([
+                view().add(
+                    a(
+                        "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=bug&projects=&template=bug_report.yaml&title=%E2%80%A6%E2%80%A6%E5%AD%98%E5%9C%A8%E2%80%A6%E2%80%A6%E9%94%99%E8%AF%AF",
+                    ).add("错误报告"),
+                ),
+                view().add(
+                    a(
+                        "https://github.com/xushengfeng/eSearch/issues/new?assignees=&labels=%E6%96%B0%E9%9C%80%E6%B1%82&projects=&template=feature_request.md&title=%E5%BB%BA%E8%AE%AE%E5%9C%A8%E2%80%A6%E2%80%A6%E6%B7%BB%E5%8A%A0%E2%80%A6%E2%80%A6%E5%8A%9F%E8%83%BD%2F%E6%94%B9%E8%BF%9B",
+                    ).add("功能建议"),
+                ),
+            ]),
+    ]),
 });
 
 initBento();
@@ -1198,19 +1188,17 @@ initBento();
 moveToRect({ x: -1, y: 0, w: 2, h: 1 });
 
 document.body.append(
-    el(
-        "div",
-        { class: "tip" },
-        txt(t("滚动或按住鼠标移动")),
-        el("button", "🎲", {
-            onclick: () => {
+    view()
+        .class("tip")
+        .add([
+            txt(t("滚动或按住鼠标移动")),
+            button("🎲").on("click", () => {
                 const i = Math.floor(Math.random() * infintyBento.length);
                 b.style.transition = "0.6s";
                 moveToRect(infintyBento[i]);
                 setTimeout(() => {
                     b.style.transition = "";
                 }, 400);
-            },
-        }),
-    ),
+            }),
+        ]).el,
 );
