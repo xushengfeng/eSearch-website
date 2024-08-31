@@ -306,8 +306,8 @@ const releasesX = (r) => {
 
 function fasthub(url: string) {
     const proxy_list: { url: string; replace: boolean }[] = [
-        { url: "https://git.xfj0.cn/", replace: false },
         { url: "https://github.moeyy.xyz/", replace: false },
+        { url: "https://mirror.ghproxy.com/", replace: false },
         { url: "https://kkgithub.com/", replace: true },
     ];
     const proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
