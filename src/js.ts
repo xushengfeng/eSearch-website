@@ -1,7 +1,7 @@
 import { el } from "redom";
-import { image, pack, view } from "dkh-ui";
+import { type ElType, image, pack, view } from "dkh-ui";
 
-const infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement }[] = [];
+const infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement | ElType<HTMLElement> }[] = [];
 const blockSize = 360;
 const gap = 10;
 
@@ -15,11 +15,13 @@ function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
         let cy = Math.floor((p.y - i.y) / (i.h + gapY));
         if (i.x + cx * (i.w + gapX) + i.w < p.x) cx++;
         if (i.y + cy * (i.h + gapY) + i.h < p.y) cy++;
-        const el = i.el;
-        el.style.left = `${(i.x + cx * (i.w + gapX)) * blockSize + gap}px`;
-        el.style.top = `${(i.y + cy * (i.h + gapY)) * blockSize + gap}px`;
-        el.style.width = `${i.w * blockSize - gap * 2}px`;
-        el.style.height = `${i.h * blockSize - gap * 2}px`;
+        const el = "el" in i.el ? i.el : pack(i.el);
+        el.style({
+            left: `${(i.x + cx * (i.w + gapX)) * blockSize + gap}px`,
+            top: `${(i.y + cy * (i.h + gapY)) * blockSize + gap}px`,
+            width: `${i.w * blockSize - gap * 2}px`,
+            height: `${i.h * blockSize - gap * 2}px`,
+        });
     }
 }
 
@@ -97,7 +99,7 @@ function initBento() {
     fillBento();
 
     for (const i of infintyBento) {
-        b.append(i.el);
+        b.append("el" in i.el ? i.el.el : i.el);
     }
 
     moveB(x, y);
@@ -487,7 +489,7 @@ infintyBento.push({
     x: 2,
     y: 2,
     w: 1,
-    h: 2,
+    h: 1,
     el: el(
         "div",
         { class: "translate_e" },
@@ -497,6 +499,13 @@ infintyBento.push({
         p("方便复制结果"),
         // el("p", t("自定义MDIC词典查询"), devEl())
     ),
+});
+infintyBento.push({
+    x: 2,
+    y: 3,
+    w: 1,
+    h: 1,
+    el: view().add([title("连拍"), p("捕获精彩瞬间")]),
 });
 
 infintyBento.push({ x: 3, y: 3, w: 1, h: 1, el: el("div", title("自动识别元素"), p("利用边缘识别识别所有可见元素")) });
@@ -735,9 +744,16 @@ infintyBento.push({
 infintyBento.push({
     x: 4,
     y: -1,
-    w: 2,
+    w: 1,
     h: 1,
     el: el("div", title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")),
+});
+infintyBento.push({
+    x: 5,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: view().add([title("高级图片编辑"), p("为图片添加圆角、阴影")]),
 });
 const money = "¥$€£";
 let mBg = "";
@@ -1035,7 +1051,7 @@ infintyBento.push({
         p("在设置可视化地编辑工具栏工具显示"),
         p("自定义取色器、大小栏等的显示"),
         p("自定义界面字体、毛玻璃效果"),
-        el("p", t("自定义强调色、背景色"), devEl()),
+        el("p", t("自定义强调色、背景色")),
         p("……"),
         toolsBar,
     ),
