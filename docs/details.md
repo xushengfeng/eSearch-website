@@ -279,7 +279,6 @@ bilibili, https://search.bilibili.com/all?keyword=%s
 翻译引擎:
 
 ```
-翻译树, https://fanyishu.netlify.app/?text=%s
 Google, https://translate.google.com.hk/?op=translate&text=%s
 Deepl, https://www.deepl.com/translator#any/any/%s
 金山词霸, http://www.iciba.com/word?w=%s
