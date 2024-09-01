@@ -32,4 +32,16 @@
 
 你需要在[ollama 官网](https://ollama.com/)下载并安装 ollama，添加模型。
 
-在设置中添加翻译器，翻译引擎选择“ChatGPT”，填入 url：http://localhost:11434/api/chat，key 必须随便填写一些内容，如“key”，config 则填入`{"model":"你的模型"}`，测试通过后，点击完成。拖动翻译器到第一个来默认启用。
+在设置中添加翻译器，翻译引擎选择“ChatGPT”，填入 url：`http://localhost:11434/api/chat` ，config 则填入`{"model":"你的模型"}`，测试通过后，点击完成。拖动翻译器到第一个来默认启用。
+
+注意 config 的冒号、引号均为英文，可以复制上面的 config 再修改。
+
+### 其他免费 LLM 翻译服务
+
+[GPT_API_free](https://github.com/chatanywhere/GPT_API_free)
+
+url: `https://api.chatanywhere.tech/v1/chat/completions`
+
+[SiliconCloud](https://siliconflow.cn/zh-cn/siliconcloud)
+
+url: `https://api.siliconflow.cn/v1/chat/completions`
