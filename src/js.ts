@@ -785,7 +785,7 @@ infintyBento.push({
         p("快速上手、详细功能教程、高级技巧"),
         view()
             .class(center.class)
-            .add(a("https://github.com/xushengfeng/eSearch-website/blob/master/docs/index.md").add("点击打开")),
+            .add(a("https://github.com/xushengfeng/eSearch/blob/master/docs/use/index.md").add("点击打开")),
     ]),
 });
 import Color from "color";
