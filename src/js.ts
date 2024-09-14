@@ -55,6 +55,8 @@ document.onwheel = (e) => {
 let startE: PointerEvent;
 let startP = { x, y };
 b.onpointerdown = (e) => {
+    const el = e.target as HTMLElement;
+    if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(el.tagName)) return;
     startE = e;
     startP = { x, y };
 };
