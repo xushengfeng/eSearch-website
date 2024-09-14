@@ -193,8 +193,15 @@ archSelect.on(() => {
     cPlatform();
 });
 
-const useFastGitEl = input("checkbox").on("input", (_, el) => {
-    useFastGit(el.el.checked);
+const proxy_list: { url: string; replace: boolean; value: string; name: string }[] = [
+    { url: "", replace: false, value: "raw", name: "原始链接(Github)" },
+    { url: "https://github.moeyy.xyz/", replace: false, value: "0", name: "⚡moeyy镜像" },
+    { url: "https://mirror.ghproxy.com/", replace: false, value: "1", name: "⚡ghproxy镜像" },
+    { url: "https://kkgithub.com/", replace: true, value: "2", name: "⚡kkgithub镜像" },
+];
+
+const useFastGitEl = select(proxy_list).on("input", (_, el) => {
+    useFastGit();
 });
 
 const mainDownload = view();
@@ -233,13 +240,11 @@ function cPlatform(platform: string = platformSelect.gv, arch = archSelect.get()
     }
 }
 
-const fastUrl = lan.split("-")[0] === "zh";
-
 cPlatform(platform);
 
 function getDownloadItem(platform: "win32" | "linux" | "darwin", arch: "x64" | "arm64", fileType: string) {
     const url = `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-${platform}-${arch}.${fileType}`;
-    return a(url).attr({ download: "true" }).data({ src: url }).add(fileType);
+    return a(fasthub(url, useFastGitEl.gv)).attr({ download: "true" }).data({ src: url }).add(fileType);
 }
 
 let dev = false;
@@ -269,7 +274,7 @@ const releasesX = (r) => {
             }
         }
     result = result.flat();
-    useFastGit(fastUrl);
+    useFastGit();
 
     up_time = new Date(result[0].published_at).getTime();
     v = result[0].name;
@@ -278,29 +283,26 @@ const releasesX = (r) => {
     showLog();
 };
 
-function fasthub(url: string) {
-    const proxy_list: { url: string; replace: boolean }[] = [
-        { url: "https://github.moeyy.xyz/", replace: false },
-        { url: "https://mirror.ghproxy.com/", replace: false },
-        { url: "https://kkgithub.com/", replace: true },
-    ];
-    const proxy = proxy_list[Math.floor(Math.random() * proxy_list.length)];
+function fasthub(url: string, type: string) {
+    const proxy = proxy_list.find((v) => v.value === type);
     if (proxy.replace) {
         return url.replace("https://github.com/", proxy.url);
     }
     return proxy.url + url;
 }
 
-function useFastGit(b: boolean) {
+function useFastGit(type: string = useFastGitEl.gv) {
     for (const a of mainDownload.queryAll("a")) {
         const src = a.el.getAttribute("data-src");
-        a.el.href = b ? fasthub(src) : src;
+        a.el.href = fasthub(src, type);
     }
 }
 
 if (lan.split("-")[0] === "zh") {
-    useFastGit(true);
-    useFastGitEl.el.checked = true;
+    const list = proxy_list.slice(1);
+    const value = list[Math.floor(Math.random() * list.length)].value;
+    useFastGit(value);
+    useFastGitEl.sv(value);
 }
 
 function devEl() {
@@ -333,11 +335,7 @@ const noBorder = { style: { border: "none" } };
 downloadEl.add([
     txt("立即下载").class("title"),
     view().add([
-        view().add([
-            platformSelect,
-            view().add([archSelect.new("x64"), archSelect.new("arm64")]),
-            label([useFastGitEl, "使用加速链接下载"]),
-        ]),
+        view().add([platformSelect, view().add([archSelect.new("x64"), archSelect.new("arm64")]), useFastGitEl]),
         mainDownload,
     ]),
 ]);
