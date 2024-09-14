@@ -193,60 +193,24 @@ const mainDownload = view();
 
 let v = "13.0.0";
 let up_time = 1702051200000;
-const filesObject: { [key: string]: { url: string; size: string; fastUrl?: string } } = {
-    "-win32-x64.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.zip`,
-        size: "未知",
-    },
-    "-win32-x64.exe": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-win32-x64.exe`,
-        size: "未知",
-    },
-    "-linux-x64.tar.gz": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.tar.gz`,
-        size: "未知",
-    },
-    "-linux-x64.deb": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.deb`,
-        size: "未知",
-    },
-    "-linux-x64.rpm": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.rpm`,
-        size: "未知",
-    },
-    "-linux-x64.AppImage": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-linux-x64.AppImage`,
-        size: "未知",
-    },
-    ".aur": { url: "", size: "未知" },
-    "-darwin-x64.dmg": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.dmg`,
-        size: "未知",
-    },
-    "-darwin-x64.zip": {
-        url: `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-darwin-x64.zip`,
-        size: "未知",
-    },
-};
-const fileType = Object.keys(filesObject);
 
 function cPlatform(platform: string) {
     mainDownload.clear();
     switch (platform) {
         case "Windows":
-            mainDownload.add([getDownloadItem("-win32-x64.exe", "exe"), getDownloadItem("-win32-x64.zip", "压缩包")]);
+            mainDownload.add([getDownloadItem("win32", "x64", "exe"), getDownloadItem("win32", "x64", "zip")]);
             platformSelect.sv("Windows");
             break;
         case "Linux":
             mainDownload.add([
-                getDownloadItem("-linux-x64.deb", "deb"),
-                getDownloadItem("-linux-x64.rpm", "rpm"),
-                getDownloadItem("-linux-x64.AppImage", "AppImage"),
+                getDownloadItem("linux", "x64", "deb"),
+                getDownloadItem("linux", "x64", "rpm"),
+                getDownloadItem("linux", "x64", "AppImage"),
             ]);
             platformSelect.sv("Linux");
             break;
         case "macOS":
-            mainDownload.add([getDownloadItem("-darwin-x64.dmg", "dmg"), getDownloadItem("-darwin-x64.zip", "压缩包")]);
+            mainDownload.add([getDownloadItem("darwin", "x64", "dmg"), getDownloadItem("darwin", "x64", "zip")]);
             platformSelect.sv("macOS");
             break;
         case "Android":
@@ -262,11 +226,9 @@ const fastUrl = lan.split("-")[0] === "zh";
 
 cPlatform(platform);
 
-function getDownloadItem(type: string, text: string) {
-    return a(fastUrl ? filesObject[type].fastUrl : filesObject[type].url)
-        .attr({ download: "true" })
-        .data({ type: type })
-        .add(text);
+function getDownloadItem(platform: "win32" | "linux" | "darwin", arch: "x64" | "arm64", fileType: string) {
+    const url = `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-${platform}-${arch}.${fileType}`;
+    return a(url).attr({ download: "true" }).data({ src: url }).add(fileType);
 }
 
 let dev = false;
@@ -296,19 +258,11 @@ const releasesX = (r) => {
             }
         }
     result = result.flat();
-    for (const i in result[0].assets) {
-        const url = <string>result[0].assets[i].browser_download_url;
-        const name = <string>result[0].assets[i].name;
-        const x = fileType.find((i) => name.includes(i));
-        if (!x) continue;
-        filesObject[x].size = (result[0].assets[i].size / 1024 / 1024).toFixed(2);
-        filesObject[x].url = url;
-    }
-    console.log(filesObject);
     useFastGit(fastUrl);
 
     up_time = new Date(result[0].published_at).getTime();
     v = result[0].name;
+    cPlatform(platformSelect.gv);
 
     showLog();
 };
@@ -327,14 +281,9 @@ function fasthub(url: string) {
 }
 
 function useFastGit(b: boolean) {
-    if (b)
-        for (const i in filesObject) {
-            filesObject[i].fastUrl = fasthub(filesObject[i].url);
-        }
-
     for (const a of mainDownload.queryAll("a")) {
-        const o = filesObject[a.el.getAttribute("data-type")];
-        (a.el as HTMLAnchorElement).href = b ? o.fastUrl : o.url;
+        const src = a.el.getAttribute("data-src");
+        a.el.href = b ? fasthub(src) : src;
     }
 }
 
