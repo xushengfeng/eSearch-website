@@ -8,6 +8,7 @@ import {
     label,
     p,
     pack,
+    radioGroup,
     select,
     setProperties,
     setProperty,
@@ -182,7 +183,12 @@ const platformSelect = select([
     { value: "macOS", name: "macOS" },
     { value: "Linux", name: "Linux" },
 ]).on("input", () => {
-    cPlatform(platformSelect.gv);
+    cPlatform();
+});
+
+const archSelect = radioGroup<"arm64" | "x64">("arch");
+archSelect.on(() => {
+    cPlatform();
 });
 
 const useFastGitEl = input("checkbox").on("input", (_, el) => {
@@ -194,30 +200,33 @@ const mainDownload = view();
 let v = "13.0.0";
 let up_time = 1702051200000;
 
-function cPlatform(platform: string) {
+function cPlatform(platform: string = platformSelect.gv, arch = archSelect.get()) {
     mainDownload.clear();
     switch (platform) {
         case "Windows":
-            mainDownload.add([getDownloadItem("win32", "x64", "exe"), getDownloadItem("win32", "x64", "zip")]);
+            mainDownload.add([getDownloadItem("win32", arch, "exe"), getDownloadItem("win32", arch, "zip")]);
             platformSelect.sv("Windows");
             break;
         case "Linux":
             mainDownload.add([
-                getDownloadItem("linux", "x64", "deb"),
-                getDownloadItem("linux", "x64", "rpm"),
-                getDownloadItem("linux", "x64", "AppImage"),
+                getDownloadItem("linux", arch, "deb"),
+                getDownloadItem("linux", arch, "rpm"),
+                getDownloadItem("linux", arch, "AppImage"),
             ]);
             platformSelect.sv("Linux");
             break;
         case "macOS":
-            mainDownload.add([getDownloadItem("darwin", "x64", "dmg"), getDownloadItem("darwin", "x64", "zip")]);
+            mainDownload.add([getDownloadItem("darwin", arch, "dmg"), getDownloadItem("darwin", arch, "zip")]);
             platformSelect.sv("macOS");
             break;
         case "Android":
-            cPlatform("Windows");
+            cPlatform("Windows", arch);
             break;
         case "iOS":
-            cPlatform("macOS");
+            cPlatform("macOS", arch);
+            break;
+        default:
+            cPlatform("Windows", arch);
             break;
     }
 }
@@ -262,7 +271,7 @@ const releasesX = (r) => {
 
     up_time = new Date(result[0].published_at).getTime();
     v = result[0].name;
-    cPlatform(platformSelect.gv);
+    cPlatform();
 
     showLog();
 };
@@ -321,7 +330,14 @@ const noBorder = { style: { border: "none" } };
 
 downloadEl.add([
     txt("立即下载").class("title"),
-    view().add([view().add([platformSelect, label([useFastGitEl, "使用加速链接下载"])]), mainDownload]),
+    view().add([
+        view().add([
+            platformSelect,
+            view().add([archSelect.new("x64"), archSelect.new("arm64")]),
+            label([useFastGitEl, "使用加速链接下载"]),
+        ]),
+        mainDownload,
+    ]),
 ]);
 
 const ocrEl = view()
