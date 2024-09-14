@@ -986,16 +986,16 @@ infintyBento.push({
             view().add(image(manImg, "")),
         ]),
 });
-import tools_close from "../docs/assets/icons/close.svg";
-import tools_save from "../docs/assets/icons/save.svg";
-import tools_copy from "../docs/assets/icons/copy.svg";
-import tools_ocr from "../docs/assets/icons/ocr.svg";
-import tools_search from "../docs/assets/icons/search.svg";
-import tools_record from "../docs/assets/icons/record.svg";
-import tools_open from "../docs/assets/icons/open.svg";
-import tools_long from "../docs/assets/icons/long_clip.svg";
-import tools_scan from "../docs/assets/icons/scan.svg";
-import tools_translate from "../docs/assets/icons/translate.svg";
+import tools_close from "../assets/tools/close.svg";
+import tools_save from "../assets/tools/save.svg";
+import tools_copy from "../assets/tools/copy.svg";
+import tools_ocr from "../assets/tools/ocr.svg";
+import tools_search from "../assets/tools/search.svg";
+import tools_record from "../assets/tools/record.svg";
+import tools_open from "../assets/tools/open.svg";
+import tools_long from "../assets/tools/long_clip.svg";
+import tools_scan from "../assets/tools/scan.svg";
+import tools_translate from "../assets/tools/translate.svg";
 
 const toolsBar = view().class("tools");
 const tools = [
