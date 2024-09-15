@@ -151,13 +151,15 @@ navTipEl
         navTipEl.style({ transition: "0s" });
     });
 
-window.onload = window.onclick = () => {
+window.onload = window.onclick = reSetLogo;
+setTimeout(reSetLogo, 3000);
+function reSetLogo() {
     navTipEl.style({
         transform: "scale(1)",
         filter: "none",
         "--op": "1",
     });
-};
+}
 
 const downloadEl = view().class("download");
 
