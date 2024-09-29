@@ -1,8 +1,7 @@
 {
 	"dependencies": {
 		"color": "^4.2.3",
-		"dkh-ui": "^0.7.3",
-		"ipad-cursor": "^0.3.1",
+		"dkh-ui": "^0.10.0",
 		"markdown-it": "^13.0.1"
 	},
 	"private": true,

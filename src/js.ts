@@ -1,5 +1,6 @@
 import {
     a,
+    addStyle,
     button,
     ele,
     type ElType,
@@ -337,10 +338,29 @@ const noBorder = { style: { border: "none" } };
 downloadEl.add([
     txt("立即下载").class("title"),
     view().add([
-        view().add([platformSelect, view().add([archSelect.new("x64"), archSelect.new("arm64")]), useFastGitEl]),
+        view().add([
+            platformSelect,
+            view("x")
+                .style({ gap: "4px" })
+                .class("arch")
+                .add([archSelect.new("x64"), archSelect.new("arm64")]),
+            useFastGitEl,
+        ]),
         mainDownload,
     ]),
 ]);
+
+addStyle({
+    ".arch > label": {
+        borderRadius: "4px",
+        padding: "4px",
+        transition: "var(--transition)",
+    },
+    ".arch > label:has(:checked)": {
+        background: "white",
+        color: "black",
+    },
+});
 
 const ocrEl = view()
     .class("ocr")
