@@ -2,6 +2,7 @@
 	"dependencies": {
 		"color": "^4.2.3",
 		"dkh-ui": "^0.10.0",
+		"lightningcss": "^1.27.0",
 		"markdown-it": "^13.0.1"
 	},
 	"private": true,

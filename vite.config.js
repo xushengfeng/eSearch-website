@@ -1,4 +1,4 @@
-const { resolve } = require("path");
+const { resolve } = require("node:path");
 const { defineConfig } = require("vite");
 
 module.exports = defineConfig({
@@ -11,4 +11,5 @@ module.exports = defineConfig({
             },
         },
     },
+    css: { transformer: "lightningcss" },
 });
