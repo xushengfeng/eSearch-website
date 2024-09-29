@@ -845,7 +845,7 @@ infintyBento.push({
         p("快速上手、详细功能教程、高级技巧"),
         view()
             .class(center.class)
-            .add(a("https://github.com/xushengfeng/eSearch/blob/master/docs/use/index.md").add("点击打开")),
+            .add(a("https://github.com/xushengfeng/eSearch/blob/master/docs/use").add("点击打开")),
     ]),
 });
 import Color from "color";
@@ -928,7 +928,8 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("qr")
-        .add(image(qr, "").attr({ width: 200 }).class(center.class)),
+        .style({ background: "oklch(87% 0.27 288)" })
+        .add(image(qr, "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
 });
 infintyBento.push({
     x: 4,
@@ -993,19 +994,39 @@ infintyBento.push({
         .class("muti_screen")
         .add([title("多屏幕"), image(mutiScreen, ""), image(logo, "").class(center.class), aiTip()]),
 });
+import bw from "../assets/bw.svg";
 infintyBento.push({
     x: 4,
     y: 2,
     w: 1,
     h: 1,
-    el: view().add([title("深色模式"), p("自动跟随系统切换")]),
+    el: view().add([
+        image(bw, "").class(center.class).style({ width: "100%" }),
+        title("深色模式").style({ mixBlendMode: "difference", color: "white" }),
+        p("自动跟随系统切换").style({ mixBlendMode: "difference", color: "white" }),
+    ]),
 });
+import filter from "../assets/filter.webp";
+const txtOnImg = {
+    filter: "drop-shadow(2px 4px 6px black)",
+    color: "white",
+};
 infintyBento.push({
     x: 4,
     y: 3,
     w: 1,
     h: 1,
-    el: view().add([title("滤镜"), p("马赛克、模糊、对比度、亮度、色调、黑白等")]),
+    el: view().add([
+        image(filter, "山 经过多个滤镜处理").style({
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: "-138px",
+            zIndex: -1,
+        }),
+        title("滤镜").style(txtOnImg),
+        p("马赛克、模糊、对比度、亮度、色调、黑白等").style(txtOnImg),
+    ]),
 });
 
 import free_clip from "../assets/free.svg";

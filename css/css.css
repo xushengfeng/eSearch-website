@@ -279,8 +279,6 @@ button {
 }
 
 .qr {
-    opacity: 0.8;
-    display: block;
     &::after {
         content: "";
         width: 100%;
