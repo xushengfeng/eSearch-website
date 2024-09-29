@@ -106,7 +106,7 @@ function fillBento() {
     }
     const dontHas = smallL.filter((v) => !v.has);
     for (const [index, i] of dontHas.entries()) {
-        const bg = `oklch(87% 0.27 ${(index / dontHas.length) * 360})`;
+        const bg = Colors((index / dontHas.length) * 360);
         infintyBento.push({
             x: i.x,
             y: i.y,
@@ -128,6 +128,8 @@ function fillBento() {
         });
     }
 }
+
+const Colors = (n: number) => `oklch(0.87 0.27 ${n})`;
 
 function partten() {
     const xc = "#0009";
@@ -481,9 +483,9 @@ const recordEl = view()
     .class("record")
     .add([image(wallPaper1, "").class("wp"), image(windowImg, "").class(center.class), view().class(center.class)]);
 
-import photoImg from "../assets/a-mountain.svg";
-import photoImg1 from "../assets/a-mountain1.svg";
-import photoImg2 from "../assets/colorful-waves-from-center-diverging-in-all-direct.svg";
+import photoImg from "../assets/a-mountain.webp";
+import photoImg1 from "../assets/a-mountain1.webp";
+import photoImg2 from "../assets/colorful-waves-from-center-diverging-in-all-direct.webp";
 const y以图搜图 = view()
     .class("search_photo")
     .add([
@@ -678,9 +680,9 @@ infintyBento.push({
         ]),
 }); // 搜索引擎
 
-import bg1 from "../assets/bookshelf.svg";
-import bg2 from "../assets/blackhole.svg";
-import bg3 from "../assets/forest.svg";
+import bg1 from "../assets/bookshelf.webp";
+import bg2 from "../assets/blackhole.webp";
+import bg3 from "../assets/forest.webp";
 const virtualBgEl = view().add([view(), image(bg2, ""), image(bg3, ""), view().add(image(wallPaper1, ""))]);
 infintyBento.push({
     x: 3,
@@ -809,7 +811,7 @@ infintyBento.push({
 });
 infintyBento.push({
     x: 5,
-    y: -1,
+    y: 5,
     w: 1,
     h: 1,
     el: view().add([title("高级图片编辑"), p("为图片添加圆角、阴影")]),
@@ -928,7 +930,7 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("qr")
-        .style({ background: "oklch(87% 0.27 288)" })
+        .style({ background: Colors(288) })
         .add(image(qr, "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
 });
 infintyBento.push({
@@ -946,7 +948,7 @@ function aiTip() {
     });
 }
 
-import scrollImg from "../assets/rockets-and-space-ship.svg";
+import scrollImg from "../assets/rockets-and-space-ship.webp";
 const longClipEl = view().add(image(scrollImg, ""));
 function logClip() {
     const h = window.innerHeight - longClipEl.el.getBoundingClientRect().y - 100;
@@ -984,7 +986,7 @@ infintyBento.push({
         p("支持失去焦点自动关闭窗口"),
     ]),
 });
-import mutiScreen from "../assets/a-muti-screen-wall.svg";
+import mutiScreen from "../assets/a-muti-screen-wall.webp";
 infintyBento.push({
     x: 4,
     y: 1,
@@ -1052,7 +1054,7 @@ infintyBento.push({
             aiTip(),
         ]),
 });
-import manImg from "../assets/a-professor.svg";
+import manImg from "../assets/a-professor.webp";
 infintyBento.push({
     x: 3,
     y: -2,
@@ -1262,6 +1264,37 @@ infintyBento.push({
                 ),
             ]),
     ]),
+});
+infintyBento.push({
+    x: -1,
+    y: 5,
+    w: 1,
+    h: 1,
+    el: view()
+        .style({ background: Colors(160) })
+        .add([
+            title("AI识图"),
+            view("y")
+                .style({ gap: "8px", marginTop: "16px" })
+                .add([
+                    view().add("这个图片上的风景在什么地方？").style({
+                        background: "#0009",
+                        color: "white",
+                        padding: "8px",
+                        borderRadius: "8px",
+                        maxWidth: "80%",
+                        marginLeft: "auto",
+                    }),
+                    view().add("作为一个人工智能助手，我很想为你提供关于这个图片的信息，但说实话，我也不知道。").style({
+                        background: "#0009",
+                        color: "white",
+                        padding: "8px",
+                        borderRadius: "8px",
+                        maxWidth: "80%",
+                        width: "max-content",
+                    }),
+                ]),
+        ]),
 });
 
 initBento();
