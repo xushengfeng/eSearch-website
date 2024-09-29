@@ -44,7 +44,7 @@ function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
 let x = 0;
 let y = 0;
 const repeatX = 10;
-const repeatY = 6;
+const repeatY = 7;
 
 document.onwheel = (e) => {
     if (log2El.el.contains(e.target as HTMLElement)) return;
@@ -104,9 +104,82 @@ function fillBento() {
             }
         }
     }
-    for (const i of smallL) {
-        if (!i.has) {
-            infintyBento.push({ x: i.x, y: i.y, w: 1, h: 1, el: view().add(`#${i.x},${i.y}`) });
+    const dontHas = smallL.filter((v) => !v.has);
+    for (const [index, i] of dontHas.entries()) {
+        const bg = `oklch(87% 0.27 ${(index / dontHas.length) * 360})`;
+        infintyBento.push({
+            x: i.x,
+            y: i.y,
+            w: 1,
+            h: 1,
+            el: view("x", "wrap")
+                .add(
+                    Array(25)
+                        .fill("")
+                        .map((i) => partten().style({ width: "20%", height: "20%" })),
+                )
+                .style({
+                    backgroundColor: bg,
+                    padding: 0,
+                })
+                .on("click", () => {
+                    console.log(`#${i.x},${i.y}`);
+                }),
+        });
+    }
+}
+
+function partten() {
+    const xc = "#0009";
+    const deg = Math.round(Math.random() * 4) * 90;
+    const p: { p: number; f: () => ElType<HTMLElement> }[] = [
+        {
+            p: 3,
+            f: () => {
+                return view().style({
+                    backgroundImage: `repeating-linear-gradient(${deg + 45}deg,transparent 0 6.25%,${xc} 6.25% 12.5%)`,
+                });
+            },
+        },
+        {
+            p: 1,
+            f: () => {
+                return view().style({
+                    background: xc,
+                });
+            },
+        },
+        {
+            p: 2,
+            f: () => {
+                return view().style({
+                    backgroundImage: `radial-gradient(${xc} 50%, transparent 50%)`,
+                    backgroundSize: "20% 20%",
+                });
+            },
+        },
+        {
+            p: 2,
+            f: () => {
+                return view().style({
+                    borderTopRightRadius: "100%",
+                    background: xc,
+                    rotate: `${deg}deg`,
+                });
+            },
+        },
+        { p: 5, f: () => view() },
+    ];
+    const l: [number, number][] = [];
+    let c = 0;
+    for (const i of p) {
+        l.push([c, c + i.p]);
+        c += i.p;
+    }
+    const r = Math.random() * l.at(-1)[1];
+    for (const x of l) {
+        if (x[0] <= r && r <= x[1]) {
+            return p.at(l.indexOf(x)).f();
         }
     }
 }
