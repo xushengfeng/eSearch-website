@@ -181,7 +181,7 @@ function partten() {
     const r = Math.random() * l.at(-1)[1];
     for (const x of l) {
         if (x[0] <= r && r <= x[1]) {
-            return p.at(l.indexOf(x)).f();
+            return p.at(l.indexOf(x)).f().style({ pointerEvents: "none" });
         }
     }
 }
@@ -433,7 +433,7 @@ addStyle({
     },
     ".arch > label:has(:checked)": {
         background: "white",
-        color: "black",
+        color: "var(--l-color)",
     },
 });
 
@@ -963,17 +963,34 @@ infintyBento.push({
         .class("long_clip")
         .add([title("滚动截屏"), p("万向滚动拼接"), longClipEl, aiTip()]),
 });
-import autoDeleteEnter from "../assets/zdsc.webp";
+
+function autoDeleteEnterEl(t: string) {
+    return view()
+        .add([txt(t).style({ background: Colors(260), lineHeight: 1.5 }), "↵"])
+        .style({ background: "#0005", marginTop: "16px", padding: "4px", borderRadius: "4px" });
+}
 infintyBento.push({
-    x: 6,
+    x: 7,
     y: -1,
-    w: 2,
+    w: 1,
     h: 2,
-    el: view().add([
-        title("自动排版"),
-        p("识别内容段落"),
-        image(autoDeleteEnter, "自动删除换行").style({ width: "100%" }),
-    ]),
+    el: view()
+        .add([
+            title("自动排版"),
+            autoDeleteEnterEl(
+                "我们日常的文字，特别是一段话，会比较长，在显示时软件采取了自动换行，就像你现在看到的一样，一段文字变成了视觉上的多行文字。",
+            ),
+            autoDeleteEnterEl(
+                "文字识别算法把他们都视为单独的一行，这导致原始的文字识别输出存在很多多余的换行，而我们只需要每一段的换行即可。",
+            ),
+            autoDeleteEnterEl("eSearch 的文字识别软件支持排版识别，识别后的文字换行符合原始文字。"),
+            autoDeleteEnterEl(
+                "即使这样，还是会有漏网之鱼，不过，通过“自动删除换行”可以通过识别句子标点进行下一步排版。",
+            ),
+            autoDeleteEnterEl("同步选择可以帮助你方便校对，确保文字识别的排版严谨。"),
+            autoDeleteEnterEl("其实，自动识别文字的排版已经够用了。"),
+        ])
+        .style({ background: Colors(260) }),
 });
 infintyBento.push({
     x: 5,

@@ -148,7 +148,7 @@ button {
         gap: 16px;
         & > div > select {
             background-color: white;
-            color: black;
+            color: var(--l-color);
             padding: 4px;
             border-radius: 4px;
             font-size: 1em;
