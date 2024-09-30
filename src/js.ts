@@ -17,7 +17,7 @@ import {
     view,
 } from "dkh-ui";
 
-const infintyBento: { x: number; y: number; w: number; h: number; el: HTMLElement | ElType<HTMLElement> }[] = [];
+const infintyBento: { x: number; y: number; w: number; h: number; el: ElType<HTMLElement> }[] = [];
 const blockSize = 360;
 const gap = 10;
 
@@ -31,7 +31,7 @@ function r(p: { x: number; y: number }, repeatX: number, repeatY: number) {
         let cy = Math.floor((p.y - i.y) / (i.h + gapY));
         if (i.x + cx * (i.w + gapX) + i.w < p.x) cx++;
         if (i.y + cy * (i.h + gapY) + i.h < p.y) cy++;
-        const el = "el" in i.el ? i.el : pack(i.el);
+        const el = i.el;
         el.style({
             left: `${(i.x + cx * (i.w + gapX)) * blockSize + gap}px`,
             top: `${(i.y + cy * (i.h + gapY)) * blockSize + gap}px`,
@@ -129,6 +129,10 @@ function fillBento() {
     }
 }
 
+function getImg(name: string) {
+    return new URL(`../assets/${name}`, import.meta.url).href;
+}
+
 const Colors = (n: number) => `oklch(0.87 0.27 ${n})`;
 
 function partten() {
@@ -192,7 +196,7 @@ function initBento() {
     fillBento();
 
     for (const i of infintyBento) {
-        b.append("el" in i.el ? i.el.el : i.el);
+        b.append(i.el.class("bento").el);
     }
 
     moveB(x, y);
@@ -408,7 +412,7 @@ function subtitle(string: string) {
 
 const center = { class: "center" };
 const bg = { ...center, style: { width: "100%" } };
-const noBorder = { style: { border: "none" } };
+const noBg = { style: { background: "transparent" } };
 
 downloadEl.add([
     txt("立即下载").class("title"),
@@ -437,9 +441,33 @@ addStyle({
     },
 });
 
+import ppocrDic from "../assets/ppocr_keys_v1.txt?raw";
+const ppocrL = ppocrDic.split("\n").filter((i) => i.trim().match(/\p{Ideographic}/u));
+
+function getRandomChineseWord() {
+    return ppocrL.at(Math.floor(Math.random() * ppocrL.length));
+}
+
+const ocrBg = view()
+    .style({
+        fontFamily: "sans-serif",
+        fontSize: "20px",
+        lineHeight: "1",
+        color: "#0000000f",
+        background: "white",
+        position: "absolute",
+        left: "0",
+        top: "0",
+        width: "100%",
+    })
+    .attr({ ariaHidden: "true" });
+for (let i = 0; i < 1500; i++) {
+    ocrBg.add(getRandomChineseWord());
+}
+
 const ocrEl = view()
     .class("ocr")
-    .add([title("离线文字识别（OCR）", "bottom")]);
+    .add([ocrBg, title("离线文字识别（OCR）", "bottom")]);
 
 const log2El = view();
 const logEl = view()
@@ -507,7 +535,10 @@ const y以图搜图 = view()
             .add(view().add(image(photoImg1, ""))),
     ]);
 
-const x形状 = view().class("shape").add(title("多种形状"));
+const x形状 = view()
+    .class("shape")
+    .style({ background: Colors(20) })
+    .add([title("多种形状"), p("快速在截屏上标记")]);
 import shape_arrow from "../assets/shape/arrow.svg";
 import shape_circle from "../assets/shape/circle.svg";
 import shape_rect from "../assets/shape/rect.svg";
@@ -516,8 +547,29 @@ import shape_polyline from "../assets/shape/polyline.svg";
 import shape_polygon from "../assets/shape/polygon.svg";
 import shape_number from "../assets/shape/number.svg";
 import shape_mask from "../assets/shape/mask.svg";
+const shapeL = [
+    shape_arrow,
+    shape_circle,
+    shape_rect,
+    shape_line,
+    shape_polyline,
+    shape_polygon,
+    shape_number,
+    shape_mask,
+];
 x形状.add(
-    imgL([shape_arrow, shape_circle, shape_rect, shape_line, shape_polyline, shape_polygon, shape_number, shape_mask]),
+    view("x", "wrap")
+        .style({ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 })
+        .add(
+            Array(25)
+                .fill(1)
+                .map((i) => {
+                    return image(shapeL.at(Math.floor(Math.random() * shapeL.length)), "").style({
+                        opacity: "0.2",
+                        width: "20%",
+                    });
+                }),
+        ),
 );
 
 function imgL(l: string[]) {
@@ -564,12 +616,50 @@ infintyBento.push({
             // p(t("自定义MDIC词典查询"), devEl())
         ),
 });
+const lpCard = {
+    width: "200px",
+    height: "140px",
+    padding: "4px",
+    borderRadius: "4px",
+    position: "absolute",
+    boxShadow: "var(--shadow)",
+    background: "white",
+    transform: "rotate(5deg)",
+    transition: "var(--transition)",
+} as const;
 infintyBento.push({
     x: 2,
     y: 3,
     w: 1,
     h: 1,
-    el: view().add([title("连拍"), p("捕获精彩瞬间")]),
+    el: view()
+        .add([
+            title("连拍"),
+            p("捕获精彩瞬间"),
+            view()
+                .style({ position: "relative", transform: "translateY(50px)" })
+                .class("lp")
+                .add([
+                    view().style(lpCard).style({ left: 0 }),
+                    view().style(lpCard).style({ left: "20px" }),
+                    view().style(lpCard).style({ left: "40px" }),
+                    view().style(lpCard).style({ left: "60px" }),
+                    view().style(lpCard).style({ left: "80px" }),
+                    view().style(lpCard).style({ left: "100px" }),
+                    view().style(lpCard).style({ left: "120px" }),
+                    view().style(lpCard).style({ left: "140px" }),
+                    view().style(lpCard).style({ left: "160px" }),
+                    view().style(lpCard).style({ left: "180px" }),
+                    view().style(lpCard).style({ left: "200px" }),
+                ]),
+        ])
+        .style({ background: Colors(270) }),
+});
+
+addStyle({
+    ".lp>div:hover": {
+        transform: "translateY(-60px) scale(1.2) !important",
+    },
 });
 
 infintyBento.push({
@@ -605,7 +695,7 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view()
-        .style(noBorder.style)
+        .style(noBg.style)
         .add(
             view()
                 .class(center.class)
@@ -618,7 +708,7 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view()
-        .style(noBorder.style)
+        .style(noBg.style)
         .add(
             view()
                 .class(center.class)
@@ -635,7 +725,7 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view()
-        .style(noBorder.style)
+        .style(noBg.style)
         .add(
             view()
                 .class(center.class)
@@ -648,7 +738,7 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view()
-        .style(noBorder.style)
+        .style(noBg.style)
         .add(
             view()
                 .class(center.class)
@@ -818,7 +908,7 @@ infintyBento.push({
 });
 const money = "¥$€£";
 let mBg = "";
-for (let i = 0; i < 800; i++) {
+for (let i = 0; i < 300; i++) {
     mBg += money[Math.floor(Math.random() * 4)];
 }
 infintyBento.push({
@@ -834,9 +924,11 @@ infintyBento.push({
             p("只有高级版"),
             p("享受以下所有功能："),
             p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
-            view().add(mBg),
-        ]),
+            view().add(mBg).style({ background: "white" }).attr({ ariaHidden: "true" }),
+        ])
+        .style({ background: "transparent" }),
 });
+
 infintyBento.push({
     x: -2,
     y: -1,
@@ -848,6 +940,11 @@ infintyBento.push({
         view()
             .class(center.class)
             .add(a("https://github.com/xushengfeng/eSearch/blob/master/docs/use").add("点击打开")),
+        image(getImg("books_3d.png"), "book 3d").style({
+            scale: 1.1,
+            rotate: "-25deg",
+            transform: "translateY(10px)",
+        }),
     ]),
 });
 import Color from "color";
@@ -932,13 +1029,6 @@ infintyBento.push({
         .class("qr")
         .style({ background: Colors(288) })
         .add(image(qr, "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
-});
-infintyBento.push({
-    x: 4,
-    y: 0,
-    w: 1,
-    h: 1,
-    el: view().add([title("按键提示"), p("提示组合键"), p("自定义大小，位置")]),
 });
 function aiTip() {
     return txt(t("此插画由AI绘制")).style({
@@ -1041,7 +1131,6 @@ infintyBento.push({
             position: "absolute",
             top: 0,
             left: "-138px",
-            zIndex: -1,
         }),
         title("滤镜").style(txtOnImg),
         p("马赛克、模糊、对比度、亮度、色调、黑白等").style(txtOnImg),
@@ -1054,7 +1143,13 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: view().add([title("自由截屏"), image(free_clip, "").style(bg.style).class(bg.class)]),
+    el: view()
+        .add([
+            image(free_clip, "").style(bg.style).class(bg.class),
+            title("自由截屏"),
+            p("不止矩形，创建任意形状的截屏"),
+        ])
+        .style({ background: Colors(150) }),
 });
 import film from "../assets/a-film-strip.svg";
 infintyBento.push({

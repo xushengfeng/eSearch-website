@@ -7,7 +7,7 @@
     --shadow: #0002 0 0 8px;
     --height: 40px;
     --bg: #fff;
-    --bg2: #fafafa;
+    --bg2: #f8f8f8;
     --color: #000;
     --color2: #555;
     --color-w: #fff;
@@ -72,12 +72,10 @@ button {
 
 #bento {
     position: relative;
-    background: #0001;
     touch-action: none;
 }
 #bento > div {
     position: absolute;
-    border: #3332 solid 1px;
     border-radius: 16px;
     box-sizing: border-box;
     overflow: hidden;
@@ -88,6 +86,9 @@ button {
         top: auto;
         bottom: 2rem;
     }
+}
+.bento {
+    background-color: #fff;
 }
 
 .center {
@@ -436,7 +437,6 @@ button {
         top: 0;
         display: flex;
         justify-content: center;
-        z-index: -1;
     }
     & img {
         height: 1060px;
@@ -682,7 +682,7 @@ button {
 
 .ocr {
     --c: #dde;
-    background: -webkit-linear-gradient(top, transparent 15px, var(--c) 0),
+    background: white, -webkit-linear-gradient(top, transparent 15px, var(--c) 0),
         -webkit-linear-gradient(left, transparent 15px, var(--c) 0);
     background-size: 16px 16px;
 }
@@ -735,6 +735,7 @@ button {
         color: #efefe0;
         z-index: -1;
         font-size: 1.8rem;
+        line-height: 1;
     }
 }
 
