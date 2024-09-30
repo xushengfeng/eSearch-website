@@ -514,13 +514,14 @@ const recordEl = view()
 
 import photoImg from "../assets/a-mountain.webp";
 import photoImg1 from "../assets/a-mountain1.webp";
-import photoImg2 from "../assets/colorful-waves-from-center-diverging-in-all-direct.webp";
 const y以图搜图 = view()
     .class("search_photo")
     .add([
         title("以图搜图"),
         aiTip(),
-        view().class(center.class).add(image(photoImg2, "")),
+        view()
+            .class(center.class)
+            .add(image(getImg("colorful-waves-from-center-diverging-in-all-direct.webp"), "")),
         view().class(center.class).add(image(photoImg, "")),
         view()
             .class(center.class)
@@ -540,23 +541,15 @@ const x形状 = view()
     .class("shape")
     .style({ background: Colors(20) })
     .add([title("多种形状"), p("快速在截屏上标记")]);
-import shape_arrow from "../assets/shape/arrow.svg";
-import shape_circle from "../assets/shape/circle.svg";
-import shape_rect from "../assets/shape/rect.svg";
-import shape_line from "../assets/shape/line.svg";
-import shape_polyline from "../assets/shape/polyline.svg";
-import shape_polygon from "../assets/shape/polygon.svg";
-import shape_number from "../assets/shape/number.svg";
-import shape_mask from "../assets/shape/mask.svg";
 const shapeL = [
-    shape_arrow,
-    shape_circle,
-    shape_rect,
-    shape_line,
-    shape_polyline,
-    shape_polygon,
-    shape_number,
-    shape_mask,
+    getImg("shape/arrow.svg"),
+    getImg("shape/circle.svg"),
+    getImg("shape/rect.svg"),
+    getImg("shape/line.svg"),
+    getImg("shape/polyline.svg"),
+    getImg("shape/polygon.svg"),
+    getImg("shape/number.svg"),
+    getImg("shape/mask.svg"),
 ];
 x形状.add(
     view("x", "wrap")
@@ -671,11 +664,9 @@ infintyBento.push({
     el: view().add([title("自动识别元素"), p("利用边缘识别识别所有可见元素")]),
 });
 
-import figure_svg from "../assets/figure.svg";
-import game_svg from "../assets/game.svg";
 const translatePel = view()
     .class(center.class, "translator")
-    .add([image(figure_svg, ""), image(game_svg, "")]);
+    .add([image(getImg("figure.svg"), ""), image(getImg("game.svg"), "")]);
 const translatorL = ["100%", "0%"];
 let translatorI = 0;
 setInterval(() => {
@@ -771,10 +762,12 @@ infintyBento.push({
         ]),
 }); // 搜索引擎
 
-import bg1 from "../assets/bookshelf.webp";
-import bg2 from "../assets/blackhole.webp";
-import bg3 from "../assets/forest.webp";
-const virtualBgEl = view().add([view(), image(bg2, ""), image(bg3, ""), view().add(image(wallPaper1, ""))]);
+const virtualBgEl = view().add([
+    view(),
+    image(getImg("blackhole.webp"), ""),
+    image(getImg("forest.webp"), ""),
+    view().add(image(wallPaper1, "")),
+]);
 infintyBento.push({
     x: 3,
     y: 0,
@@ -782,7 +775,7 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("virtual_bg")
-        .add([title("虚拟背景"), image(bg1, ""), virtualBgEl, image(manImg, ""), aiTip()]),
+        .add([title("虚拟背景"), image(getImg("bookshelf.webp"), ""), virtualBgEl, image(manImg, ""), aiTip()]),
 });
 let virtualBgI = 1;
 setInterval(() => {
@@ -840,8 +833,7 @@ infintyBento.push({
                 .add([image(windowsImg, ""), image(linuxImg, ""), image(macosImg, "")]),
         ]),
 }); // 跨平台
-import githubImg from "../assets/icons/Github.svg";
-import giteeImg from "../assets/icons/Gitee.svg";
+
 const codeBg = view();
 const codeCharts = ["~", "<", ">", "?", "#", "@", "$", "&", "*", "%", "0", "*", "+", "-"];
 let codeBgC = "";
@@ -868,12 +860,11 @@ infintyBento.push({
             view()
                 .class(center.class)
                 .add([
-                    a("https://github.com/xushengfeng/eSearch").add(image(githubImg, "github")),
-                    a("https://gitee.com/xsf-root/eSearch").add(image(giteeImg, "gitee")),
+                    a("https://github.com/xushengfeng/eSearch").add(image(getImg("icons/Github.svg"), "github")),
+                    a("https://gitee.com/xsf-root/eSearch").add(image(getImg("icons/Gitee.svg"), "gitee")),
                 ]),
         ]),
 }); // 开源
-import devImg from "../assets/a-cube-filled-with-mechancial-elements.svg";
 infintyBento.push({
     x: 1,
     y: 4,
@@ -883,7 +874,7 @@ infintyBento.push({
         .class("dev")
         .add([
             title("新特性"),
-            image(devImg, ""),
+            image(getImg("a-cube-filled-with-mechancial-elements.svg"), ""),
             a("https://github.com/xushengfeng/eSearch/releases")
                 .class(center.class)
                 .add("测试版尝鲜")
@@ -1000,9 +991,8 @@ function pickColorXY() {
     const color = pickColorCanvasCtx.getImageData(x, y, 1, 1).data;
     pickColorEl.clear().add(pickColor(Array.from(color)));
 }
-import photo from "../assets/p.webp";
 const img = document.createElement("img");
-img.src = photo;
+img.src = getImg("p.webp");
 img.onload = () => {
     pickColorCanvas.width = img.naturalWidth;
     pickColorCanvas.height = img.naturalHeight;
@@ -1020,7 +1010,6 @@ infintyBento.push({
     h: 1,
     el: view().class("pick_color").add([pickColorBg, pickColorEl]),
 });
-import qr from "../assets/qr.svg";
 infintyBento.push({
     x: -1,
     y: 4,
@@ -1029,7 +1018,7 @@ infintyBento.push({
     el: view()
         .class("qr")
         .style({ background: Colors(288) })
-        .add(image(qr, "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
+        .add(image(getImg("qr.svg"), "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
 });
 function aiTip() {
     return txt(t("此插画由AI绘制")).style({
@@ -1039,8 +1028,7 @@ function aiTip() {
     });
 }
 
-import scrollImg from "../assets/rockets-and-space-ship.webp";
-const longClipEl = view().add(image(scrollImg, ""));
+const longClipEl = view().add(image(getImg("rockets-and-space-ship.webp"), ""));
 function logClip() {
     const h = window.innerHeight - longClipEl.el.getBoundingClientRect().y - 100;
     longClipEl.el.style.height = `${Math.max(h, 200)}px`;
@@ -1094,7 +1082,6 @@ infintyBento.push({
         p("支持失去焦点自动关闭窗口"),
     ]),
 });
-import mutiScreen from "../assets/a-muti-screen-wall.webp";
 infintyBento.push({
     x: 4,
     y: 1,
@@ -1102,21 +1089,24 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("muti_screen")
-        .add([title("多屏幕"), image(mutiScreen, ""), image(logo, "").class(center.class), aiTip()]),
+        .add([
+            title("多屏幕"),
+            image(getImg("a-muti-screen-wall.webp"), ""),
+            image(logo, "").class(center.class),
+            aiTip(),
+        ]),
 });
-import bw from "../assets/bw.svg";
 infintyBento.push({
     x: 4,
     y: 2,
     w: 1,
     h: 1,
     el: view().add([
-        image(bw, "").class(center.class).style({ width: "100%" }),
+        image(getImg("bw.svg"), "").class(center.class).style({ width: "100%" }),
         title("深色模式").style({ mixBlendMode: "difference", color: "white" }),
         p("自动跟随系统切换").style({ mixBlendMode: "difference", color: "white" }),
     ]),
 });
-import filter from "../assets/filter.webp";
 const txtOnImg = {
     filter: "drop-shadow(2px 4px 6px black)",
     color: "white",
@@ -1127,7 +1117,7 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view().add([
-        image(filter, "山 经过多个滤镜处理").style({
+        image(getImg("filter.webp"), "山 经过多个滤镜处理").style({
             height: "100%",
             position: "absolute",
             top: 0,
@@ -1138,7 +1128,6 @@ infintyBento.push({
     ]),
 });
 
-import free_clip from "../assets/free.svg";
 infintyBento.push({
     x: 5,
     y: 2,
@@ -1146,7 +1135,7 @@ infintyBento.push({
     h: 1,
     el: view()
         .add([
-            image(free_clip, "").style(bg.style).class(bg.class),
+            image(getImg("free.svg"), "").style(bg.style).class(bg.class),
             title("自由截屏"),
             p("不止矩形，创建任意形状的截屏"),
         ])
@@ -1179,7 +1168,7 @@ infintyBento.push({
             title("录制摄像头"),
             image(wallPaper2, "").class("wp"),
             image(windowImg, "").class(center.class),
-            view().add(image(manImg, "")),
+            view().add(image(getImg("a-professor.webp"), "")),
         ]),
 });
 import tools_close from "../assets/tools/close.svg";
