@@ -129,6 +129,7 @@ function fillBento() {
     }
 }
 
+// @auto-path:../assets
 function getImg(name: string) {
     return new URL(`../assets/${name}`, import.meta.url).href;
 }
