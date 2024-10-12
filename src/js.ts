@@ -48,6 +48,7 @@ const repeatY = 7;
 
 document.onwheel = (e) => {
     if (log2El.el.contains(e.target as HTMLElement)) return;
+    moveAnimate.stop();
     x -= e.deltaX;
     y -= e.deltaY;
     moveB(x, y);
@@ -58,6 +59,7 @@ let startP = { x, y };
 b.onpointerdown = (e) => {
     const el = e.target as HTMLElement;
     if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(el.tagName)) return;
+    moveAnimate.stop();
     startE = e;
     startP = { x, y };
 };
@@ -80,9 +82,13 @@ function moveB(x: number, y: number) {
     logClip();
 }
 
-function moveToRect(r: { x: number; y: number; w: number; h: number }) {
+function getToRect(r: { x: number; y: number; w: number; h: number }) {
     x = window.innerWidth / 2 - (r.x * blockSize + (r.w * blockSize) / 2);
     y = window.innerHeight / 2 - (r.y * blockSize + (r.h * blockSize) / 2);
+    return { x, y };
+}
+function moveToRect(r: { x: number; y: number; w: number; h: number }) {
+    const { x, y } = getToRect(r);
     moveB(x, y);
 }
 
@@ -1403,6 +1409,20 @@ initBento();
 
 moveToRect({ x: -1, y: 0, w: 2, h: 1 });
 
+const moveAnimate = animate(
+    () => {
+        const ox = Number.parseFloat(b.style.left.replace("px", ""));
+        const oy = Number.parseFloat(b.style.top.replace("px", ""));
+        return { x: ox, y: oy };
+    },
+    (data) => {
+        moveB(data.x, data.y);
+        x = data.x;
+        y = data.y;
+    },
+    600,
+);
+
 document.body.append(
     view()
         .class("tip")
@@ -1410,11 +1430,71 @@ document.body.append(
             txt(t("滚动或按住鼠标移动")),
             button("🎲").on("click", () => {
                 const i = Math.floor(Math.random() * infintyBento.length);
-                b.style.transition = "0.6s";
-                moveToRect(infintyBento[i]);
-                setTimeout(() => {
-                    b.style.transition = "";
-                }, 400);
+                moveAnimate.set(getToRect(infintyBento[i]), 0);
             }),
         ]).el,
 );
+
+function animate<t extends Record<string, number>>(initData: () => t, run: (t: t) => void, duration = 1000) {
+    let linearT = 0;
+    let start: DOMHighResTimeStamp | null = null;
+
+    let nowState: t | null = null;
+    let lastState: t | null = null;
+    let lastT = 0;
+    let willState: t | null = null;
+
+    stop();
+
+    function r() {
+        if (!start) return;
+        linearT = (performance.now() - start) / duration;
+        if (linearT <= 1 && lastState && willState) {
+            const state = structuredClone(lastState);
+            for (const [key, o] of Object.entries(state)) {
+                const w = willState[key];
+                const t = linearT - lastT;
+                if (w !== undefined) {
+                    // @ts-ignore
+                    state[key] = (1 - t) * o + t * w;
+                }
+            }
+            nowState = structuredClone(state);
+            run(state);
+            requestAnimationFrame(r);
+        } else {
+            stop();
+        }
+    }
+    function stop() {
+        nowState = null;
+        lastState = null;
+        lastT = 0;
+        linearT = 1;
+        start = null;
+    }
+    return {
+        set: (state: t, runT?: number | ((t: number) => number)) => {
+            if (runT) {
+                linearT = typeof runT === "number" ? runT : runT(linearT);
+                start = performance.now() - linearT * duration;
+            }
+
+            if (linearT >= 1 || linearT === 0) {
+                linearT = 0;
+                start = performance.now();
+                lastState = initData();
+                lastT = 0;
+            } else {
+                lastState = structuredClone(nowState);
+                lastT = linearT;
+            }
+
+            willState = structuredClone(state);
+            r();
+        },
+        stop: () => {
+            stop();
+        },
+    };
+}
