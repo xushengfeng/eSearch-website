@@ -202,7 +202,20 @@ function initBento() {
 
     fillBento();
 
+    const nl: ((typeof infintyBento)[0] & { r: number })[] = [];
     for (const i of infintyBento) {
+        const x0 = i.x % repeatX;
+        const x1 = (i.x + i.w) % repeatX;
+        const y0 = (i.y % repeatY) - 0.5;
+        const y1 = ((i.y + i.h) % repeatY) - 0.5;
+        const r = Math.sqrt(Math.min(Math.abs(x0), Math.abs(x1)) ** 2 + Math.min(Math.abs(y0), Math.abs(y1)) ** 2);
+        const r1 = Math.sqrt(((x0 + x1) / 2) ** 2 + ((y0 + y1) / 2) ** 2);
+        nl.push({ ...i, r: Math.min(r, r1) });
+    }
+
+    nl.sort((a, b) => a.r - b.r);
+
+    for (const i of nl) {
         b.append(i.el.class("bento").el);
     }
 
