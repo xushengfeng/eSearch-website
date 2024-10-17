@@ -305,13 +305,18 @@ button {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    & > div {
-        overflow: scroll;
+    & > ul {
+        overflow-y: scroll;
+        padding: 0;
         & .log_v {
             font-size: 1.2rem;
             font-weight: bolder;
             border-left: var(--l-color) solid 4px;
             padding-left: 4px;
+        }
+        & li > div > * {
+            max-width: 100%;
+            overflow-x: auto;
         }
     }
 }

@@ -342,7 +342,7 @@ let dev = false;
 let result: any[];
 let devResult: any[];
 setTimeout(() => {
-    fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=100", { method: "GET" })
+    fetch("https://api.github.com/repos/xushengfeng/eSearch/releases?per_page=20", { method: "GET" })
         .then((response) => response.json())
         .then((r) => releasesX(r))
         .catch((error) => {
@@ -476,10 +476,10 @@ const ocrEl = view()
     .class("ocr")
     .add([ocrBg, title("离线文字识别（OCR）", "bottom")]);
 
-const log2El = view();
+const log2El = ele("ul");
 const logEl = view()
     .class("log")
-    .add([title("更新记录"), log2El]);
+    .add([title("更新记录"), log2El, a("https://github.com/xushengfeng/eSearch/releases").add(txt("查看更多"))]);
 
 import markdownit from "markdown-it";
 function showLog() {
@@ -501,11 +501,17 @@ function showLog() {
     };
     log2El.clear();
     for (const i in result) {
+        const body = result[i].body as string;
+        const bodyL = body.split("\n");
+        const newBody = bodyL.slice(
+            0,
+            bodyL.findIndex((i) => i.trim() === "---"),
+        );
         const li = ele("li");
         const h = txt(result[i].tag_name).class("log_v");
         li.add(h);
         const div = view();
-        div.el.innerHTML = md.render(result[i].body);
+        div.el.innerHTML = md.render(newBody.join("\n"));
         li.add([h, div]);
         log2El.add(li);
     }
