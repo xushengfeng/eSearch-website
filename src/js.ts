@@ -636,7 +636,7 @@ infintyBento.push({
 const lpCard = {
     width: "200px",
     height: "140px",
-    padding: "4px",
+    overflow: "hidden",
     borderRadius: "4px",
     position: "absolute",
     boxShadow: "var(--shadow)",
@@ -660,7 +660,16 @@ infintyBento.push({
                     view().style(lpCard).style({ left: 0 }),
                     view().style(lpCard).style({ left: "20px" }),
                     view().style(lpCard).style({ left: "40px" }),
-                    view().style(lpCard).style({ left: "60px" }),
+                    view()
+                        .style(lpCard)
+                        .style({ left: "60px" })
+                        .add(
+                            image(getImg("a-mountain.webp"), "山").style({
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                            }),
+                        ),
                     view().style(lpCard).style({ left: "80px" }),
                     view().style(lpCard).style({ left: "100px" }),
                     view().style(lpCard).style({ left: "120px" }),
