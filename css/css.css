@@ -776,11 +776,29 @@ button {
 }
 
 .translator {
-    display: flex;
-    width: 200%;
-    justify-content: space-around;
-    left: 100%;
-    transition: 0.4s;
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #0002;
+    height: 100%;
+    & > * {
+        position: absolute;
+        left: 0;
+        padding: 8px;
+        transition: var(--transition);
+        line-height: 1.5;
+        font-size: 1.4rem;
+        margin: 0;
+    }
+    & > :nth-child(1) {
+        opacity: 0;
+    }
+    &:hover > :nth-child(1) {
+        opacity: 1;
+    }
+    &:hover > :nth-child(2) {
+        opacity: 0;
+    }
 }
 
 .photos {

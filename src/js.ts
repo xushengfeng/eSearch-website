@@ -625,15 +625,13 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("translate_e")
-        .add(
-            [
-                title("多引擎翻译"),
-                view().add(imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
-                p("自定义API，聚合显示多个引擎翻译结果"),
-                p("方便复制结果"),
-            ],
-            // p(t("自定义MDIC词典查询"), devEl())
-        ),
+        .add([
+            title("多引擎翻译"),
+            view().add(imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
+            p("自定义API，聚合显示多个引擎翻译结果"),
+            p("方便复制结果"),
+            p("保存翻译结果到文件或Anki"),
+        ]),
 });
 const lpCard = {
     width: "200px",
@@ -691,19 +689,15 @@ infintyBento.push({
 
 const translatePel = view()
     .class(center.class, "translator")
-    .add([image(getImg("figure.svg"), ""), image(getImg("game.svg"), "")]);
-const translatorL = ["100%", "0%"];
-let translatorI = 0;
-setInterval(() => {
-    translatePel.el.style.left = translatorL[translatorI];
-    translatorI = 1 - translatorI;
-}, 2000);
+    .add([p("你好世界！\n这是一个屏幕翻译示例\n把其他语言翻译成你的母语"), p("★■•❉\n◍⊛❖✱◎☉\n⊗⌘➞✧✦⚝✸✻")]);
 infintyBento.push({
     x: 3,
     y: 2,
     w: 1,
     h: 1,
-    el: view().add([title("屏幕翻译"), p("翻译屏幕文字并覆盖在上"), translatePel]),
+    el: view()
+        .style({ background: Colors(180) })
+        .add([title("屏幕翻译"), p("翻译屏幕文字并覆盖在上"), p("可定时翻译"), translatePel]),
 });
 
 infintyBento.push({
@@ -921,7 +915,34 @@ infintyBento.push({
     y: 5,
     w: 1,
     h: 1,
-    el: view().add([title("高级图片编辑"), p("为图片添加圆角、阴影")]),
+    el: view()
+        .style({ backgroundColor: Colors(300) })
+        .add([
+            title("高级图片编辑"),
+            p("为图片添加圆角、阴影、背景"),
+            image(getImg("edit_bg.png"), "一个有圆角的图片").style({
+                width: "400px",
+                rotate: "15deg",
+            }),
+        ]),
+});
+infintyBento.push({
+    x: 6,
+    y: 5,
+    w: 1,
+    h: 1,
+    el: view()
+        .style({ backgroundColor: Colors(240) })
+        .add([
+            title("移除图片物体"),
+            p("使用AI，抹除图片中的特定物体"),
+            image(getImg("rm_obj.svg"), "移除东西的线条").style({
+                position: "absolute",
+                left: 0,
+                top: 0,
+                width: "100%",
+            }),
+        ]),
 });
 const money = "¥$€£";
 let mBg = "";
