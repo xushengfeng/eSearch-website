@@ -1,5 +1,6 @@
 import {
     a,
+    addClass,
     addStyle,
     button,
     ele,
@@ -918,6 +919,50 @@ infintyBento.push({
     w: 1,
     h: 1,
     el: view().add([title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")]),
+});
+const t贴图变换 = view();
+
+const t贴图变换d: { name: string; css: string }[] = [
+    { name: "翻转", css: "transform:rotateX(180deg);" },
+    { name: "灰度", css: "filter:grayscale(1);" },
+    { name: "模糊", css: "filter:blur(16px);" },
+    { name: "反相", css: "filter:invert(1);" },
+];
+
+const t贴图变换c = view("x")
+    .style({ gap: "4px" })
+    .add(t贴图变换d.map((d) => txt(d.name).style({ borderRadius: "4px" })))
+    .add("自定义……");
+const t贴图变换c2 = view()
+    .class(addClass({ transition: "var(--transition)" }, {}))
+    .add(image(getImg("a-mountain.webp"), "山").style({ width: "100%" }));
+
+t贴图变换.add([t贴图变换c, t贴图变换c2]);
+
+const t贴图变换class = addClass(
+    {
+        background: "var(--l-color)",
+        color: "white",
+    },
+    {},
+);
+
+setInterval(() => {
+    const i = Math.floor(Math.random() * t贴图变换d.length);
+    try {
+        t贴图变换c.query(`.${t贴图变换class}`).el.className = "";
+    } catch (error) {}
+    t贴图变换c.query(`:nth-child(${i + 1})`).class(t贴图变换class);
+    // @ts-ignore
+    t贴图变换c2.attr({ style: t贴图变换d[i].css });
+}, 1000);
+
+infintyBento.push({
+    x: 5,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: view().add([title("贴图变换"), p("使用数字按键快速变换贴图"), p("支持CSS自定义变换"), t贴图变换]),
 });
 infintyBento.push({
     x: 5,
