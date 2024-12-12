@@ -431,6 +431,12 @@ function subtitle(string: string) {
     return s;
 }
 
+function help(srcPath: string) {
+    return a(`https://github.com/xushengfeng/eSearch/blob/master/docs/use/${srcPath}`).add(
+        image(getImg("help.svg"), "帮助文档").style({ width: "14px", height: "14px", opacity: "0.5" }),
+    );
+}
+
 const center = { class: "center" };
 const bg = { ...center, style: { width: "100%" } };
 const noBg = { style: { background: "transparent" } };
@@ -629,9 +635,9 @@ infintyBento.push({
         .add([
             title("多引擎翻译"),
             view().add(imgL([t_chatgpt, t_gemini, t_deepl, t_caiyun, t_bing, t_youdao, t_baidu, t_niu])),
-            p("自定义API，聚合显示多个引擎翻译结果"),
+            p("自定义API，聚合显示多个引擎翻译结果").add(help("translate.md#主页面翻译")),
             p("方便复制结果"),
-            p("保存翻译结果到文件或Anki"),
+            p("保存翻译结果到文件或Anki").add(help("translate.md#生词本")),
         ]),
 });
 const lpCard = {
@@ -694,7 +700,7 @@ infintyBento.push({
     y: 3,
     w: 1,
     h: 1,
-    el: view().add([title("自动识别元素"), p("利用边缘识别识别所有可见元素")]),
+    el: view().add([title("自动识别元素").add(help("clip.md#基于视觉的自动框选")), p("利用边缘识别识别所有可见元素")]),
 });
 
 const translatePel = view()
@@ -707,7 +713,12 @@ infintyBento.push({
     h: 1,
     el: view()
         .style({ background: Colors(180) })
-        .add([title("屏幕翻译"), p("翻译屏幕文字并覆盖在上"), p("可定时翻译"), translatePel]),
+        .add([
+            title("屏幕翻译").add(help("translate.md#屏幕翻译")),
+            p("翻译屏幕文字并覆盖在上"),
+            p("可定时翻译"),
+            translatePel,
+        ]),
 });
 
 infintyBento.push({
@@ -962,7 +973,12 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: view().add([title("贴图变换"), p("使用数字按键快速变换贴图"), p("支持CSS自定义变换"), t贴图变换]),
+    el: view().add([
+        title("贴图变换").add(help("ding.md#变换")),
+        p("使用数字按键快速变换贴图"),
+        p("支持CSS自定义变换"),
+        t贴图变换,
+    ]),
 });
 infintyBento.push({
     x: 5,
@@ -1140,7 +1156,7 @@ infintyBento.push({
     h: 3,
     el: view()
         .class("long_clip")
-        .add([title("滚动截屏"), p("万向滚动拼接"), longClipEl, aiTip()]),
+        .add([title("滚动截屏").add(help("long_clip.md")), p("万向滚动拼接"), longClipEl, aiTip()]),
 });
 
 function autoDeleteEnterEl(t: string) {
@@ -1155,7 +1171,7 @@ infintyBento.push({
     h: 2,
     el: view()
         .add([
-            title("自动排版"),
+            title("自动排版").add(help("ocr.md#自动删除换行")),
             autoDeleteEnterEl(
                 "我们日常的文字，特别是一段话，会比较长，在显示时软件采取了自动换行，就像你现在看到的一样，一段文字变成了视觉上的多行文字。",
             ),
@@ -1334,7 +1350,7 @@ infintyBento.push({
     y: 4,
     w: 1,
     h: 1,
-    el: view().add([title("同步选择"), syncSelect]),
+    el: view().add([title("同步选择").add(help("ocr.md#原图校对")), syncSelect]),
 });
 const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区，方便校对");
 const syncOCR = view()
