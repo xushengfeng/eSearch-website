@@ -16,6 +16,7 @@ import {
     setProperty,
     txt,
     view,
+    animate,
 } from "dkh-ui";
 
 const infintyBento: { x: number; y: number; w: number; h: number; el: ElType<HTMLElement> }[] = [];
@@ -1594,67 +1595,3 @@ document.body.append(
             }),
         ]).el,
 );
-
-function animate<t extends Record<string, number>>(initData: () => t, run: (t: t) => void, duration = 1000) {
-    let linearT = 0;
-    let start: DOMHighResTimeStamp | null = null;
-
-    let nowState: t | null = null;
-    let lastState: t | null = null;
-    let lastT = 0;
-    let willState: t | null = null;
-
-    stop();
-
-    function r() {
-        if (!start) return;
-        linearT = (performance.now() - start) / duration;
-        if (linearT <= 1 && lastState && willState) {
-            const state = structuredClone(lastState);
-            for (const [key, o] of Object.entries(state)) {
-                const w = willState[key];
-                const t = linearT - lastT;
-                if (w !== undefined) {
-                    // @ts-ignore
-                    state[key] = (1 - t) * o + t * w;
-                }
-            }
-            nowState = structuredClone(state);
-            run(state);
-            requestAnimationFrame(r);
-        } else {
-            stop();
-        }
-    }
-    function stop() {
-        nowState = null;
-        lastState = null;
-        lastT = 0;
-        linearT = 1;
-        start = null;
-    }
-    return {
-        set: (state: t, runT?: number | ((t: number) => number)) => {
-            if (runT) {
-                linearT = typeof runT === "number" ? runT : runT(linearT);
-                start = performance.now() - linearT * duration;
-            }
-
-            if (linearT >= 1 || linearT === 0) {
-                linearT = 0;
-                start = performance.now();
-                lastState = initData();
-                lastT = 0;
-            } else {
-                lastState = structuredClone(nowState);
-                lastT = linearT;
-            }
-
-            willState = structuredClone(state);
-            r();
-        },
-        stop: () => {
-            stop();
-        },
-    };
-}
