@@ -697,7 +697,12 @@ infintyBento.push({
     y: 3,
     w: 1,
     h: 1,
-    el: view().add([title("自动识别元素").add(help("clip.md#基于视觉的自动框选")), p("利用边缘识别识别所有可见元素")]),
+    el: view().add([
+        title("识别窗口与元素"),
+        p("识别窗口"),
+        p("利用边缘识别识别所有可见元素").add(help("clip.md#基于视觉的自动框选")),
+        p("按住Shift并框选，自动匹配接近的框选"),
+    ]),
 });
 
 const translatePel = view()
