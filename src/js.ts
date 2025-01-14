@@ -540,9 +540,6 @@ function showLog() {
 import windowImg from "../assets/window.webp";
 import wallPaper1 from "../assets/wallpaper/win11.webp";
 import wallPaper2 from "../assets/wallpaper/macos.webp";
-const recordEl = view()
-    .class("record")
-    .add([image(wallPaper1, "").class("wp"), image(windowImg, "").class(center.class), view().class(center.class)]);
 
 import photoImg from "../assets/a-mountain.webp";
 import photoImg1 from "../assets/a-mountain1.webp";
@@ -622,7 +619,6 @@ infintyBento.push({ x: -1, y: 0, w: 2, h: 1, el: navTipEl });
 infintyBento.push({ x: 0, y: 1, w: 2, h: 1, el: downloadEl });
 infintyBento.push({ x: 1, y: -1, w: 2, h: 2, el: ocrEl });
 infintyBento.push({ x: 1, y: 2, w: 1, h: 2, el: logEl });
-infintyBento.push({ x: 0, y: -1, w: 1, h: 1, el: recordEl });
 infintyBento.push({ x: -1, y: -1, w: 1, h: 1, el: y以图搜图 });
 infintyBento.push({ x: 2, y: 1, w: 1, h: 1, el: x形状 });
 infintyBento.push({
@@ -929,7 +925,9 @@ infintyBento.push({
     y: -1,
     w: 1,
     h: 1,
-    el: view().add([title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")]),
+    el: view()
+        .add([title("贴图"), p("把图片置顶在屏幕上，可改变透明度、大小、鼠标穿透、位置"), p("一键归位")])
+        .style({ background: Colors(30) }),
 });
 const t贴图变换 = view();
 
@@ -1259,8 +1257,8 @@ infintyBento.push({
 });
 import film from "../assets/a-film-strip.svg";
 infintyBento.push({
-    x: 0,
-    y: -2,
+    x: 3,
+    y: 5,
     w: 1,
     h: 1,
     el: view()
@@ -1268,14 +1266,66 @@ infintyBento.push({
         .add([
             title("编辑录屏"),
             p(t("并把他们转为mp4、gif、webm……")),
+            p("超级录屏可以按帧编辑").add(help("record.md#超级录屏")),
             view().add([image(film, ""), image(film, ""), image(film, ""), image(film, "")]),
             aiTip(),
         ]),
 });
+
+const wWidth = 711;
+const wHeight = 400;
+const superWindow = view()
+    .style({
+        position: "absolute",
+        top: `-${(wHeight - 340) / 2}px`,
+        left: `-${(wWidth - 340) / 2}px`,
+        transform: "scale(1) translate(0,0)",
+        transition: "0.8s",
+    })
+    .add([
+        image(wallPaper1, ""),
+        image(windowImg, "").style({
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            translate: "-50% -50%",
+            scale: "0.8",
+        }),
+    ]);
+
+infintyBento.push({
+    x: 0,
+    y: -1,
+    w: 1,
+    h: 1,
+    el: view().add([
+        superWindow,
+        title("超级录屏")
+            .add(help("record.md#超级录屏"))
+            .style({ position: "absolute", top: "auto", bottom: "4px", left: "4px", color: "white" }),
+        view()
+            .style({ position: "relative", color: "white", textShadow: "0 0 4px black" })
+            .add([p("自动创建灵动的录屏"), p("识别点击位置，自动缩放"), p("加速、删除，控制每一帧")]),
+    ]),
+});
+function randomR(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+}
+setInterval(() => {
+    const x = Math.random();
+    if (x < 1 / 3) {
+        superWindow.style({ transform: "scale(0.85) translate(0,0)" });
+    } else {
+        const z = randomR(1, 1.8);
+        const x = randomR(-(wWidth - 340) / 2, (wWidth - 340) / 2);
+        const y = randomR(-(wHeight - 340) / 2, (wHeight - 340) / 2);
+        superWindow.style({ transform: `scale(${z}) translate(${x}px,${y}px)` });
+    }
+}, 2000);
 import manImg from "../assets/a-professor.webp";
 infintyBento.push({
-    x: 3,
-    y: -2,
+    x: 4,
+    y: 0,
     w: 1,
     h: 1,
     el: view()
