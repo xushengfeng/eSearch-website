@@ -584,7 +584,7 @@ function showLog() {
             0,
             bodyL.findIndex((i) => i.trim() === "---"),
         );
-        const li = ele("li");
+        const li = ele("li").style({ marginBlockEnd: "2rem" });
         const h = txt(result[i].tag_name, true).class("log_v");
         li.add(h);
         const div = view();
