@@ -9,6 +9,7 @@ module.exports = defineConfig({
                 download: resolve(__dirname, "download.html"),
             },
         },
+        target: "esnext",
     },
     css: { transformer: "lightningcss" },
 });
