@@ -296,7 +296,7 @@ const t = (text: string) => {
     return x || text;
 };
 
-await setLan(localStorage.getItem("lan") || "zh-HANS");
+await setLan(localStorage.getItem("lan") || lan);
 setTranslate(t);
 
 const navTipEl = view().class("logo");
