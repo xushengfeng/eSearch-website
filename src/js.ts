@@ -218,8 +218,32 @@ function initBento() {
     }
 
     nl.sort((a, b) => a.r - b.r);
+    const l: (0 | 1)[] = [];
+    let xl = nl;
+    for (const n of l) {
+        xl = n === 0 ? xl.slice(0, Math.floor(xl.length / 2)) : xl.slice(Math.floor(xl.length / 2));
+    }
+    let lastt = 0;
+    if (l.length > 0) {
+        const el = txt("", true).addInto().style({ zIndex: 999, position: "fixed", top: 0, left: 0 });
+        function xx() {
+            const nt = performance.now();
+            const dt = nt - lastt;
+            lastt = nt;
+            el.sv(Math.round(1000 / dt).toFixed());
+            if (Math.round(1000 / dt) < 50) el.style({ background: "red" });
+            else el.style({ background: "" });
+            requestAnimationFrame(xx);
+        }
+        xx();
+        setInterval(() => {
+            x += 2;
+            y += 2;
+            moveB(x, y);
+        }, 1);
+    }
 
-    for (const i of nl) {
+    for (const i of xl) {
         b.append(i.el.class("bento").el);
     }
 
