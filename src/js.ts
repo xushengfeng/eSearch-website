@@ -580,7 +580,6 @@ const y以图搜图 = view()
     .class("search_photo")
     .add([
         title("以图搜图"),
-        aiTip(),
         view()
             .class(center.class)
             .add(image(getImg("colorful-waves-from-center-diverging-in-all-direct.webp"), "")),
@@ -849,7 +848,7 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("virtual_bg")
-        .add([title("虚拟背景"), image(getImg("bookshelf.webp"), ""), virtualBgEl, image(manImg, ""), aiTip()]),
+        .add([title("虚拟背景"), image(getImg("bookshelf.webp"), ""), virtualBgEl, image(manImg, "")]),
 });
 let virtualBgI = 1;
 setInterval(() => {
@@ -880,7 +879,6 @@ infintyBento.push({
     el: view()
         .class("lang")
         .add([
-            a("./ocr.html").add("下载OCR语言包"),
             t条幅("界面和OCR支持多种语言"),
             t条幅("Interface and OCR support multiple languages "),
             t条幅("Interface et OCR prennent en charge plusieurs langues "),
@@ -1172,13 +1170,6 @@ infintyBento.push({
         .style({ background: Colors(288) })
         .add(image(getImg("qr.svg"), "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
 });
-function aiTip() {
-    return txt("此插画由AI绘制").style({
-        position: "absolute",
-        bottom: "4px",
-        right: "4px",
-    });
-}
 
 const longClipEl = view().add(image(getImg("rockets-and-space-ship.webp"), ""));
 function logClip() {
@@ -1192,7 +1183,7 @@ infintyBento.push({
     h: 3,
     el: view()
         .class("long_clip")
-        .add([title("滚动截屏").add(help("long_clip.md")), p("万向滚动拼接"), longClipEl, aiTip()]),
+        .add([title("滚动截屏").add(help("long_clip.md")), p("万向滚动拼接"), longClipEl]),
 });
 
 function autoDeleteEnterEl(t: string) {
@@ -1241,12 +1232,7 @@ infintyBento.push({
     h: 1,
     el: view()
         .class("muti_screen")
-        .add([
-            title("多屏幕"),
-            image(getImg("a-muti-screen-wall.webp"), ""),
-            image(logo, "").class(center.class),
-            aiTip(),
-        ]),
+        .add([title("多屏幕"), image(getImg("a-muti-screen-wall.webp"), ""), image(logo, "").class(center.class)]),
 });
 infintyBento.push({
     x: 4,
@@ -1306,7 +1292,6 @@ infintyBento.push({
             p("并把他们转为mp4、gif、webm……"),
             p("超级录屏可以按帧编辑").add(help("record.md#超级录屏")),
             view().add([image(film, ""), image(film, ""), image(film, ""), image(film, "")]),
-            aiTip(),
         ]),
 });
 

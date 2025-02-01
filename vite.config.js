@@ -7,7 +7,6 @@ module.exports = defineConfig({
             input: {
                 main: resolve(__dirname, "index.html"),
                 download: resolve(__dirname, "download.html"),
-                ocr: resolve(__dirname, "ocr.html"),
             },
         },
     },

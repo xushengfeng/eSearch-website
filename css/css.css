@@ -212,16 +212,6 @@ button {
     & > .slide {
         opacity: 0.6;
     }
-    & > a {
-        position: absolute;
-        z-index: 1;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 4px;
-        border-radius: 4px;
-    }
 }
 
 .slide {
