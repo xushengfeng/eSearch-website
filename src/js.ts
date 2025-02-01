@@ -17,6 +17,8 @@ import {
     txt,
     view,
     animate,
+    setTranslate,
+    noI18n,
 } from "dkh-ui";
 
 const infintyBento: { x: number; y: number; w: number; h: number; el: ElType<HTMLElement> }[] = [];
@@ -226,22 +228,50 @@ function initBento() {
 
 const lan = navigator.language || "zh-HANS";
 
-let lanMap: { [key: string]: string } = {};
+const lanMap = new Map<string, string>();
 
-if (lan.split("-")[0] !== "zh") {
-    fetch("/language/en.json")
-        .then((res) => res.json())
-        .then((data) => {
-            lanMap = data;
-        });
+async function setLan(lan: string) {
+    const lans = ["ar", "en", "eo", "es", "fr", "ru", "zh-HANS", "zh-HANT"];
+    let l = "zh-HANS";
+    if (lans.includes(lan)) l = lan;
+    else {
+        for (const i of lans) {
+            if (i.split("-")[0] === lan.split("-")[0]) {
+                l = i;
+                break;
+            }
+        }
+    }
+    lanMap.clear();
+    const source = (await (await fetch("/language/source.json")).json()) as Record<string, string>;
+    console.log(source);
+    if (l === "zh-HANS") {
+        for (const k of Object.keys(source)) {
+            lanMap.set(k, k);
+        }
+        return;
+    }
+    try {
+        const data = await (await fetch(`/language/${l}.json`)).json();
+        for (const [k, id] of Object.entries(source)) {
+            const v = data[id];
+            if (!v) console.log("untrans", id);
+            lanMap.set(k, v || k);
+        }
+    } catch (error) {
+        console.log("no lan", l);
+    }
 }
 
 const t = (text: string) => {
-    if (lan.split("-")[0] === "zh") {
-        return text;
-    }
-    return lanMap[text];
+    if (text.trim() === "") return text;
+    const x = lanMap.get(text);
+    if (!x) console.log("untransid", text);
+    return x || text;
 };
+
+await setLan("en");
+setTranslate(t);
 
 const navTipEl = view().class("logo");
 import logo from "../assets/icon.svg";
@@ -490,7 +520,7 @@ const ocrBg = view()
     })
     .attr({ ariaHidden: "true" });
 for (let i = 0; i < 1500; i++) {
-    ocrBg.add(getRandomChineseWord());
+    ocrBg.add(noI18n(getRandomChineseWord()));
 }
 
 const ocrEl = view()
@@ -1091,7 +1121,7 @@ function pickColor(l: number[]) {
     const clipColorTextColor = color.alpha() === 1 ? (color.isLight() ? "#000" : "#fff") : "";
     const div = view().style({ background: color.hex(), color: clipColorTextColor });
     for (const i in allColorFormat) {
-        div.add(view().add(colorConversion(color, allColorFormat[i])));
+        div.add(view().add(noI18n(colorConversion(color, allColorFormat[i]))));
     }
     return div;
 }

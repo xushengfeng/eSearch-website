@@ -1,6 +1,7 @@
 {
 	"dependencies": {
 		"color": "^4.2.3",
+		"csv-parse": "^5.6.0",
 		"dkh-ui": "^0.12.1",
 		"lightningcss": "^1.27.0",
 		"markdown-it": "^13.0.1"
