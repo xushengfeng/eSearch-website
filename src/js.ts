@@ -263,14 +263,16 @@ async function setLan(lan: string) {
     }
 }
 
+const ignoreTrans = new Set(["x64", "arm64", "PaddleOCR", "github", "gitee", "↵", "netlify", "amie", "Github"]);
 const t = (text: string) => {
     if (text.trim() === "") return text;
+    if (ignoreTrans.has(text)) return text;
     const x = lanMap.get(text);
     if (!x) console.log("untransid", text);
     return x || text;
 };
 
-await setLan("en");
+await setLan(localStorage.getItem("lan") || "zh-HANS");
 setTranslate(t);
 
 const navTipEl = view().class("logo");
@@ -278,7 +280,7 @@ import logo from "../assets/icon.svg";
 import logoSVG from "../assets/icon.svg?raw";
 navTipEl.el.innerHTML = logoSVG;
 navTipEl
-    .add(view().add([ele("h1").add(t("eSearch")).style({ "font-size": "3rem" }), ele("h2").add(t("识屏 · 搜索"))]))
+    .add(view().add([ele("h1").add(noI18n("eSearch")).style({ "font-size": "3rem" }), ele("h2").add("识屏 · 搜索")]))
     .on("transitionend", () => {
         navTipEl.style({ transition: "0s" });
     });
@@ -315,9 +317,9 @@ if (userAgent.indexOf("win") > -1) {
 }
 
 const platformSelect = select([
-    { value: "Windows", name: "Windows" },
-    { value: "macOS", name: "macOS" },
-    { value: "Linux", name: "Linux" },
+    { value: "Windows", name: noI18n("Windows") },
+    { value: "macOS", name: noI18n("macOS") },
+    { value: "Linux", name: noI18n("Linux") },
 ]).on("input", () => {
     cPlatform();
 });
@@ -378,7 +380,7 @@ cPlatform(platform);
 
 function getDownloadItem(platform: "win32" | "linux" | "darwin", arch: "x64" | "arm64", fileType: string) {
     const url = `https://github.com/xushengfeng/eSearch/releases/download/${v}/eSearch-${v}-${platform}-${arch}.${fileType}`;
-    return a(fasthub(url, useFastGitEl.gv)).attr({ download: "true" }).data({ src: url }).add(fileType);
+    return a(fasthub(url, useFastGitEl.gv)).attr({ download: "true" }).data({ src: url }).add(noI18n(fileType));
 }
 
 let dev = false;
@@ -559,7 +561,7 @@ function showLog() {
             bodyL.findIndex((i) => i.trim() === "---"),
         );
         const li = ele("li");
-        const h = txt(result[i].tag_name).class("log_v");
+        const h = txt(result[i].tag_name, true).class("log_v");
         li.add(h);
         const div = view();
         div.el.innerHTML = md.render(newBody.join("\n"));
@@ -642,7 +644,7 @@ import t_youdao from "../assets/icons/translate/youdao.svg";
 function t条幅(text: string) {
     const s = view()
         .class("slide")
-        .add([txt(text), txt(text)]);
+        .add([txt(text, true), txt(text, true)]);
     return s;
 }
 
@@ -737,7 +739,7 @@ infintyBento.push({
 
 const translatePel = view()
     .class(center.class, "translator")
-    .add([p("你好世界！\n这是一个屏幕翻译示例\n把其他语言翻译成你的母语"), p("★■•❉\n◍⊛❖✱◎☉\n⊗⌘➞✧✦⚝✸✻")]);
+    .add([p("你好世界！\n这是一个屏幕翻译示例\n把其他语言翻译成你的母语"), p("★■•❉\n◍⊛❖✱◎☉\n⊗⌘➞✧✦⚝✸✻", true)]);
 infintyBento.push({
     x: 3,
     y: 2,
@@ -864,9 +866,9 @@ infintyBento.push({
         .class("star")
         .add(
             a("https://github.com/xushengfeng/eSearch").add([
-                txt("🌟"),
-                txt(t("去GitHub点Star")),
-                txt(t("或fork，或提issue，这是我开发的动力")),
+                txt("🌟", true),
+                txt("去GitHub点Star"),
+                txt("或fork，或提issue，这是我开发的动力"),
             ]),
         ),
 });
@@ -1066,7 +1068,7 @@ infintyBento.push({
             p("只有高级版"),
             p("享受以下所有功能："),
             p("截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 等"),
-            view().add(mBg).style({ background: "white" }).attr({ ariaHidden: "true" }),
+            view().add(noI18n(mBg)).style({ background: "white" }).attr({ ariaHidden: "true" }),
         ])
         .style({ background: "transparent" }),
 });
@@ -1171,7 +1173,7 @@ infintyBento.push({
         .add(image(getImg("qr.svg"), "").style({ opacity: 0.6 }).attr({ width: 200 }).class(center.class)),
 });
 function aiTip() {
-    return txt(t("此插画由AI绘制")).style({
+    return txt("此插画由AI绘制").style({
         position: "absolute",
         bottom: "4px",
         right: "4px",
@@ -1301,7 +1303,7 @@ infintyBento.push({
         .class("edit_record")
         .add([
             title("编辑录屏"),
-            p(t("并把他们转为mp4、gif、webm……")),
+            p("并把他们转为mp4、gif、webm……"),
             p("超级录屏可以按帧编辑").add(help("record.md#超级录屏")),
             view().add([image(film, ""), image(film, ""), image(film, ""), image(film, "")]),
             aiTip(),
@@ -1425,8 +1427,8 @@ infintyBento.push({
         p("在设置可视化地编辑工具栏工具显示"),
         p("自定义取色器、大小栏等的显示"),
         p("自定义界面字体、毛玻璃效果"),
-        p(t("自定义强调色、背景色")),
-        p("……"),
+        p("自定义强调色、背景色"),
+        p("……", true),
         toolsBar,
     ]),
 });
@@ -1439,10 +1441,9 @@ infintyBento.push({
     el: view().add([title("同步选择").add(help("ocr.md#原图校对")), syncSelect]),
 });
 const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区，方便校对");
-const syncOCR = view()
-    .class("photo_text")
-    .add([testText.slice(0, 4), txt(testText.slice(4, 6)), testText.slice(6)]);
-const syncOCR2 = view().add([testText.slice(0, 4), txt(testText.slice(4, 6)), testText.slice(6)]);
+const testTextL = [noI18n(testText.slice(0, 4)), txt(testText.slice(4, 6), true), noI18n(testText.slice(6))]; // todo copy
+const syncOCR = view().class("photo_text").add(testTextL);
+const syncOCR2 = view().add(testTextL);
 syncSelect.add([syncOCR, syncOCR2]);
 
 infintyBento.push({
@@ -1458,11 +1459,11 @@ infintyBento.push({
             ),
             p("网站灵感来源：").add(a("https://www.amie.so/recap").add("amie")),
             p("此网站源码：").add(a("https://github.com/xushengfeng/eSearch-website").add("Github")),
-            p("2021 - 2024"),
+            p("2021 - 2024", true),
             ele("address").add([
-                a("https://github.com/xushengfeng").add("xushengfeng"),
+                a("https://github.com/xushengfeng").add(noI18n("xushengfeng")),
                 ele("br"),
-                a("mailto:xushengfeng_zg@163.com").add("xushengfeng_zg@163.com"),
+                a("mailto:xushengfeng_zg@163.com").add(noI18n("xushengfeng_zg@163.com")),
             ]),
         ]),
     ]),
@@ -1475,10 +1476,10 @@ const ctrlEl = view()
         cursorEl,
         title("精确控制"),
         p()
-            .add(txt("↑↓←→").style({ "font-family": "code" }))
+            .add(txt("↑↓←→", true).style({ "font-family": "var(--code-font)" }))
             .add("自由移动"),
         p()
-            .add(txt("+-*/()").style({ "font-family": "code" }))
+            .add(txt("+-*/()", true).style({ "font-family": "var(--code-font)" }))
             .add("四则运算精确分割"),
         p("放大到像素编辑"),
     ]);
@@ -1511,14 +1512,14 @@ infintyBento.push({
         p("使用正则表达式替换"),
         p("自定义js脚本处理文字").add(devEl()),
         p("联动其他编辑器"),
-        txt("(t)=>λt").style({
+        txt("(t)=>λt", true).style({
             position: "absolute",
             bottom: "0",
             width: "100%",
             left: "0",
             "text-align": "center",
             "font-size": "4rem",
-            "font-family": "code",
+            "font-family": "var(--code-font)",
         }),
     ]),
 });
@@ -1619,14 +1620,33 @@ const moveAnimate = animate(
     600,
 );
 
-document.body.append(
-    view()
-        .class("tip")
-        .add([
-            txt(t("滚动或按住鼠标移动")),
-            button("🎲").on("click", () => {
+view("x")
+    .class("tip")
+    .add([
+        view("x").add([
+            txt("滚动或按住鼠标移动"),
+            button(noI18n("🎲")).on("click", () => {
                 const i = Math.floor(Math.random() * infintyBento.length);
                 moveAnimate.set(getToRect(infintyBento[i]), 0);
             }),
-        ]).el,
-);
+        ]),
+        view().add(
+            select([
+                { value: "ar", name: noI18n("عربي") },
+                { value: "en", name: noI18n("English") },
+                { value: "eo", name: noI18n("Esperanto") },
+                { value: "es", name: noI18n("Español") },
+                { value: "fr", name: noI18n("Français") },
+                { value: "ru", name: noI18n("Русский") },
+                { value: "zh-HANS", name: noI18n("简体中文") },
+                { value: "zh-HANT", name: noI18n("繁体中文") },
+            ])
+                .on("input", (_, el) => {
+                    localStorage.setItem("lan", el.gv);
+                    location.reload();
+                })
+                // @ts-ignore
+                .sv(localStorage.getItem("lan") || "zh-HANS"),
+        ),
+    ])
+    .addInto();

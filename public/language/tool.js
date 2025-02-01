@@ -28,12 +28,12 @@ console.log(`latestSrcId: ${execSync(`git log -n 1 --pretty=format:%h -- ${sourc
  * @description master与commit id的变化之间，只翻译了部分，为了让程序识别，添加翻译id到finishedid，变化全部翻译完后，可清空finishedid
  */
 const srcCommit = {
-    ar: { id: "", finishId: [] }, // 阿拉伯语
-    en: { id: "", finishId: [] }, // 英语
-    eo: { id: "", finishId: [] }, // 世界语
-    es: { id: "", finishId: [] }, // 西班牙语
-    fr: { id: "", finishId: [] }, // 法语
-    ru: { id: "", finishId: [] }, // 俄语
+    ar: { id: "dfe58ee", finishId: [] }, // 阿拉伯语
+    en: { id: "dfe58ee", finishId: [] }, // 英语
+    eo: { id: "dfe58ee", finishId: [] }, // 世界语
+    es: { id: "dfe58ee", finishId: [] }, // 西班牙语
+    fr: { id: "dfe58ee", finishId: [] }, // 法语
+    ru: { id: "dfe58ee", finishId: [] }, // 俄语
     "zh-HANT": { id: "", finishId: [] }, // 繁体中文
 };
 
