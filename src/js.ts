@@ -356,8 +356,9 @@ archSelect.on(() => {
 const proxy_list: { url: string; replace: boolean; value: string; name: string }[] = [
     { url: "", replace: false, value: "raw", name: "原始链接(Github)" },
     { url: "https://github.moeyy.xyz/", replace: false, value: "0", name: "⚡moeyy镜像" },
-    { url: "https://mirror.ghproxy.com/", replace: false, value: "1", name: "⚡ghproxy镜像" },
+    { url: " https://gh-proxy.com/", replace: false, value: "1", name: "⚡ghproxy镜像" },
     { url: "https://kkgithub.com/", replace: true, value: "2", name: "⚡kkgithub镜像" },
+    { url: "https://gh.llkk.cc/", replace: false, value: "3", name: "⚡llkk镜像" },
 ];
 
 const useFastGitEl = select(proxy_list).on("input", (_, el) => {
