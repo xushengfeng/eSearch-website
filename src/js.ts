@@ -1450,11 +1450,27 @@ infintyBento.push({
     h: 1,
     el: view().add([title("同步选择").add(help("ocr.md#原图校对")), syncSelect]),
 });
-const testText = t("这是测试文字，在图片中选中的文字可以同步到编辑区，方便校对");
-const testTextL = [noI18n(testText.slice(0, 4)), txt(testText.slice(4, 6), true), noI18n(testText.slice(6))]; // todo copy
-const syncOCR = view().class("photo_text").add(testTextL);
-const syncOCR2 = view().add(testTextL);
+const testText = t("这是测试文字，在图片、编辑器选区双向同步，方便校对");
+const testTextL = [
+    () => noI18n(testText.slice(0, 4)),
+    () => txt(testText.slice(4, 6), true),
+    () => noI18n(testText.slice(6)),
+];
+const syncOCR = view()
+    .class("photo_text")
+    .add(testTextL.map((i) => i()));
+const syncOCR2 = view().add(testTextL.map((i) => i()));
 syncSelect.add([syncOCR, syncOCR2]);
+
+infintyBento.push({
+    x: 4,
+    y: 5,
+    w: 1,
+    h: 1,
+    el: view()
+        .style({ background: Colors(170) })
+        .add([title("拼写检查"), p("检查OCR内容，快速校对"), p("支持AI辅助校对")]),
+});
 
 infintyBento.push({
     x: 8,
