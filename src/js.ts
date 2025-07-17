@@ -82,7 +82,6 @@ function moveB(x: number, y: number) {
     b.style.top = `${y}px`;
     r({ x: -x / blockSize, y: -y / blockSize }, repeatX, repeatY);
 
-    pickColorXY();
     logClip();
 }
 
@@ -805,6 +804,7 @@ infintyBento.push({
                 .add([
                     subtitle("🎯准确"),
                     p("使用PaddleOCR v4模型"),
+                    p("可下载v5模型，支持1.5万+字符"),
                     p().add(a("https://webocr.netlify.app").add("在线试用")),
                 ]),
         ),
@@ -932,7 +932,7 @@ infintyBento.push({
 }); // 跨平台
 
 const codeBg = view();
-const codeCharts = ["~", "<", ">", "?", "#", "@", "$", "&", "*", "%", "0", "*", "+", "-"];
+const codeCharts = "~<>?#@$&*%0*+-{}[];";
 let codeBgC = "";
 for (let y = 0; y < 18; y++) {
     for (let x = 0; x < 100; x++) {
@@ -1114,76 +1114,42 @@ infintyBento.push({
         }),
     ]),
 });
-import Color from "color";
-const allColorFormat = ["HEX", "RGB", "HSL", "HSV", "CMYK"];
-// 色彩空间转换
-function colorConversion(rgba: number[] | string, type: string): string {
-    const color = new Color(rgba);
-    if (color.alpha() !== 1) return "/";
-    switch (type) {
-        case "HEX":
-            return color.hex();
-        case "RGB":
-            return color.rgb().string();
-        case "HSL": {
-            const hsl = color.hsl().round().array();
-            return `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
-        }
-        case "HSV": {
-            const hsv = color.hsv().round().array();
-            return `hsv(${hsv[0]}, ${hsv[1]}%, ${hsv[2]}%)`;
-        }
-        case "CMYK": {
-            const cmyk = color.cmyk().round().array();
-            return `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
-        }
-        default:
-            return "";
-    }
-}
-function pickColor(l: number[]) {
-    const color = Color.rgb(l);
-    const clipColorTextColor = color.alpha() === 1 ? (color.isLight() ? "#000" : "#fff") : "";
-    const div = view().style({ background: color.hex(), color: clipColorTextColor });
-    for (const i in allColorFormat) {
-        div.add(view().add(noI18n(colorConversion(color, allColorFormat[i]))));
-    }
-    return div;
-}
-
-let canPickColor = false;
-let lastPickColor = 0;
-const pickColorCanvas = ele("canvas").el;
-const pickColorCanvasCtx = pickColorCanvas.getContext("2d", { willReadFrequently: true });
-function pickColorXY() {
-    if (!canPickColor) return;
-    if (new Date().getTime() - lastPickColor < 100) return;
-    lastPickColor = new Date().getTime();
-    let x = pickColorBg.el.getBoundingClientRect().x;
-    let y = pickColorBg.el.getBoundingClientRect().y;
-    x = Math.max(0, Math.min(pickColorCanvas.width, x));
-    y = Math.max(0, Math.min(pickColorCanvas.height, y));
-    const color = pickColorCanvasCtx.getImageData(x, y, 1, 1).data;
-    pickColorEl.clear().add(pickColor(Array.from(color)));
-}
-const img = document.createElement("img");
-img.src = getImg("p.webp");
-img.onload = () => {
-    pickColorCanvas.width = img.naturalWidth;
-    pickColorCanvas.height = img.naturalHeight;
-    pickColorCanvasCtx.drawImage(img, 0, 0);
-    canPickColor = true;
-};
-const pickColorEl = view()
+const pickColorEl = view("x", "wrap")
     .class(center.class)
-    .add(pickColor([58, 105, 255]));
-const pickColorBg = view();
+    .style({
+        width: "50%",
+        gap: "8px",
+    })
+    .add(
+        ["HEX", "rgb", "hsl", "hsv", "hwb", "CMYK", "lab", "lch", "Oklab", "Oklch"].map((i) =>
+            txt(i).style({ fontFamily: "var(--code-font)" }),
+        ),
+    );
+const pickColorBg = view("x", "wrap")
+    .style({
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+    })
+    .add(
+        new Array(5 * 5).fill(1).map((_, i) =>
+            view().style({
+                width: "20%",
+                height: "20%",
+                background: Colors((i / 25) * 360),
+            }),
+        ),
+    );
 infintyBento.push({
     x: -1,
     y: 1,
     w: 1,
     h: 1,
-    el: view().class("pick_color").add([pickColorBg, pickColorEl]),
+    el: view()
+        .class("pick_color")
+        .add([pickColorBg, title("取色器").style({ position: "absolute" }), pickColorEl]),
 });
 infintyBento.push({
     x: -1,
@@ -1208,7 +1174,11 @@ infintyBento.push({
     h: 3,
     el: view()
         .class("long_clip")
-        .add([title("滚动截屏").add(help("long_clip.md")), p("万向滚动拼接"), longClipEl]),
+        .add([
+            longClipEl,
+            title("滚动截屏").add(help("long_clip.md")),
+            p("万向滚动拼接").style({ position: "absolute" }),
+        ]),
 });
 
 function autoDeleteEnterEl(t: string) {
@@ -1249,15 +1219,6 @@ infintyBento.push({
         p("不仅是贴图，编辑器也可以置于顶层，方便对照编辑"),
         p("支持失去焦点自动关闭窗口"),
     ]),
-});
-infintyBento.push({
-    x: 4,
-    y: 1,
-    w: 2,
-    h: 1,
-    el: view()
-        .class("muti_screen")
-        .add([title("多屏幕"), image(getImg("a-muti-screen-wall.webp"), ""), image(logo, "").class(center.class)]),
 });
 infintyBento.push({
     x: 4,
@@ -1469,7 +1430,14 @@ infintyBento.push({
     h: 1,
     el: view()
         .style({ background: Colors(170) })
-        .add([title("拼写检查"), p("检查OCR内容，快速校对"), p("支持AI辅助校对")]),
+        .add([
+            title("拼写检查"),
+            p("检查OCR内容，快速校对"),
+            p("支持AI辅助校对"),
+            view()
+                .style({ fontSize: "3em", textAlign: "center" })
+                .add([txt("he"), txt("11").style({ textDecoration: `underline ${Colors(0)} 4px` }), txt("o")]),
+        ]),
 });
 
 infintyBento.push({
@@ -1526,7 +1494,7 @@ infintyBento.push({
     y: 2,
     w: 1,
     h: 1,
-    el: view().add([title("快捷键"), p("全局"), p("截屏"), p("编辑器"), p("41种可自定义快捷键")]),
+    el: view().add([title("快捷键"), p("全局"), p("截屏"), p("编辑器"), p("63种可自定义快捷键")]),
 });
 infintyBento.push({
     x: 5,
@@ -1536,7 +1504,6 @@ infintyBento.push({
     el: view().add([
         title("高效编辑"),
         p("使用正则表达式替换"),
-        p("自定义js脚本处理文字").add(devEl()),
         p("联动其他编辑器"),
         txt("(t)=>λt", true).style({
             position: "absolute",
