@@ -764,3 +764,15 @@ button {
         flex-shrink: 0;
     }
 }
+
+@media (max-width: 768px) {
+    #bento {
+        zoom: 0.8;
+    }
+}
+
+@media (max-width: 768px) {
+    .tip .tip-text {
+        display: none;
+    }
+}

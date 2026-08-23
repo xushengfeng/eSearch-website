@@ -50,11 +50,13 @@ let y = 0;
 const repeatX = 10;
 const repeatY = 7;
 
+const bentoZoom = window.matchMedia("(max-width: 768px)").matches ? 0.8 : 1;
+
 document.onwheel = (e) => {
     if (log2El.el.contains(e.target as HTMLElement)) return;
     moveAnimate.stop();
-    x -= e.deltaX;
-    y -= e.deltaY;
+    x -= e.deltaX / bentoZoom;
+    y -= e.deltaY / bentoZoom;
     moveB(x, y);
 };
 
@@ -70,8 +72,8 @@ document.onpointerdown = (e) => {
 };
 document.onpointermove = (e) => {
     if (!startE) return;
-    x = startP.x + e.clientX - startE.clientX;
-    y = startP.y + e.clientY - startE.clientY;
+    x = startP.x + (e.clientX - startE.clientX) / bentoZoom;
+    y = startP.y + (e.clientY - startE.clientY) / bentoZoom;
     moveB(x, y);
 };
 window.onpointerup = (e) => {
@@ -87,8 +89,8 @@ function moveB(x: number, y: number) {
 }
 
 function getToRect(r: { x: number; y: number; w: number; h: number }) {
-    x = window.innerWidth / 2 - (r.x * blockSize + (r.w * blockSize) / 2);
-    y = window.innerHeight / 2 - (r.y * blockSize + (r.h * blockSize) / 2);
+    x = window.innerWidth / (2 * bentoZoom) - (r.x * blockSize + (r.w * blockSize) / 2);
+    y = window.innerHeight / (2 * bentoZoom) - (r.y * blockSize + (r.h * blockSize) / 2);
     return { x, y };
 }
 function moveToRect(r: { x: number; y: number; w: number; h: number }) {
@@ -1618,7 +1620,7 @@ view("x")
     .class("tip")
     .add([
         view("x").add([
-            txt("滚动或按住鼠标移动"),
+            txt("滚动或按住鼠标移动").class("tip-text"),
             button(noI18n("🎲")).on("click", () => {
                 const i = Math.floor(Math.random() * infintyBento.length);
                 moveAnimate.set(getToRect(infintyBento[i]), 0);
