@@ -60,14 +60,15 @@ document.onwheel = (e) => {
 
 let startE: PointerEvent;
 let startP = { x, y };
-b.onpointerdown = (e) => {
+document.onpointerdown = (e) => {
     const el = e.target as HTMLElement;
     if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(el.tagName)) return;
+    if (log2El.el.contains(el)) return;
     moveAnimate.stop();
     startE = e;
     startP = { x, y };
 };
-b.onpointermove = (e) => {
+document.onpointermove = (e) => {
     if (!startE) return;
     x = startP.x + e.clientX - startE.clientX;
     y = startP.y + e.clientY - startE.clientY;
