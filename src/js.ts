@@ -64,7 +64,7 @@ let startE: PointerEvent;
 let startP = { x, y };
 document.onpointerdown = (e) => {
     const el = e.target as HTMLElement;
-    if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(el.tagName)) return;
+    if (el.closest("a, input, textarea, select, button")) return;
     if (log2El.el.contains(el)) return;
     moveAnimate.stop();
     startE = e;
