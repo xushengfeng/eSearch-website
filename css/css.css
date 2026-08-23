@@ -29,6 +29,7 @@ body {
     width: 100dvw;
     overflow: hidden;
     user-select: none;
+    touch-action: none;
 }
 a {
     color: var(--color);
@@ -301,6 +302,7 @@ button {
     gap: 8px;
     & > ul {
         overflow-y: scroll;
+        touch-action: pan-y;
         padding: 0;
         & .log_v {
             font-size: 1.2rem;
